@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#EAF3FC">
+<meta name="description" content="Camhu Lab — học mỗi ngày cùng Camhu: ôn thi JLPT N1, luyện tiếng Anh và kaiwa tiếng Nhật.">
+<title>Camhu Lab – Ôn thi N1 · English · 日本語</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/profile.js"></script>
+<script src="assets/camhu.js"></script>
+<link rel="stylesheet" href="assets/camhu.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;color:var(--cl-ink);font:400 16px/1.55 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;
+  background:radial-gradient(1100px 560px at 6% -8%,var(--cl-pri-l) 0,transparent 60%),radial-gradient(900px 520px at 100% 0,var(--cl-yellow-l) 0,transparent 55%),radial-gradient(900px 600px at 50% 115%,var(--cl-ng-l) 0,transparent 60%),var(--cl-bg);background-attachment:fixed}
+button,input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--cl-pri);outline-offset:2px}
+.hidden{display:none!important}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 20px 70px}
+.hero{display:flex;align-items:center;gap:22px;margin:6px 0 26px}
+.hero-art{flex:none;width:150px;filter:drop-shadow(0 14px 18px rgba(47,109,184,.22))}
+.hero-art svg{width:100%;height:auto;animation:bob 3.4s ease-in-out infinite;transform-origin:50% 90%}
+.wave-arm{transform-origin:96px 68px;animation:wave 1.1s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes wave{0%,100%{transform:rotate(0)}50%{transform:rotate(-14deg)}}
+.eyebrow{display:inline-block;margin:0 0 6px;padding:4px 12px;border-radius:999px;background:var(--cl-pri-l);color:var(--cl-pri-d);font-weight:700;font-size:13px}
+h1{font-size:clamp(2.1rem,5.4vw,3.3rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 10px;font-weight:800}
+h1 span{color:var(--cl-pri-d)}
+.lead{color:var(--cl-muted);max-width:58ch;margin:0;font-size:1.02rem}
+h2{font-size:1.15rem;margin:0 0 6px;font-weight:700}
+.panel{background:var(--cl-card);border:2px solid var(--cl-line);border-radius:24px;padding:22px;box-shadow:0 12px 30px rgba(47,109,184,.08)}
+.panel>p.sub{margin:0 0 14px;color:var(--cl-muted);font-size:.92rem}
+.pick-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:18px;align-items:start}
+.acct{background:linear-gradient(160deg,var(--cl-pri-l),var(--cl-card))}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center}
+.who{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.chipbtn{border:2px solid var(--cl-line);background:var(--cl-soft);border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:600}
+.chipbtn:hover{border-color:var(--cl-pri);background:var(--cl-pri-l)}
+label{display:block;font-size:.85rem;color:var(--cl-muted);margin:12px 0 4px;font-weight:600}
+input[type=text],textarea,select{width:100%;border:2px solid var(--cl-line);border-radius:14px;padding:9px 12px;background:var(--cl-soft);outline:none}
+input[type=text]:focus,textarea:focus,select:focus{border-color:var(--cl-pri);box-shadow:0 0 0 4px var(--cl-pri-l)}
+textarea{min-height:64px;resize:vertical}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 14px}
+details{margin-top:16px}
+summary{cursor:pointer;font-weight:700}
+.hello{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.hello p{margin:0;font-size:1.35rem;font-weight:700}
+.hello a{color:var(--cl-muted);font-size:.9rem}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:700;background:var(--cl-mint-l);color:var(--cl-mint-d)}
+.badge.local{background:var(--cl-yellow-l);color:var(--cl-yellow-d)}
+.upsell{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--cl-yellow-l);border:2px solid var(--cl-yellow);color:var(--cl-yellow-d);border-radius:18px;padding:10px 16px;margin:0 0 16px;font-size:.92rem;font-weight:500}
+.courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.course{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--cl-card);border:2px solid var(--cl-line);border-radius:26px;padding:22px;position:relative;overflow:hidden;transition:transform .16s,border-color .16s,box-shadow .16s;box-shadow:0 12px 30px rgba(47,109,184,.08)}
+.course:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 18px 36px rgba(47,109,184,.16)}
+.course::before{content:"";position:absolute;inset:0 0 auto 0;height:8px;background:var(--c)}
+.course.n1{--c:var(--cl-pri);--cd:var(--cl-pri-d);--cs:var(--cl-pri-l)}
+.course.en{--c:var(--cl-mint);--cd:var(--cl-mint-d);--cs:var(--cl-mint-l)}
+.course.jp{--c:var(--cl-peach);--cd:var(--cl-peach-d);--cs:var(--cl-peach-l)}
+.course .art{position:absolute;right:14px;top:18px;width:74px;opacity:.96}
+.course .art svg{width:100%;height:auto}
+.course .tag{align-self:flex-start;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--cd);background:var(--cs);border-radius:999px;padding:3px 10px;margin-top:6px}
+.course h3{font-size:1.4rem;margin:10px 84px 6px 0;line-height:1.2}
+.course p{color:var(--cl-muted);margin:0 0 16px;font-size:.92rem;flex:1}
+.bar{height:10px;border-radius:99px;background:var(--cl-sunk);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:var(--c);transition:width .5s}
+.meta{display:flex;justify-content:space-between;gap:8px;font-size:.85rem;color:var(--cl-muted);margin-top:8px}
+.go{margin-top:14px;font-weight:700;color:var(--cd)}
+.note{font-size:.85rem;color:var(--cl-muted);margin:24px 0 0;max-width:80ch}
+.foot{margin-top:18px;font-size:.82rem;color:var(--cl-muted)}
+.foot b{color:var(--cl-pri-d)}
+@media (max-width:760px){
+  .hero{gap:14px}.hero-art{width:96px}
+  .pick-grid{grid-template-columns:1fr}
+  .wrap{padding:18px 16px 60px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-art" id="heroArt" aria-hidden="true"></div>
+    <div>
+      <p class="eyebrow">Học mỗi ngày cùng Camhu</p>
+      <h1>Camhu <span>Lab</span></h1>
+      <p class="lead">Một chỗ cho ba việc mỗi ngày: ôn thi JLPT N1 theo lộ trình 84 ngày, luyện tiếng Anh giao tiếp + TOEIC, và kaiwa tiếng Nhật trong công ty IT.</p>
+    </div>
+  </section>
+
+  <!-- Chưa chọn ai: đăng nhập, hoặc học không cần tài khoản -->
+  <section id="pick" class="hidden">
+    <div class="pick-grid">
+      <div class="panel acct">
+        <h2>Dùng tài khoản</h2>
+        <p class="sub">Tiến độ đi theo bạn trên mọi thiết bị: điện thoại, máy tính đều thấy.</p>
+        <div class="row"><button class="cl-btn pri big" id="loginBtn">Đăng nhập</button><button class="cl-btn big" id="regBtn">Đăng ký</button></div>
+      </div>
+      <div class="panel">
+        <h2>Học không cần tài khoản</h2>
+        <p class="sub">Tiến độ chỉ lưu trong trình duyệt của máy này.</p>
+        <div class="who" id="who"></div>
+        <details id="newBox">
+          <summary>+ Tạo người học mới</summary>
+          <label for="nName">Tên hiển thị</label>
+          <input type="text" id="nName" maxlength="40" placeholder="Ví dụ: Linh">
+          <div class="grid2">
+            <div><label for="nRole">Vai trò</label>
+              <select id="nRole"><option value="ba">Business Analyst (BA)</option><option value="dev">Developer</option><option value="qa">QA / Tester</option><option value="pm">Project Manager / Team lead</option><option value="other">Khác (tự nhập)</option></select></div>
+            <div class="nOtherBox hidden"><label for="nRoleText">Vai trò của bạn</label><input type="text" id="nRoleText" maxlength="60" placeholder="Ví dụ: Designer, Data analyst, Sales"></div>
+            <div><label for="nInd">Ngành / lĩnh vực</label><input type="text" id="nInd" list="indList" maxlength="60" placeholder="Ví dụ: Giáo dục, Ngân hàng, E-commerce"></div>
+            <div><label for="nLvl">Trình độ tiếng Anh hiện tại</label>
+              <select id="nLvl"><option value="A2">A2 – Cơ bản, nói câu ngắn</option><option value="B1" selected>B1 – Giao tiếp được việc quen thuộc</option><option value="B2">B2 – Khá, họp được nhưng chưa tự nhiên</option><option value="C1">C1 – Tốt, muốn trau chuốt</option></select></div>
+            <div><label for="nGoal">Mục tiêu chính</label>
+              <select id="nGoal"><option>Giao tiếp công việc</option><option>Thi TOEIC</option><option>Phỏng vấn xin việc</option><option>Giao tiếp đời sống, du lịch</option></select></div>
+          </div>
+          <label for="nEn">Giới thiệu bản thân bằng tiếng Anh (không bắt buộc, Claude dùng khi role-play)</label>
+          <textarea id="nEn" placeholder="I’m a business analyst in Vietnam working on IT projects for Japanese clients"></textarea>
+          <label for="nJp">Giới thiệu bản thân bằng tiếng Nhật (cho phần tiếng Nhật)</label>
+          <textarea id="nJp" placeholder="ベトナム人のBA。日本語はN2+、日系のIT案件に携わっている"></textarea>
+          <div class="row"><button class="cl-btn pri" id="createBtn">Bắt đầu học</button></div>
+        </details>
+        <details>
+          <summary>Khôi phục từ file sao lưu</summary>
+          <p class="note" style="margin-top:8px">Chọn file .json đã sao lưu từ máy khác.</p>
+          <input type="file" id="importFile" accept="application/json,.json">
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Đã chọn người học / đã đăng nhập -->
+  <section id="home" class="hidden">
+    <div class="hello"><p id="hi"></p><span id="who2"></span></div>
+    <div class="upsell hidden" id="upsell"><span id="upsellText"></span><button class="cl-btn pri" id="upsellBtn">Đăng ký tài khoản</button></div>
+    <div class="courses">
+      <a class="course n1" href="n1.html">
+        <span class="art" id="artN1" aria-hidden="true"></span>
+        <span class="tag">JLPT N1 · 84 ngày</span>
+        <h3>Ôn thi N1</h3>
+        <p>Mỗi ngày một đề đủ barem: 66 câu 言語知識・読解 và 30 câu 聴解, kèm thẻ Kanji 3D, ngữ pháp trọng điểm và giải thích tiếng Việt.</p>
+        <div class="bar"><i id="n1Bar"></i></div>
+        <div class="meta"><span id="n1Days">0/84 ngày</span><span id="n1Score"></span></div>
+        <div class="go">Làm đề hôm nay →</div>
+      </a>
+      <a class="course en" href="en.html">
+        <span class="art" id="artEn" aria-hidden="true"></span>
+        <span class="tag">English · 84 ngày</span>
+        <h3>Nói tiếng Anh tự tin</h3>
+        <p id="enDesc">Công việc IT, đời sống, họp hành; role-play mỗi ngày và 15 câu kiểu TOEIC.</p>
+        <div class="bar"><i id="enBar"></i></div>
+        <div class="meta"><span id="enDays">0/84 ngày</span><span id="enScore"></span></div>
+        <div class="go">Học bài hôm nay →</div>
+      </a>
+      <a class="course jp" href="jp.html">
+        <span class="art" id="artJp" aria-hidden="true"></span>
+        <span class="tag">日本語 · 84日</span>
+        <h3>Kaiwa tiếng Nhật</h3>
+        <p>Kaiwa trong công ty IT Nhật theo BJT, nhiều domain, phỏng vấn chuyển việc và đề N1.</p>
+        <div class="bar"><i id="jpBar"></i></div>
+        <div class="meta"><span id="jpDays">0/84 ngày</span><span id="jpScore"></span></div>
+        <div class="go">Học bài hôm nay →</div>
+      </a>
+    </div>
+
+    <details class="panel" style="margin-top:22px">
+      <summary>Hồ sơ của bạn</summary>
+      <p class="note" style="margin:8px 0 0">Vai trò, ngành và phần giới thiệu được dùng trong lời mở đầu role-play của phần English và 日本語.</p>
+      <label for="eName">Tên hiển thị</label>
+      <input type="text" id="eName" maxlength="40">
+      <div class="grid2">
+        <div><label for="eRole">Vai trò</label>
+          <select id="eRole"><option value="ba">Business Analyst (BA)</option><option value="dev">Developer</option><option value="qa">QA / Tester</option><option value="pm">Project Manager / Team lead</option><option value="other">Khác (tự nhập)</option></select></div>
+        <div class="eOtherBox hidden"><label for="eRoleText">Vai trò của bạn</label><input type="text" id="eRoleText" maxlength="60" placeholder="Ví dụ: Designer, Data analyst, Sales"></div>
+        <div><label for="eInd">Ngành / lĩnh vực</label><input type="text" id="eInd" list="indList" maxlength="60" placeholder="Ví dụ: Giáo dục, Ngân hàng, E-commerce"></div>
+        <div><label for="eLvl">Trình độ tiếng Anh hiện tại</label>
+          <select id="eLvl"><option value="A2">A2 – Cơ bản, nói câu ngắn</option><option value="B1" selected>B1 – Giao tiếp được việc quen thuộc</option><option value="B2">B2 – Khá, họp được nhưng chưa tự nhiên</option><option value="C1">C1 – Tốt, muốn trau chuốt</option></select></div>
+        <div><label for="eGoal">Mục tiêu chính</label>
+          <select id="eGoal"><option>Giao tiếp công việc</option><option>Thi TOEIC</option><option>Phỏng vấn xin việc</option><option>Giao tiếp đời sống, du lịch</option></select></div>
+      </div>
+      <label for="eEn">Giới thiệu bản thân bằng tiếng Anh</label>
+      <textarea id="eEn"></textarea>
+      <label for="eJp">Giới thiệu bản thân bằng tiếng Nhật</label>
+      <textarea id="eJp"></textarea>
+      <div class="row">
+        <button class="cl-btn pri" id="saveProfile">Lưu hồ sơ</button>
+        <button class="cl-btn" id="exportBtn">Sao lưu tiến độ English / 日本語 (.json)</button>
+        <button class="cl-btn peach" id="deleteBtn">Xoá người học này</button>
+      </div>
+    </details>
+  </section>
+
+  <p class="note">Đăng nhập thì tiến độ được lưu theo tài khoản và đồng bộ giữa các thiết bị. Không đăng nhập thì mỗi người học có hồ sơ riêng trong trình duyệt của máy đang dùng. Câu hỏi luyện đề do Claude soạn theo dạng đề, không phải đề thi thật của JLPT hay ETS.</p>
+  <p class="foot"><b>Camhu Lab</b> · <span id="ver"></span></p>
+</main>
+<datalist id="indList"><option>Giáo dục / nhà trẻ</option><option>Ngân hàng / tài chính</option><option>Bảo hiểm</option><option>E-commerce / bán lẻ</option><option>Logistics / kho vận</option><option>Sản xuất</option><option>Y tế</option><option>Nhân sự / tiền lương</option><option>Kế toán</option><option>Bất động sản</option><option>Khu vực công</option><option>SaaS / phần mềm</option><option>Game</option></datalist>
+
+<script>
+const $=id=>document.getElementById(id);
+const toast=m=>CL.toast(m);
+CL.bar();
+const qs=new URLSearchParams(location.search), next=qs.get("next");
+if(qs.get("switch")&&!CL.session())LP.clearActive();
+if(qs.toString())history.replaceState(null,"","index.html");
+if(next&&/^(en|jp|n1)\.html(#[A-Za-z0-9-]*)?$/.test(next))CL.next=next;
+
+function enter(id){
+  LP.setActive(id);
+  if(CL.next){const n=CL.next;CL.next=null;location.href=n;return}
+  render();
+}
+function renderPick(){
+  const box=$("who");box.innerHTML="";
+  const ps=LP.list().filter(p=>String(p.id).indexOf("u_")!==0);
+  ps.forEach(p=>{const b=document.createElement("button");b.className="chipbtn";b.textContent=p.name;b.onclick=()=>enter(p.id);box.appendChild(b)});
+  if(!ps.length)box.innerHTML='<span style="color:var(--cl-muted)">Chưa có ai trên máy này. Tạo người học đầu tiên bên dưới.</span>';
+}
+function readJSON(k){try{return JSON.parse(LP.get(k)||"null")}catch(e){return null}}
+function renderHome(p){
+  const acct=CL.session(), v=CL.variant();
+  $("hi").textContent="Chào "+p.name+"!";
+  $("who2").innerHTML=acct?'<span class="badge">Tài khoản @'+acct.username.replace(/[<>&]/g,"")+' · tiến độ được đồng bộ</span>':'<span class="badge local">Lưu trên máy này</span> <a href="?switch=1">Đổi người học</a>';
+  const canUp=!acct&&CL.state.backend==="ok";
+  $("upsell").classList.toggle("hidden",!canUp);
+  if(canUp)$("upsellText").textContent="Muốn học trên nhiều thiết bị? Đăng ký tài khoản, tiến độ của "+p.name+" trên máy này sẽ được chép sang.";
+  $("artN1").innerHTML=CL.mascot("think",v);$("artEn").innerHTML=CL.mascot("happy",v);$("artJp").innerHTML=CL.mascot("celebrate",v);
+  // Ôn thi N1
+  const n1=CL.n1Progress();
+  $("n1Bar").style.width=(n1.done/84*100)+"%";$("n1Days").textContent=n1.done+"/84 ngày";
+  $("n1Score").textContent=n1.last?"Day "+n1.last.day+": "+n1.last.total+"/180":"";
+  // Tiếng Anh: 5 việc mỗi ngày
+  const en=readJSON("e60-state@"+p.id)||{};let ed=0,es=[];
+  for(let i=0;i<84;i++){const a=en["d"+i];if(a&&a.filter(Boolean).length>=5)ed++;if(typeof en["s"+i]==="number")es.push(en["s"+i])}
+  $("enBar").style.width=(ed/84*100)+"%";$("enDays").textContent=ed+"/84 ngày";
+  $("enScore").textContent=es.length?"Role-play TB "+(es.reduce((a,b)=>a+b,0)/es.length).toFixed(1)+"/10":"";
+  // Tiếng Nhật: 6 việc mỗi ngày
+  const jp=readJSON("jp56_v1@"+p.id)||{};const days=jp.days||{};let jd=0,js=[];
+  Object.keys(days).forEach(k=>{const d=days[k];if(d&&d.t&&d.t.filter(Boolean).length>=d.t.length&&d.t.length)jd++;const x=parseFloat(d&&d.rp);if(!isNaN(x))js.push(x)});
+  $("jpBar").style.width=(jd/84*100)+"%";$("jpDays").textContent=jd+"/84 ngày";
+  $("jpScore").textContent=js.length?"Kaiwa TB "+(js.reduce((a,b)=>a+b,0)/js.length).toFixed(1)+"/10":"";
+  writeRole("e",p);$("enDesc").textContent="Lộ trình cho "+(p.role==="other"?(p.roleText||"người làm IT"):LP.ROLES[p.role||"ba"])+(p.industry?" · ngành "+p.industry:"")+" · trình độ "+(p.level||"B1")+". Role-play mỗi ngày và 15 câu kiểu TOEIC.";
+  $("eName").value=p.name;$("eEn").value=p.aboutEn||"";$("eJp").value=p.aboutJp||"";
+  $("eEn").placeholder=LP.DEF_EN;$("eJp").placeholder=LP.DEF_JP;
+  $("deleteBtn").classList.toggle("hidden",!!acct);
+}
+function readRole(pre){return {role:$(pre+"Role").value,roleText:$(pre+"RoleText").value.trim(),industry:$(pre+"Ind").value.trim(),level:$(pre+"Lvl").value,goal:$(pre+"Goal").value}}
+function writeRole(pre,p){$(pre+"Role").value=p.role||"ba";$(pre+"RoleText").value=p.roleText||"";$(pre+"Ind").value=p.industry||"";$(pre+"Lvl").value=p.level||"B1";$(pre+"Goal").value=p.goal||"Giao tiếp công việc";toggleOther(pre)}
+function toggleOther(pre){document.querySelector("."+pre+"OtherBox").classList.toggle("hidden",$(pre+"Role").value!=="other")}
+["n","e"].forEach(pre=>$(pre+"Role").addEventListener("change",()=>toggleOther(pre)));
+function render(){
+  const p=LP.active();
+  $("heroArt").innerHTML=CL.mascot(p?"happy":"wave",CL.variant());
+  $("pick").classList.toggle("hidden",!!p);$("home").classList.toggle("hidden",!p);
+  if(p)renderHome(p);else renderPick();
+}
+CL.onChange=render;
+$("loginBtn").onclick=()=>CL.openAuth("login");
+$("regBtn").onclick=()=>CL.openAuth("register");
+$("upsellBtn").onclick=()=>CL.openAuth("register");
+$("createBtn").onclick=()=>{
+  const name=$("nName").value.trim();if(!name){toast("Nhập tên trước đã.");$("nName").focus();return}
+  const ps=LP.list();const id="p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  ps.push(Object.assign({id,name,aboutEn:$("nEn").value.trim(),aboutJp:$("nJp").value.trim(),created:Date.now()},readRole("n")));
+  LP.saveList(ps);enter(id);
+};
+$("saveProfile").onclick=()=>{
+  const p=LP.active();if(!p)return;const ps=LP.list();const q=ps.find(x=>x.id===p.id);
+  q.name=$("eName").value.trim()||q.name;q.aboutEn=$("eEn").value.trim();q.aboutJp=$("eJp").value.trim();Object.assign(q,readRole("e"));
+  LP.saveList(ps);render();CL.refresh();toast("Đã lưu hồ sơ.");
+};
+$("deleteBtn").onclick=()=>{
+  const p=LP.active();if(!p||CL.session())return;
+  if(!confirm("Xoá "+p.name+" cùng toàn bộ tiến độ, điểm và ghi chú trên máy này? Không hoàn tác được."))return;
+  LP.keysOf(p.id).forEach(k=>LP.del(k));LP.saveList(LP.list().filter(x=>x.id!==p.id));LP.clearActive();render();toast("Đã xoá.");
+};
+$("exportBtn").onclick=()=>{
+  const p=LP.active();if(!p)return;const data={};
+  LP.keysOf(p.id).forEach(k=>{data[k.slice(0,k.length-p.id.length-1)]=LP.get(k)});
+  const blob=new Blob([JSON.stringify({app:"hoc-moi-ngay",v:1,profile:p,data},null,1)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="tien-do-"+p.name.replace(/[^\w\-]+/g,"_")+"-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+};
+$("importFile").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{
+    const o=JSON.parse(r.result);if(!o||o.app!=="hoc-moi-ngay"||!o.profile||!o.profile.id)throw 0;
+    if(String(o.profile.id).indexOf("u_")===0)o.profile.id="p"+Date.now().toString(36);       // bản sao lưu của một tài khoản → nhập thành người học trên máy
+    const ps=LP.list();const ex=ps.find(x=>x.id===o.profile.id);
+    if(ex&&!confirm("Máy này đã có “"+ex.name+"”. Ghi đè bằng dữ liệu trong file?"))return;
+    const rest=ps.filter(x=>x.id!==o.profile.id);rest.push(o.profile);LP.saveList(rest);
+    Object.keys(o.data||{}).forEach(b=>{if(typeof o.data[b]==="string")LP.set(b+"@"+o.profile.id,o.data[b])});
+    toast("Đã khôi phục "+o.profile.name+".");enter(o.profile.id);
+  }catch(err){toast("File không hợp lệ.")}};
+  r.readAsText(f);e.target.value="";
+};
+$("ver").textContent="phiên bản "+CL.VER+" ("+CL.VDATE+")";
+render();
+</script>
+</body>
+</html>

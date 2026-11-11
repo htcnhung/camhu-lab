@@ -1,0 +1,1488 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Camhu Lab · 日本語 12 tuần – kaiwa, BJT, JLPT N1</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#EAF3FC">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script src="assets/profile.js"></script>
+<script src="assets/camhu.js"></script>
+<script>LP.require()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F3EE; --surface:#FFFFFF; --sunk:#E9EBE4; --ink:#1D2230; --muted:#5B6274;
+  --ai:#27407A; --ai-soft:#E3E8F3; --line:#D6D9DF; --shu:#BF3A2B; --shu-soft:#F6E2DE;
+  --matcha:#5F7F32; --matcha-soft:#E7EEDB; --focus:#27407A;
+  --ui:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --jp:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#11141B; --surface:#191E28; --sunk:#141821; --ink:#E7E5DF; --muted:#9BA2B2;
+    --ai:#93ABE2; --ai-soft:#222C42; --line:#2C3443; --shu:#E2614F; --shu-soft:#3A2322;
+    --matcha:#A3C06E; --matcha-soft:#26301C; --focus:#93ABE2; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11141B; --surface:#191E28; --sunk:#141821; --ink:#E7E5DF; --muted:#9BA2B2;
+  --ai:#93ABE2; --ai-soft:#222C42; --line:#2C3443; --shu:#E2614F; --shu-soft:#3A2322;
+  --matcha:#A3C06E; --matcha-soft:#26301C; --focus:#93ABE2; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--ui);-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.jp{font-family:var(--jp)}
+rt{font-size:.55em;font-family:var(--ui);color:var(--muted)}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding:28px 0 18px;border-bottom:1px solid var(--line)}
+.title{margin:0;font:700 clamp(28px,4.4vw,44px)/1.1 var(--jp);letter-spacing:.04em}
+.title small{display:block;font:500 15px/1.4 var(--ui);letter-spacing:0;color:var(--muted);margin-top:8px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:500;font-size:14px;line-height:1.3}
+.btn:hover{border-color:var(--ai)}
+.btn.primary{background:var(--ai);border-color:var(--ai);color:var(--surface)}
+a.btn{text-decoration:none;color:var(--ink);display:inline-block}
+a.btn:hover{color:var(--ai)}
+.btn.small{padding:5px 10px;font-size:13px}
+.btn[aria-pressed="true"]{background:var(--ai-soft);border-color:var(--ai)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;padding:18px 0 22px;align-items:end}
+.stat .lbl{font-size:13px;color:var(--muted)}
+.stat .val{font:600 22px/1.2 var(--ui)}
+.stat .val span{font-size:14px;font-weight:500;color:var(--muted)}
+.bar{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden;margin-top:8px;border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--shu);width:0;transition:width .4s}
+
+/* grid */
+.cal{display:grid;grid-template-columns:150px repeat(7,1fr);gap:6px;margin-bottom:28px}
+.wk{padding:8px 10px 8px 0;border-top:2px solid var(--ink);font-size:13px;color:var(--muted);line-height:1.35}
+.wk b{display:block;color:var(--ink);font-size:14px}
+.wk .jp{font-size:12px}
+.day{position:relative;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:7px 8px 10px;cursor:pointer;min-height:86px;overflow:hidden;display:flex;flex-direction:column;gap:2px}
+.day:hover{border-color:var(--ai)}
+.day .n{font:600 15px/1 var(--ui)}
+.day .d{font-size:11px;color:var(--muted);margin-left:4px;font-weight:400}
+.day .sk{font:600 12px/1.35 var(--jp);margin-top:3px}
+.day .dm{font-size:11px;color:var(--muted);line-height:1.3}
+.day.sun{background:var(--sunk)}
+.day .pg{position:absolute;left:0;bottom:0;height:4px;background:var(--matcha);width:0}
+.day.today{box-shadow:inset 0 0 0 2px var(--ai)}
+.day.sel{border-color:var(--ink);border-width:2px;padding:6px 7px 9px}
+.day.done{background:var(--shu-soft)}
+.day.done::after{content:"済";position:absolute;right:6px;bottom:6px;width:30px;height:30px;border:2px solid var(--shu);color:var(--shu);border-radius:50%;font:700 15px/26px var(--jp);text-align:center;transform:rotate(-14deg);opacity:.9}
+.day.done .pg{display:none}
+
+/* detail */
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px clamp(16px,4vw,40px) 36px;margin-bottom:48px}
+.dh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+.dh .meta{font-size:14px;color:var(--muted)}
+.dh h2{margin:4px 0 2px;font:700 clamp(24px,3.4vw,32px)/1.25 var(--jp)}
+.dh .vi{font-size:16px}
+.dom{display:inline-block;margin-top:8px;font-size:13px;border:1px solid var(--line);border-radius:4px;padding:2px 8px;background:var(--sunk)}
+.nav{display:flex;gap:6px}
+.task{padding:22px 0 6px;border-bottom:1px solid var(--line)}
+.task:last-of-type{border-bottom:0}
+.th{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.th .no{font:700 15px/1 var(--ui);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--ink);flex:none}
+.th h3{margin:0;font-size:18px;font-weight:600;flex:1}
+.th h3 small{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
+.chk{display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer;user-select:none;border:1px solid var(--line);padding:5px 10px;border-radius:20px;background:var(--surface)}
+.chk input{width:18px;height:18px;accent-color:var(--shu);margin:0}
+.task.ok .no{background:var(--shu);border-color:var(--shu);color:var(--surface)}
+.task.ok .chk{border-color:var(--shu);color:var(--shu)}
+.sent{display:grid;grid-template-columns:40px 1fr;gap:4px 12px;padding:10px 0;border-top:1px dashed var(--line)}
+.sent:first-of-type{border-top:0}
+.play{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;padding:0}
+.play:hover{border-color:var(--ai);color:var(--ai)}
+.play svg{width:14px;height:14px;fill:currentColor}
+.sent .ja{font:500 19px/2 var(--jp)}
+.sent .tr{font-size:14px;color:var(--muted);grid-column:2}
+.sent .bad{grid-column:2;font-size:14px;margin-top:2px}
+.bad s{color:var(--shu);text-decoration-thickness:1px}
+.bad em{font-style:normal;color:var(--muted)}
+.rowbtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 10px}
+.terms{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 6px}
+.terms caption{text-align:left;font-weight:600;padding:6px 0;font-size:14px}
+.terms td{padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
+.terms td:first-child{font:600 16px/1.5 var(--jp);white-space:nowrap}
+.terms td:nth-child(2){color:var(--muted);font-size:13px}
+.scroll{overflow-x:auto}
+.gram h4{margin:0 0 6px;font:600 18px/1.5 var(--jp)}
+.gram p{margin:0 0 10px;max-width:72ch}
+.ex{display:flex;gap:10px;align-items:center;margin:6px 0}
+.ex .ja{font:500 17px/1.8 var(--jp)}
+.hint{max-width:72ch;margin:0 0 10px}
+.steps{margin:6px 0 10px;padding-left:20px;font-size:14px;color:var(--muted);max-width:72ch}
+.scene{background:var(--sunk);border-left:3px solid var(--ai);padding:12px 16px;border-radius:0 6px 6px 0;font-size:15px;margin-bottom:12px}
+.scene dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:4px 12px}
+.scene dt{color:var(--muted);font-size:13px;padding-top:2px}
+.scene dd{margin:0;font-family:var(--jp)}
+details.prompt{margin:8px 0}
+details.prompt summary{cursor:pointer;font-size:14px;color:var(--ai)}
+details.prompt pre{white-space:pre-wrap;font:14px/1.7 var(--jp);background:var(--sunk);padding:12px;border-radius:6px;max-height:340px;overflow:auto;margin:8px 0 0}
+.field{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;margin:8px 0}
+.field input[type=number]{width:84px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+textarea{width:100%;min-height:96px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);font:15px/1.6 var(--jp);resize:vertical}
+.timer{font:600 20px/1 var(--ui);font-variant-numeric:tabular-nums;min-width:66px}
+.timer.end{color:var(--shu)}
+.wkrev .wd{margin:16px 0 4px;font-weight:600;font-size:14px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;padding:1px 8px;border-radius:10px;background:var(--ai-soft);color:var(--ai);margin-left:6px;vertical-align:middle}
+
+dialog{border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);padding:22px;max-width:420px;width:calc(100% - 32px)}
+dialog::backdrop{background:rgba(10,12,18,.45)}
+dialog h3{margin:0 0 12px}
+dialog label{display:block;font-size:14px;margin:10px 0 4px;color:var(--muted)}
+dialog input,dialog select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.dlgbtns{display:flex;justify-content:space-between;gap:8px;margin-top:18px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:20}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.foot{font-size:13px;color:var(--muted);padding:0 0 40px}
+
+@media (max-width:820px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stats .stat:first-child{grid-column:1/-1}
+  .cal{grid-template-columns:repeat(7,1fr);gap:4px}
+  .wk{grid-column:1/-1;padding:10px 0 2px;border-top-width:1px}
+  .wk b{display:inline;margin-right:6px}
+  .day{min-height:58px;padding:5px 5px 8px}
+  .day.sel{padding:4px 4px 7px}
+  .day .sk{display:none}
+  .day .d{display:block;margin:2px 0 0}
+  .day .dm{font-size:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .day.done::after{width:22px;height:22px;font-size:11px;line-height:18px;right:3px;bottom:3px}
+}
+@media (max-width:480px){
+  .wrap{padding:0 12px}
+  .day .dm{display:none}
+  .sent{grid-template-columns:34px 1fr;gap:2px 10px}
+  .sent .ja{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<link rel="stylesheet" href="assets/camhu.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1 class="title">日本語・八十四日<small id="sub">Lộ trình tiếng Nhật 12 tuần · kaiwa IT, BJT, JLPT N1, phỏng vấn chuyển việc</small></h1>
+    <div class="tools">
+      <button class="btn primary" id="todayBtn">Bài hôm nay</button>
+      <button class="btn" id="themeBtn" aria-label="Đổi giao diện sáng/tối">Sáng/tối</button>
+      <button class="btn" id="setBtn">Cài đặt</button>
+    </div>
+  </header>
+
+  <section class="stats" aria-label="Tiến độ">
+    <div class="stat"><div class="lbl" id="dayLbl">Ngày đã xong</div><div class="val" id="sDays">0 <span>/ 84</span></div><div class="bar"><i id="sBar"></i></div></div>
+    <div class="stat"><div class="lbl">Điểm kaiwa trung bình</div><div class="val" id="sRp">–</div></div>
+    <div class="stat"><div class="lbl">Tỉ lệ đúng N1</div><div class="val" id="sN1">–</div></div>
+  </section>
+
+  <nav class="cal" id="cal" aria-label="Lịch 12 tuần"></nav>
+  <article class="detail" id="detail" aria-live="polite"></article>
+  <p class="foot">Tiến độ được lưu trong trình duyệt này; nếu bạn đã đăng nhập Camhu Lab thì được đồng bộ theo tài khoản. Đổi ngày bắt đầu trong Cài đặt nếu bạn bắt đầu muộn hơn.</p>
+</div>
+
+<dialog id="dlg">
+  <h3>Cài đặt</h3>
+  <label for="fStart">Ngày bắt đầu (Ngày 1)</label>
+  <input type="date" id="fStart">
+  <label for="fBjt">Mục tiêu BJT</label>
+  <input type="text" id="fBjt" placeholder="J1">
+  <label for="fJlpt">Kỳ thi JLPT N1</label>
+  <input type="text" id="fJlpt" placeholder="tháng 7/2027">
+  <label for="fRate">Tốc độ đọc mẫu câu</label>
+  <select id="fRate"><option value="0.85">Chậm (0.85)</option><option value="1">Bình thường (1.0)</option><option value="1.15">Nhanh như hội thoại thật (1.15)</option></select>
+  <div class="dlgbtns">
+    <button class="btn" id="resetBtn">Xoá toàn bộ tiến độ</button>
+    <span><button class="btn" id="cancelBtn">Đóng</button> <button class="btn primary" id="saveBtn">Lưu</button></span>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const DOM = {
+edu:{n:"教育・保育",v:"Giáo dục – nhà trẻ/mẫu giáo",t:["園児|えんじ|trẻ đang theo học","入園・退園|にゅうえん・たいえん|nhập học / thôi học","認定区分|にんていくぶん|phân loại chứng nhận (1・2・3号)","保育必要量|ほいくひつようりょう|lượng giữ trẻ cần thiết (標準時間/短時間)","給付費|きゅうふひ|tiền trợ cấp cơ sở","加算|かさん|khoản cộng thêm vào trợ cấp","延長保育|えんちょうほいく|giữ trẻ ngoài giờ","登降園管理|とうこうえんかんり|quản lý đưa đón","職員配置基準|しょくいんはいちきじゅん|chuẩn bố trí giáo viên/nhân viên","実績報告|じっせきほうこく|báo cáo kết quả thực tế","在籍判定|ざいせきはんてい|xác định trẻ còn đang học","指導計画|しどうけいかく|kế hoạch giáo dục/giữ trẻ"]},
+fin:{n:"金融・銀行",v:"Tài chính – ngân hàng",t:["口座開設|こうざかいせつ|mở tài khoản","本人確認|ほんにんかくにん|xác minh danh tính (eKYC)","振込|ふりこみ|chuyển khoản","勘定系|かんじょうけい|hệ thống core banking","与信|よしん|cấp tín dụng, thẩm định tín dụng","審査|しんさ|thẩm định","融資|ゆうし|cho vay","残高照会|ざんだかしょうかい|tra cứu số dư","全銀フォーマット|ぜんぎんフォーマット|định dạng chuyển khoản liên ngân hàng Zengin","反社チェック|はんしゃチェック|kiểm tra tổ chức phản xã hội","マネロン対策|マネロンたいさく|phòng chống rửa tiền (AML)","締め処理|しめしょり|xử lý chốt cuối ngày/kỳ"]},
+ins:{n:"保険",v:"Bảo hiểm",t:["契約管理|けいやくかんり|quản lý hợp đồng","保険金請求|ほけんきんせいきゅう|yêu cầu chi trả bảo hiểm","被保険者|ひほけんしゃ|người được bảo hiểm","契約者|けいやくしゃ|bên mua bảo hiểm","特約|とくやく|điều khoản bổ sung (rider)","査定|さてい|thẩm định chi trả","約款|やっかん|quy tắc, điều khoản chung","引受|ひきうけ|thẩm định nhận bảo hiểm (underwriting)","解約返戻金|かいやくへんれいきん|tiền hoàn lại khi hủy hợp đồng","満期|まんき|đáo hạn","代理店|だいりてん|đại lý","保全|ほぜん|nghiệp vụ duy trì hợp đồng (đổi thông tin, đổi điều khoản)"]},
+ec:{n:"EC・小売",v:"Thương mại điện tử – bán lẻ",t:["受注|じゅちゅう|nhận đơn hàng","在庫引当|ざいこひきあて|giữ/phân bổ tồn kho cho đơn","決済|けっさい|thanh toán","オーソリ|オーソリ|cấp phép thanh toán thẻ (authorization)","返品|へんぴん|trả hàng","欠品|けっぴん|hết hàng, thiếu hàng","POS|ポス|máy tính tiền tại cửa hàng","売上計上|うりあげけいじょう|ghi nhận doanh thu","販促|はんそく|khuyến mãi, xúc tiến bán hàng","出荷指示|しゅっかしじ|lệnh xuất hàng","予約販売|よやくはんばい|bán đặt trước","会員ランク|かいいんランク|hạng thành viên"]},
+log:{n:"物流",v:"Logistics – kho vận",t:["配送管理|はいそうかんり|quản lý giao hàng","倉庫管理（WMS）|そうこかんり|quản lý kho","入荷|にゅうか|nhập hàng vào kho","出荷|しゅっか|xuất hàng","検品|けんぴん|kiểm hàng","ピッキング|ピッキング|lấy hàng theo đơn","棚卸|たなおろし|kiểm kê","ロケーション|ロケーション|vị trí kệ/ô lưu trữ","配車|はいしゃ|điều phối xe","送り状|おくりじょう|vận đơn, phiếu gửi hàng","持ち戻り|もちもどり|hàng giao không thành phải mang về","誤出荷|ごしゅっか|xuất nhầm hàng"]},
+mfg:{n:"製造",v:"Sản xuất",t:["生産管理|せいさんかんり|quản lý sản xuất","部品表（BOM）|ぶひんひょう|danh mục linh kiện","所要量計算（MRP）|しょようりょうけいさん|tính toán nhu cầu vật tư","工程|こうてい|công đoạn","歩留まり|ぶどまり|tỷ lệ thành phẩm đạt","品質管理|ひんしつかんり|quản lý chất lượng","不良率|ふりょうりつ|tỷ lệ lỗi","ロット|ロット|lô sản xuất","トレーサビリティ|トレーサビリティ|khả năng truy xuất nguồn gốc","段取り替え|だんどりがえ|chuyển đổi dây chuyền/khuôn","検査成績書|けんさせいせきしょ|phiếu kết quả kiểm tra","標準時間|ひょうじゅんじかん|thời gian tiêu chuẩn của công đoạn"]},
+hr:{n:"人事・給与",v:"Nhân sự – tiền lương",t:["勤怠管理|きんたいかんり|quản lý chấm công","給与計算|きゅうよけいさん|tính lương","打刻|だこく|bấm giờ chấm công","36協定|さぶろくきょうてい|thỏa thuận giới hạn làm thêm giờ","有給休暇|ゆうきゅうきゅうか|nghỉ phép có lương","社会保険|しゃかいほけん|bảo hiểm xã hội","源泉徴収|げんせんちょうしゅう|khấu trừ thuế tại nguồn","年末調整|ねんまつちょうせい|quyết toán thuế cuối năm","締め日|しめび|ngày chốt công","支給日|しきゅうび|ngày trả lương","人事異動|じんじいどう|điều chuyển nhân sự","手当|てあて|phụ cấp"]},
+acc:{n:"会計",v:"Kế toán",t:["請求書|せいきゅうしょ|hóa đơn yêu cầu thanh toán","経費精算|けいひせいさん|thanh toán chi phí","仕訳|しわけ|bút toán","勘定科目|かんじょうかもく|tài khoản kế toán","売掛金|うりかけきん|khoản phải thu","買掛金|かいかけきん|khoản phải trả","消込|けしこみ|đối soát, gạch nợ","月次決算|げつじけっさん|quyết toán tháng","インボイス制度|インボイスせいど|chế độ hóa đơn hợp lệ","電子帳簿保存法|でんしちょうぼほぞんほう|luật lưu trữ sổ sách điện tử","承認フロー|しょうにんフロー|luồng phê duyệt","立替|たてかえ|ứng tiền trước"]},
+med:{n:"医療・介護",v:"Y tế – điều dưỡng",t:["予約管理|よやくかんり|quản lý lịch hẹn","電子カルテ|でんしカルテ|bệnh án điện tử","診療報酬|しんりょうほうしゅう|phí khám chữa bệnh (theo bảo hiểm)","改定|かいてい|sửa đổi định kỳ (biểu phí)","レセプト|レセプト|hồ sơ đề nghị thanh toán bảo hiểm","問診|もんしん|hỏi bệnh","処方|しょほう|kê đơn","介護保険|かいごほけん|bảo hiểm điều dưỡng","ケアプラン|ケアプラン|kế hoạch chăm sóc","要介護度|ようかいごど|mức độ cần chăm sóc","算定|さんてい|tính điểm/tính phí","オンライン資格確認|オンラインしかくかくにん|xác nhận tư cách bảo hiểm trực tuyến"]},
+re:{n:"不動産",v:"Bất động sản",t:["物件管理|ぶっけんかんり|quản lý bất động sản","賃貸借契約|ちんたいしゃくけいやく|hợp đồng thuê","入居者|にゅうきょしゃ|người thuê ở","更新|こうしん|gia hạn hợp đồng","敷金・礼金|しききん・れいきん|tiền cọc / tiền lễ","原状回復|げんじょうかいふく|khôi phục nguyên trạng khi trả nhà","重要事項説明|じゅうようじこうせつめい|giải thích các điều khoản quan trọng","仲介|ちゅうかい|môi giới","管理会社|かんりがいしゃ|công ty quản lý","家賃滞納|やちんたいのう|nợ tiền thuê","内見|ないけん|xem nhà","入居申込|にゅうきょもうしこみ|đơn đăng ký thuê"]},
+gov:{n:"公共・自治体",v:"Khu vực công – chính quyền địa phương",t:["住民情報|じゅうみんじょうほう|thông tin cư dân","申請受付|しんせいうけつけ|tiếp nhận hồ sơ","電子申請|でんししんせい|nộp hồ sơ điện tử","標準化|ひょうじゅんか|chuẩn hóa hệ thống của địa phương","ガバメントクラウド|ガバメントクラウド|đám mây chính phủ","入札|にゅうさつ|đấu thầu","仕様書|しようしょ|bản đặc tả (hồ sơ mời thầu)","窓口|まどぐち|quầy tiếp dân","決裁|けっさい|phê duyệt nội bộ","庁内|ちょうない|trong cơ quan","条例|じょうれい|quy định của địa phương","法令|ほうれい|luật và văn bản dưới luật"]},
+saas:{n:"SaaS・業務システムのリプレイス",v:"Thay thế hệ thống nghiệp vụ bằng SaaS",t:["リプレイス|リプレイス|thay thế hệ thống","現行システム|げんこうシステム|hệ thống hiện hành","Fit&Gap|フィットアンドギャップ|phân tích khớp/lệch với chuẩn","標準機能|ひょうじゅんきのう|chức năng chuẩn","アドオン|アドオン|phát triển bổ sung","並行稼働|へいこうかどう|chạy song song","本番切替|ほんばんきりかえ|chuyển đổi sang production","権限設計|けんげんせっけい|thiết kế phân quyền","監査証跡|かんさしょうせき|audit trail","定着化|ていちゃくか|đưa vào sử dụng ổn định","移行計画|いこうけいかく|kế hoạch chuyển đổi","業務標準化|ぎょうむひょうじゅんか|chuẩn hóa nghiệp vụ"]},
+api:{n:"データ移行・システム連携",v:"Chuyển đổi dữ liệu – tích hợp API",t:["データ移行|データいこう|chuyển đổi dữ liệu","マッピング|マッピング|ánh xạ trường dữ liệu","データクレンジング|データクレンジング|làm sạch dữ liệu","連携|れんけい|tích hợp, liên kết","インターフェース仕様|インターフェースしよう|đặc tả giao diện","バッチ処理|バッチしょり|xử lý theo lô","冪等性|べきとうせい|tính idempotent","文字コード|もじコード|mã ký tự","外字|がいじ|ký tự ngoài bảng mã chuẩn","突合|とつごう|đối chiếu","リトライ|リトライ|thử lại","整合性|せいごうせい|tính nhất quán"]},
+job:{n:"転職面接",v:"Phỏng vấn chuyển việc",t:["職務経歴書|しょくむけいれきしょ|bản lý lịch công việc","志望動機|しぼうどうき|động cơ ứng tuyển","転職理由|てんしょくりゆう|lý do chuyển việc","自己PR|じこピーアール|giới thiệu điểm mạnh bản thân","逆質問|ぎゃくしつもん|câu hỏi ngược cho nhà tuyển dụng","内定|ないてい|được nhận (offer)","希望年収|きぼうねんしゅう|mức lương năm mong muốn","入社日|にゅうしゃび|ngày vào công ty","選考|せんこう|quá trình tuyển chọn","即戦力|そくせんりょく|người làm được việc ngay","上流工程|じょうりゅうこうてい|các công đoạn thượng nguồn","引き継ぎ|ひきつぎ|bàn giao công việc"]},
+ai:{n:"AI・データ活用",v:"AI – khai thác dữ liệu",t:["生成AI|せいせいエーアイ|AI tạo sinh","精度|せいど|độ chính xác","学習データ|がくしゅうデータ|dữ liệu huấn luyện","概念実証（PoC）|がいねんじっしょう|kiểm chứng khái niệm","ハルシネーション|ハルシネーション|AI bịa thông tin (hallucination)","個人情報保護|こじんじょうほうほご|bảo vệ thông tin cá nhân","データ基盤|データきばん|nền tảng dữ liệu","業務適用|ぎょうむてきよう|áp dụng vào nghiệp vụ"]},
+bjt:{n:"BJT形式",v:"Dạng đề BJT",t:["場面把握|ばめんはあく|nắm bắt tình huống","発言聴解|はつげんちょうかい|nghe hiểu phát ngôn","総合聴解|そうごうちょうかい|nghe hiểu tổng hợp","状況把握|じょうきょうはあく|nắm bắt hoàn cảnh (đọc-nghe)","語彙・文法|ごい・ぶんぽう|từ vựng – ngữ pháp","総合読解|そうごうどっかい|đọc hiểu tổng hợp","表現読解|ひょうげんどっかい|đọc hiểu biểu hiện","資料読解|しりょうどっかい|đọc hiểu tài liệu","J1|ジェイワン|mức 530–599 điểm","J1+|ジェイワンプラス|mức 600 điểm trở lên","ビジネス文書|ビジネスぶんしょ|văn bản công việc","社内文書|しゃないぶんしょ|văn bản nội bộ"]}
+};
+
+const WEEKS = [
+["報連相と敬語の精度","Chuẩn hóa báo cáo – liên lạc – thảo luận và kính ngữ"],
+["クッション言葉と電話・メール・チャット","Nói mềm và các kênh liên lạc"],
+["ヒアリング・要件定義・業務フロー","Hearing, định nghĩa yêu cầu, As-Is/To-Be"],
+["指摘と報告","Chỉ ra mâu thuẫn spec, báo cáo tiến độ và rủi ro"],
+["交渉とお断り","Đàm phán thay đổi, phạm vi, deadline, báo giá"],
+["会議・UAT・プレゼン","Chủ trì họp, UAT, demo và hỏi đáp"],
+["謝罪・提案・関係構築＋面接","Báo cáo sự cố, đề xuất, giao lưu, phỏng vấn"],
+["経営層・上流への提案","Tờ trình, phỏng vấn lãnh đạo, BPR, AI, RFP"],
+["複雑な利害調整","Nhiều vendor, xung đột nội bộ khách, hợp đồng, kiểm toán, xin lỗi"],
+["行間を読む・高度な場面","本音と建前, 根回し, dự họp thay sếp, diễn thuyết"],
+["終盤とキャリアの節目","Bảo trì, KPT, offshore, nghỉ việc, offer, bàn giao"],
+["総仕上げ","BJT, phỏng vấn thử và đánh giá"]
+];
+
+const STUDY = [
+// ===== Week 1 =====
+{sk:"報連相の精度",vi:"Báo cáo kết luận trước, ngắn và chính xác",dom:"edu",
+g:["報告の型：結論 → 根拠 → 今後の対応","Người Nhật nghe báo cáo theo thứ tự: kết luận (完了/遅延/判断が必要) → con số, lý do → bước tiếp theo và thời điểm báo lại. Mẫu hay dùng: 「〜の件で〇点ご報告です」「〜見込みです」「〜次第、改めてご報告いたします」. Tránh kể theo trình tự thời gian 「昨日〜して、それから〜」.",["結論から申し上げますと、予定どおり金曜に完了する見込みです。","回答があり次第、改めてご報告いたします。"]],
+s:[["集計対象設定の件で、3点ご報告がございます。","Tôi có 3 điểm báo cáo về màn thiết lập trẻ tổng hợp.","昨日からいろいろやっていて、えっと…"],
+["結論から申し上げますと、予定どおり金曜に完了する見込みです。","Nói kết luận trước: dự kiến xong vào thứ Sáu đúng kế hoạch."],
+["現時点での進捗は8割程度で、残りは帳票の出力確認のみです。","Tiến độ hiện tại khoảng 80%, chỉ còn kiểm tra xuất biểu mẫu."],
+["一点、{懸念|けねん}事項がありまして、念のため共有させてください。","Có một điểm đáng lo, cho phép tôi chia sẻ để phòng trước.","問題があります。"],
+["在籍判定の解釈に{齟齬|そご}がないか、明日の定例で確認させていただければと思います。","Tôi muốn xác nhận ở buổi họp định kỳ ngày mai xem cách hiểu về xác định trẻ đang học có lệch nhau không."],
+["本件は先方の回答待ちのため、回答があり次第、改めてご報告いたします。","Việc này đang chờ phía khách trả lời; có câu trả lời là tôi báo lại ngay."]],
+ls:["報連相 報告の仕方 ビジネス","Tìm video về 報連相 và cách báo cáo. Chọn đoạn có hội thoại sếp – nhân viên, shadowing phần nhân viên báo cáo."],
+rp:["上司（自社のPM、課長、40代、せっかちだが合理的）","保育施設向けシステム案件のBA","夕方、上司が席に来て「集計対象設定、どうなってる？」と聞く。UATで見つかった不具合2件と、お客様への未回答QAが1件ある。","上司が途中で「ごめん、あと30秒で会議。要点だけ」と言い、さらに「それ、お客様にはもう言った？」と突っ込む。","30秒で結論・リスク・次のアクションを言い切る。"],
+n1:"文字・語彙｜漢字読み 5・文脈規定 5・言い換え類義 5"},
+
+{sk:"敬語の使い分け",vi:"Tôn kính ngữ, khiêm nhường ngữ I/II",dom:"fin",
+g:["尊敬語・謙譲語Ⅰ・謙譲語Ⅱ（丁重語）","Khiêm nhường ngữ I (伺う, 申し上げる, お〜する) hạ mình để nâng người được hướng tới hành động. Khiêm nhường ngữ II/丁重語 (参る, 申す, いたす, おる) chỉ để lịch sự với người nghe, không cần có đối tượng được nâng: 「来週、大阪に参ります」 đúng, 「部長のところに参ります」 không tự nhiên bằng 「伺います」. 申し上げる dùng khi nói với người trên; 申す dùng khi xưng tên.",["来週改めて伺います。（相手の所へ）","来週は大阪に参ります。（聞き手への丁重）"]],
+s:[["本日はお忙しいところ、お時間を{頂戴|ちょうだい}しありがとうございます。","Cảm ơn anh/chị đã dành thời gian dù bận rộn.","今日は時間を作ってくれてありがとうございます。"],
+["弊社で口座開設フローの{刷新|さっしん}を担当しております、グエンと申します。","Tôi là Nguyễn, phụ trách đổi mới quy trình mở tài khoản bên công ty chúng tôi."],
+["先日頂戴した資料は、すでに{拝見|はいけん}しております。","Tài liệu nhận hôm trước tôi đã xem qua rồi.","拝見させていただきました（過剰）"],
+["部長がおっしゃっていた本人確認の手間について、もう少し詳しく伺えますでしょうか。","Về sự phiền phức khi xác minh danh tính mà anh Trưởng phòng có nhắc, tôi xin nghe kỹ hơn được không ạ."],
+["来週改めて伺いますので、その際に具体案をお持ちいたします。","Tuần sau tôi sẽ đến lại và mang theo phương án cụ thể."],
+["ご{多忙|たぼう}とは存じますが、来週中にご意見を{賜|たまわ}れますと幸いです。","Biết là anh/chị rất bận, nhưng nếu nhận được ý kiến trong tuần sau thì thật quý."]],
+ls:["謙譲語 丁重語 違い 解説","Nghe bài giảng về 謙譲語Ⅰ/Ⅱ (giọng giảng viên người Nhật). Sau đó tìm video 「銀行 窓口 接客」 để shadowing kính ngữ thực tế."],
+rp:["顧客（地方銀行・事務企画部の部長、50代、丁寧だが慎重）","ベンダー側BA（初回訪問）","口座開設のオンライン化プロジェクトのキックオフ前、部長への初回挨拶と課題ヒアリング。","途中で常務が同席し、「で、他行での実績は？」と鋭く聞いてくる。","相手に応じて尊敬語・謙譲語Ⅰ/Ⅱを正確に使い分ける。"],
+n1:"文字・語彙｜言い換え類義 7・用法 8"},
+
+{sk:"二重敬語の回避とウチ・ソト",vi:"Tránh kính ngữ kép, phân biệt trong – ngoài",dom:"ins",
+g:["二重敬語・過剰敬語とウチ・ソト","Kính ngữ kép: おっしゃられる, お戻りになられる, ご覧になられる → sai; dùng おっしゃる, お戻りになる, ご覧になる. Một số dạng đã thành quen dùng được chấp nhận: お伺いする, お召し上がりになる. Với khách bên ngoài, người trong công ty mình (kể cả 部長) gọi không kèm kính ngữ: 「部長の山田は」 chứ không phải 「山田部長は」「いらっしゃいません」.",["あいにく部長の山田は外出しております。","佐藤様は何時ごろお戻りになりますか。"]],
+s:[["あいにく部長の山田は、ただいま外出しております。","Rất tiếc trưởng phòng Yamada hiện đang ra ngoài.","山田部長は今いらっしゃいません。"],
+["15時には戻る予定ですので、戻り次第、折り返しお電話を差し上げるよう申し伝えます。","Dự kiến 15h anh ấy về; về là tôi sẽ nhắn anh ấy gọi lại cho anh/chị."],
+["恐れ入りますが、山田の携帯番号はお伝えいたしかねますので、私が{承|うけたまわ}ってもよろしいでしょうか。","Xin lỗi, tôi không thể cung cấp số di động của Yamada; tôi xin được nhận lời nhắn có được không ạ."],
+["保険金請求の件でございますね。念のため、{証券|しょうけん}番号を伺ってもよろしいでしょうか。","Về yêu cầu chi trả bảo hiểm ạ. Để chắc chắn, cho tôi xin số hợp đồng.","お伺いさせていただいてもよろしいでしょうか。"],
+["おっしゃるとおりです。","Đúng như anh/chị nói.","おっしゃられるとおりです。"],
+["佐藤様は何時ごろお戻りになりますか。","Anh Satō khoảng mấy giờ thì về ạ?","お戻りになられますか。"]],
+ls:["二重敬語 間違い ビジネス","Video về lỗi kính ngữ kép. Sau đó tìm 「電話応対 取次 不在」 để nghe mẫu nghe máy khi người được hỏi vắng mặt."],
+rp:["顧客（損害保険会社・保険金支払部の課長、急いでいる）","ベンダーのBA（上司・山田部長は外出中）","保険金請求システムのリリース直前、顧客の課長から山田部長あてに電話がかかってくる。","課長が「山田さんの携帯教えてもらえます？今すぐ話したいんですよ」と強く求め、さらに用件の一部を私に話し始める。","ウチ・ソトを守りながら、相手の急ぎにも誠実に対応する。"],
+n1:"文字・語彙｜漢字読み（紛らわしい音訓）6・文脈規定 9"},
+
+{sk:"悪い報告は早く",vi:"Báo tin xấu sớm và đúng cách",dom:"ec",
+g:["「〜させていただく」の正誤と悪い報告","させていただく chỉ tự nhiên khi (1) có sự cho phép/ân huệ của đối phương và (2) mình được lợi. 「説明させていただきます」 ở mức chấp nhận được, nhưng 「担当させていただいております」 dùng dày quá sẽ nặng nề. Báo tin xấu: 「〜という事態が発生しております」 (sự thật) → 「現時点で〜」 (phạm vi) → 「取り急ぎ第一報として」.",["受注取込で遅延が発生しております。","取り急ぎ第一報としてお伝えいたします。"]],
+s:[["申し訳ございません、一点ご報告がございます。受注取込のバッチで遅延が発生しております。","Xin lỗi, có một việc cần báo: batch nhập đơn hàng đang bị trễ."],
+["現時点で影響が出ているのは、昨夜23時以降の注文約300件です。","Hiện tại bị ảnh hưởng là khoảng 300 đơn từ 23h đêm qua."],
+["原因はまだ調査中ですが、取り急ぎ{第一報|だいいっぽう}としてお伝えしました。","Nguyên nhân còn đang điều tra, nhưng tôi báo ngay bản tin đầu tiên."],
+["本来もっと早くご相談すべきところ、判断が遅れてしまい申し訳ございません。","Lẽ ra phải trao đổi sớm hơn, tôi xin lỗi vì đã chậm trong phán đoán.","報告が遅れてごめんなさい。"],
+["お客様への影響を最小限に{抑|おさ}えるため、手動での取込を並行して進めております。","Để giảm thiểu ảnh hưởng tới khách, chúng tôi đang song song nhập tay."],
+["次回は12時までに、原因と今後の見通しをご報告いたします。","Trước 12h tôi sẽ báo nguyên nhân và hướng xử lý tiếp theo."]],
+ls:["悪い報告 上司 伝え方","Nghe cách báo tin xấu cho cấp trên. Shadowing đoạn mở đầu báo cáo: câu xin lỗi + sự thật + phạm vi."],
+rp:["上司（自社の部長、厳しめ、数字に細かい）","EC受注システム保守チームのBA","朝、受注取込バッチが止まっていたことに気づいた。夜間の注文約300件が未取込。","部長が「なんで昨夜のアラートで気づかなかったの？」「お客様（ECの事業部）にはいつ言うつもり？」と詰める。","事実・影響・対応・次回報告時刻をぶれずに伝える。"],
+n1:"文字・語彙｜用法（誤用を見抜く）8・言い換え類義 7"},
+
+{sk:"相談の型",vi:"Xin ý kiến kèm phương án",dom:"log",
+g:["相談は「選択肢＋自分の意見」で","Đi xin ý kiến người Nhật nên mang sẵn 2–3 phương án và đề xuất của mình: 「A案とB案がございまして、私としてはB案が妥当かと存じます」. 「〜かと存じます」「〜てもよろしいでしょうか」 làm mềm ý kiến mà vẫn rõ ràng. 「教えてください」 với người trên → 「ご教示いただけますと幸いです」.",["私としてはB案が妥当かと存じます。","他に観点がございましたら、ご教示いただけますと助かります。"]],
+s:[["配車ロジックの件で、ご相談させてください。","Cho tôi xin ý kiến về logic điều xe.","ちょっと聞きたいことがあります。"],
+["対応案を2つ考えておりまして、A案は{即効性|そっこうせい}があり、B案は{抜本的|ばっぽんてき}な解決になります。","Tôi có 2 phương án: A có hiệu quả ngay, B giải quyết tận gốc."],
+["私としてはB案が{妥当|だとう}かと存じますが、工数の面でご判断いただきたく。","Theo tôi B hợp lý, nhưng về mặt công số tôi xin anh quyết định."],
+["A案ですと、{繁忙期|はんぼうき}に再発する懸念が残ります。","Nếu chọn A, vẫn còn lo ngại tái phát vào mùa cao điểm."],
+["もし他に{観点|かんてん}がございましたら、ご{教示|きょうじ}いただけますと助かります。","Nếu có góc nhìn nào khác, mong anh chỉ giáo.","教えてください。"],
+["では、B案で進める方向で、本日中に関係者へ展開いたします。","Vậy tôi sẽ đi theo hướng B và thông báo cho các bên trong hôm nay."]],
+ls:["上司に相談 仕方 選択肢","Nghe cách 相談 với sếp. Tìm thêm 「物流 配車 2024年問題 NHK」 để quen từ vựng ngành."],
+rp:["上司（自社の課長、穏やかだが判断は慎重）","配送管理システム改修のBA","配車の自動割当で、繁忙期に積載率が下がる問題が見つかった。A案（パラメータ調整）とB案（ロジック改修）を持って相談に行く。","課長が「C案として、運用で回避できないの？」と第三の案を出し、「お客様の予算はもう残ってないよ」と付け加える。","選択肢と自分の意見を示し、上司の案も踏まえて結論を出す。"],
+n1:"文字・語彙｜文脈規定（慣用句・複合動詞）10・漢字読み 5"},
+
+{sk:"面接①：自己紹介・職務経歴",vi:"Phỏng vấn: tự giới thiệu, tóm tắt kinh nghiệm",dom:"job",
+g:["経歴を語る N1 表現：〜に携わる・〜を経て・〜を通じて","「〜に携わってまいりました」 (đã tham gia vào), 「〜を経て」 (trải qua), 「〜を通じて」 (thông qua) giúp phần kinh nghiệm gọn và trang trọng. Chuẩn bị 3 bản: 30 giây, 1 phút, 3 phút; kết bằng 「以上が経歴の概要です」 chứ không chỉ 「以上です」.",["約7年間、ブリッジ兼BAとして要件定義に携わってまいりました。","開発担当を経て、現在はBAとして上流工程を担当しております。"]],
+s:[["グエンと申します。本日はこのような機会をいただき、ありがとうございます。","Tôi là Nguyễn. Cảm ơn quý công ty đã cho tôi cơ hội hôm nay."],
+["これまで約7年間、日系企業向けのシステム開発に、ブリッジ兼BAとして{携|たずさ}わってまいりました。","Khoảng 7 năm qua, tôi tham gia phát triển hệ thống cho doanh nghiệp Nhật với vai trò bridge kiêm BA."],
+["直近では、保育施設向け業務システムの要件定義から受入テストまでを{一貫|いっかん}して担当しております。","Gần đây tôi phụ trách xuyên suốt từ định nghĩa yêu cầu đến kiểm thử nghiệm thu của hệ thống cho cơ sở giữ trẻ."],
+["特に、お客様の{曖昧|あいまい}な要望を仕様に落とし込む工程を得意としております。","Tôi đặc biệt mạnh ở khâu biến yêu cầu mơ hồ của khách thành spec."],
+["日本のお客様と直接やりとりする中で、{行間|ぎょうかん}を読む力が{鍛|きた}えられたと感じております。","Qua việc làm trực tiếp với khách Nhật, tôi thấy khả năng đọc ý ngoài lời của mình được rèn luyện."],
+["簡単ではございますが、以上が経歴の概要です。","Đó là phần tóm tắt kinh nghiệm của tôi.","以上です。"]],
+ls:["転職面接 自己紹介 1分 例","Nghe các mẫu tự giới thiệu 1 phút trong phỏng vấn chuyển việc. Shadowing nhịp nói, chỗ ngắt và cách kết."],
+rp:["面接官（IT企業の人事＋開発部マネージャー、一次面接）","転職希望のBA（応募職種：BA／ITコンサルタント）","オンライン一次面接の冒頭。自己紹介と職務経歴の説明を求められる。","面接官が「すみません、時間が押しているので30秒でお願いできますか」と短縮を求め、その後「ブリッジとBAの違いは？」と深掘りする。","30秒版と3分版を即座に切り替えて話す。"],
+n1:"文字・語彙｜ミックス（ビジネス・抽象語）15"},
+
+// ===== Week 2 =====
+{sk:"クッション言葉と婉曲表現",vi:"Từ đệm và cách nói vòng",dom:"mfg",
+g:["クッション言葉の使い分け","恐れ入りますが (nhờ vả chung), お手数をおかけしますが (khi bắt người khác tốn công), あいにく (báo điều không mong muốn), 差し支えなければ (hỏi thông tin riêng/nhạy cảm), 勝手を申しまして恐縮ですが (khi yêu cầu theo ý mình). Kết câu nhờ vả bằng 「〜いただけますでしょうか」「〜いただけますと幸いです」 thay vì mệnh lệnh.",["お手数をおかけしますが、ご確認いただけますと幸いです。","勝手を申しまして恐縮ですが、金曜までにいただけると助かります。"]],
+s:[["お忙しいところ恐れ入りますが、BOMの最新版をご共有いただけますでしょうか。","Xin lỗi làm phiền lúc bận, anh/chị có thể chia sẻ bản BOM mới nhất được không ạ.","BOMの最新版を送ってください。"],
+["お{手数|てすう}をおかけしますが、工程ごとの標準時間もあわせてご確認いただけますと幸いです。","Phiền anh/chị kiểm tra luôn thời gian tiêu chuẩn của từng công đoạn."],
+["差し{支|つか}えなければ、現在の運用でお困りの点を伺えますか。","Nếu không phiền, cho tôi hỏi những điểm đang gặp khó trong vận hành hiện tại."],
+["勝手を申しまして{恐縮|きょうしゅく}ですが、金曜までにいただけると大変助かります。","Xin lỗi vì yêu cầu theo ý mình, nhưng nếu nhận được trước thứ Sáu thì rất tốt."],
+["難しいようでしたら、一部だけでも先にいただくことは可能でしょうか。","Nếu khó, có thể gửi trước một phần được không ạ."],
+["承知いたしました。では、来週火曜を{目処|めど}にお待ちしております。","Tôi hiểu rồi. Vậy tôi sẽ chờ, lấy mốc là thứ Ba tuần sau."]],
+ls:["クッション言葉 ビジネス 一覧","Nghe giải thích các từ đệm. Sau đó tìm 「生産管理 システム 導入 事例」 để nghe từ vựng ngành sản xuất."],
+rp:["顧客（部品メーカーの生産管理課・係長、現場出身で多忙）","生産管理システム導入のBA","要件定義に必要な資料（BOM、工程表、標準時間）を依頼する。","係長が「今週は月末で無理ですね。そもそも全部必要なんですか？」と返し、別の担当者に振ろうとする。","相手の負担に配慮しつつ、期限と最低限の範囲を合意する。"],
+n1:"文字・語彙｜カタカナ語・副詞・オノマトペ 15"},
+
+{sk:"電話対応",vi:"Nghe/gọi điện, chuyển máy, nhắn lại",dom:"med",
+g:["電話の定型と聞き返し","Nghe không rõ: 「お電話が少々遠いようなのですが」 (không nói 「聞こえません」). Xác nhận: 「念のため復唱いたします」. Người cần gặp vắng: 「あいにく〜は席を外しております／会議中でございます」 + thời gian quay lại + đề nghị 折り返し. Khi khách giận: xin lỗi về sự bất tiện trước, chưa nhận lỗi về nguyên nhân khi chưa rõ.",["念のため復唱いたします。","戻り次第、折り返しご連絡いたします。"]],
+s:[["お電話ありがとうございます。〇〇システムサポートのグエンでございます。","Cảm ơn quý khách đã gọi, tôi là Nguyễn ở bộ phận hỗ trợ hệ thống ○○."],
+["大変ご不便をおかけしており、申し訳ございません。","Thành thật xin lỗi vì đã gây bất tiện."],
+["恐れ入ります、お電話が少々遠いようなのですが…。","Xin lỗi, hình như đường dây hơi khó nghe ạ…","聞こえません。"],
+["念のため{復唱|ふくしょう}いたします。本日9時以降、予約画面が表示されない、ということでよろしいでしょうか。","Tôi xin nhắc lại: từ 9h hôm nay màn hình đặt lịch không hiển thị, đúng không ạ."],
+["あいにく担当の鈴木は会議中でございまして、10分ほどで戻る予定です。","Rất tiếc người phụ trách Suzuki đang họp, khoảng 10 phút nữa sẽ quay lại."],
+["お急ぎの件と{承知|しょうち}しておりますので、私の方で先に状況を確認し、折り返しご連絡いたします。","Tôi hiểu việc này gấp, nên tôi sẽ kiểm tra tình hình trước rồi gọi lại."]],
+ls:["電話応対 クレーム 例文 ロールプレイ","Nghe mẫu nghe điện thoại khi khách phàn nàn. Shadowing phần mở đầu và phần 復唱."],
+rp:["顧客（クリニックの事務長、開院直後でかなり苛立っている）","予約管理システムのサポート担当兼BA","朝9時過ぎ、クリニックから「予約画面が出ない」と電話。担当の鈴木は会議中。","事務長が「患者さんが待合室にあふれてるんです！今すぐ何とかして！」と声を荒らげ、途中で電話が聞き取りにくくなる。","落ち着いて事実を確認し、具体的な次のアクションと時刻を約束する。"],
+n1:"文法｜文法形式の判断（〜をもって・〜にあって・〜をおいて 等）15"},
+
+{sk:"メール：依頼・催促",vi:"Email nhờ vả, nhắc việc",dom:"acc",
+g:["催促メールの婉曲表現","Nhắc nhở mà không làm mất mặt: 「その後いかがでしょうか」, 「行き違いでご対応いただいておりましたらご容赦ください」, đưa lý do khách quan (月次決算の都合上). Tiêu đề rõ: 【ご確認のお願い】+ nội dung + kỳ hạn. Nói chuyện email bằng miệng (khi gọi điện hỏi) cũng dùng các mẫu này.",["その後いかがでしょうか。","行き違いでしたら、ご容赦ください。"]],
+s:[["【ご確認のお願い】11月分請求書の金額について","[Nhờ kiểm tra] Về số tiền trên hóa đơn tháng 11"],
+["先日お送りした請求書の件、その後いかがでしょうか。","Về hóa đơn gửi hôm trước, tình hình thế nào rồi ạ.","まだ返事が来ていませんが、どうなっていますか。"],
+["{行|ゆ}き違いでご対応いただいておりましたら、ご{容赦|ようしゃ}ください。","Nếu thư này gửi trong lúc anh/chị đã xử lý rồi thì xin bỏ qua cho."],
+["月次決算の都合上、恐縮ですが今週金曜までにご確認いただけますと幸いです。","Vì lịch quyết toán tháng, xin lỗi nhưng mong anh/chị kiểm tra trước thứ Sáu tuần này."],
+["念のため、前回のメールを下記に転送いたします。","Để tiện, tôi chuyển tiếp email lần trước ở dưới."],
+["迷惑メールフォルダに入っている可能性もございますので、お手数ですがご確認いただけますでしょうか。","Có thể thư đã vào mục thư rác, phiền anh/chị kiểm tra giúp."]],
+ls:["催促メール 書き方 ビジネス","Nghe hướng dẫn viết email nhắc việc. Đọc to lại các mẫu câu trong video theo tốc độ người nói."],
+rp:["顧客（中堅企業の経理担当、几帳面だが自分のミスは認めたがらない）","経費精算システム導入のBA","請求書・経費データの移行確認を2回メールで依頼したが返事がない。月次決算の締めが迫っているので電話で催促する。","担当者が「そんなメール届いてませんけど」と言い、さらに「そもそも確認ってこちらの作業なんですか？」と押し返す。","相手を責めずに、確認の必要性と期限を納得してもらう。"],
+n1:"文法｜文法形式の判断（〜ともなると・〜ならでは・〜までもない 等）15"},
+
+{sk:"チャット対応と温度感",vi:"Chat công việc: ngắn, đúng mức độ gấp",dom:"saas",
+g:["チャットの距離感と「温度感」","Chat nội bộ ngắn hơn email nhưng vẫn giữ lễ: mở bằng 「お疲れさまです」, nêu mục đích ngay, ghi hạn và lý do. 「温度感」 = mức độ gấp/quan trọng. Với sếp và người ngoài team: 「承知しました」; với đồng nghiệp ngang hàng 「了解です」 thường được chấp nhận, nhưng một số công ty coi là thất lễ với người trên.",["取り急ぎ現状共有です。","温度感としては、今日中ならOK、明日だと厳しいです。"]],
+s:[["田中さん、お疲れさまです。認証APIの件、一点だけ確認させてください。","Anh Tanaka, vất vả rồi. Về API xác thực, cho em hỏi một điểm."],
+["取り急ぎ現状共有です。詳細は{追|お}って連絡します。","Chia sẻ nhanh tình hình trước, chi tiết sẽ báo sau."],
+["本日17時のリリースに影響するため、16時までにご回答いただけると助かります。","Vì ảnh hưởng đến bản phát hành 17h hôm nay, nếu anh trả lời trước 16h thì tốt quá."],
+["{温度感|おんどかん}としては、今日中ならOK、明日だと厳しいです。","Về mức độ gấp: trong hôm nay thì ổn, sang mai là khó."],
+["承知しました。ご対応ありがとうございます。","Em hiểu rồi, cảm ơn anh đã xử lý.","了解しました！（上司・社外に）"],
+["込み入った話になりそうなので、5分だけハドルでお話しできますか。","Có vẻ chuyện khá rắc rối, mình nói chuyện huddle 5 phút được không ạ."]],
+ls:["ビジネスチャット マナー Slack","Nghe về phép lịch sự khi chat. Sau đó tìm 「SaaS 導入 失敗 理由」 để nghe về thay thế hệ thống."],
+rp:["他チームのテックリード（社内、口数が少なく返信が遅い）","SaaSリプレイス案件のBA","チャット（会話形式で再現）で、認証連携の仕様確認を急ぎで依頼する。","相手が「今それどころじゃない」と一言だけ返し、その後「それってBAが決めることじゃないの？」と返してくる。","短い文で用件・期限・理由を伝え、必要なら通話に切り替える判断をする。"],
+n1:"文法｜文の組み立て（並べ替え★）15"},
+
+{sk:"社内での依頼と断り",vi:"Từ chối, thương lượng việc trong nội bộ",dom:"hr",
+g:["N1：〜かねる・〜かねない・〜ざるを得ない","〜かねる: không thể (lịch sự, dùng để từ chối: 「お引き受けいたしかねます」). 〜かねない: có nguy cơ xảy ra điều xấu (「品質低下を招きかねない」). 〜ざるを得ない: buộc phải. Kết hợp với lời cảm ơn và phương án thay thế để lời từ chối không cứng.",["この条件では、品質を担保しかねます。","このままでは納期に影響しかねません。"]],
+s:[["お声がけいただきありがとうございます。ただ、正直なところ今週は{手一杯|ていっぱい}でして…。","Cảm ơn anh đã nghĩ tới em. Nhưng thật lòng tuần này em đã kín việc…"],
+["今の案件の納期を考えると、全部をお引き受けするのは難しいかと思います。","Xét deadline dự án hiện tại, nhận toàn bộ thì e là khó."],
+["勤怠の集計部分だけでしたら、来週水曜から{着手|ちゃくしゅ}できます。","Nếu chỉ phần tổng hợp chấm công thì từ thứ Tư tuần sau em bắt tay được."],
+["どちらを優先すべきか、課長にもご判断いただいた方がよいかと思うのですが、いかがでしょうか。","Nên ưu tiên việc nào, em nghĩ nên để trưởng phòng quyết, anh thấy sao?"],
+["この条件ですと、品質を{担保|たんぽ}しかねますので…。","Với điều kiện này, em khó đảm bảo chất lượng…","できません。"],
+["今回は力になれず申し訳ないです。また余裕がある時にぜひ。","Lần này không giúp được, xin lỗi anh. Lần sau rảnh em nhất định hỗ trợ."]],
+ls:["上手な断り方 職場 先輩","Nghe cách từ chối khéo trong công ty. Shadowing các câu mở đầu bằng lời cảm ơn."],
+rp:["他部署の先輩（人事システムチーム、面倒見はいいが押しが強い）","別案件のBA","先輩から「勤怠集計の仕様整理、ちょっと手伝ってくれない？年末調整までに」と頼まれる。自分の案件も山場。","途中で先輩が「部長もあなたならできるって言ってたよ」と上の名前を出して押してくる。","関係を壊さずに、引き受ける範囲と条件を自分から提案する。"],
+n1:"文法｜文章の文法 10・文法形式の判断 5"},
+
+{sk:"面接②：転職理由・志望動機",vi:"Phỏng vấn: lý do chuyển việc, động cơ ứng tuyển",dom:"job",
+g:["御社／貴社と N1：〜を機に・〜べく","Nói thì dùng 御社, viết (CV, email) dùng 貴社. Lý do chuyển việc nên nói theo hướng tích cực (muốn thử thách gì) chứ không chê công ty cũ. 「〜を機に」 (nhân dịp), 「〜べく」 (để mà, trang trọng) giúp câu chuyện có mạch.",["プロジェクトの完了を機に、次のキャリアを考えるようになりました。","専門性を高めるべく、準備を進めてまいりました。"]],
+s:[["現職では一つのお客様を長く担当してきましたが、より幅広い業界の課題に{挑戦|ちょうせん}したいと考え、転職を決意いたしました。","Ở công ty hiện tại tôi phụ trách một khách hàng trong thời gian dài; tôi muốn thử thách với bài toán của nhiều ngành hơn nên quyết định chuyển việc."],
+["現職への不満というよりは、キャリアの次の段階として環境を変える必要があると判断いたしました。","Không hẳn là bất mãn, mà tôi nhận định cần thay đổi môi trường cho bước tiếp theo của sự nghiệp.","給料を上げたいからです。"],
+["御社を{志望|しぼう}した理由は、上流工程からお客様に{伴走|ばんそう}するスタイルに強く{惹|ひ}かれたためです。","Lý do tôi ứng tuyển là rất bị thu hút bởi cách quý công ty đồng hành cùng khách từ công đoạn thượng nguồn."],
+["御社の物流DXの事例記事を{拝読|はいどく}し、まさに私が目指したい働き方だと感じました。","Đọc bài viết về case DX logistics của quý công ty, tôi thấy đó chính là cách làm việc tôi hướng tới."],
+["入社後は、日越双方の開発体制を理解している強みを活かし、早期に貢献できると考えております。","Sau khi vào, tôi nghĩ mình có thể đóng góp sớm nhờ hiểu cả mô hình phát triển ở Nhật và Việt Nam."],
+["プロジェクトの完了を機に、BAとしての専門性をさらに高めるべく、準備を進めてまいりました。","Nhân dịp dự án hoàn thành, tôi đã chuẩn bị để nâng cao hơn chuyên môn BA."]],
+ls:["転職理由 面接 答え方 ネガティブ","Nghe cách trả lời lý do chuyển việc. Chú ý cách chuyển ý tiêu cực sang tích cực."],
+rp:["面接官（事業会社の情報システム部長、穏やかだが核心を突く）","転職希望のBA","二次面接。転職理由と志望動機を聞かれる。","面接官が「要するに、今の会社に不満があるということですよね？」「うちでなくても、それはできますよね？」と切り込む。","否定的にならず、その会社でなければならない理由を具体的に言う。"],
+n1:"文法｜ミックス（硬い書き言葉・敬語を含む）15"},
+
+// ===== Week 3 =====
+{sk:"ヒアリング：質問設計と深掘り",vi:"Hearing: thiết kế câu hỏi và đào sâu",dom:"re",
+g:["深掘りの技法：と申しますと・具体的には・例えば","Mở rộng bằng câu hỏi mở (「どのように」「どのような場面で」), đào sâu bằng 「と申しますと」「具体的には」「例えば」, chốt bằng câu hỏi đóng (「〜ということでしょうか」). N1: 「〜に即して」 (dựa sát theo): 「実際の業務に即してお聞かせください」.",["と申しますと、紙とExcelの二重管理になっている、ということでしょうか。","実際の業務に即してお聞かせいただけますか。"]],
+s:[["本日は現状の業務について、{率直|そっちょく}にお聞かせいただければと思います。","Hôm nay mong anh/chị chia sẻ thẳng thắn về nghiệp vụ hiện tại."],
+["入居申込から契約{締結|ていけつ}まで、具体的にはどのような流れで進めていらっしゃいますか。","Từ lúc nhận đơn thuê đến ký hợp đồng, cụ thể đang làm theo luồng thế nào ạ.","流れを教えてください。"],
+["と申しますと、紙とExcelの二重管理になっている、ということでしょうか。","Nghĩa là đang quản lý trùng lặp cả trên giấy và Excel, đúng không ạ."],
+["その作業には、月にどのくらいの時間がかかっていますか。","Việc đó mỗi tháng mất khoảng bao nhiêu thời gian?"],
+["今のやり方で一番お困りなのは、どの場面でしょうか。","Với cách làm hiện tại, khó khăn nhất là ở tình huống nào?"],
+["なるほど。{例外|れいがい}的なケースとしては、どのようなものがございますか。","Tôi hiểu. Có những trường hợp ngoại lệ nào không ạ?"]],
+ls:["ヒアリング 質問 コツ 要件定義","Nghe về kỹ năng hearing của BA/SE. Tìm thêm 「不動産管理 DX」 để nghe từ vựng ngành."],
+rp:["顧客（不動産管理会社の賃貸管理課長、システムに懐疑的）","物件管理システム刷新のBA","第1回ヒアリング。入居申込から契約、更新、退去までの現状業務を聞き出す。","課長が「今まで通りでいいんですよ、特に困ってません」と繰り返し、具体的な話をしたがらない。後半で「実は更新漏れで一度トラブルがあって…」とポロッと言う。","本音の課題を引き出し、数字（件数・時間）を最低2つ取る。"],
+n1:"文法｜文法形式の判断（逆接・譲歩：〜ものを・〜とはいえ・〜ながらも 等）15"},
+
+{sk:"要件定義：要望と要件の切り分け",vi:"Tách mong muốn và yêu cầu thực sự",dom:"gov",
+g:["N1：〜に越したことはない・〜までもない","「〜に越したことはない」: tốt nhất là…, không gì bằng (dùng để công nhận mong muốn nhưng mở đường ưu tiên). 「〜までもない」: không cần đến mức… Hỏi phân loại: 「必須でしょうか、それとも〜があれば望ましいというレベルでしょうか」.",["全部あるに越したことはないのですが、優先順位をつける必要がございます。","確認するまでもないかもしれませんが、念のため伺います。"]],
+s:[["いただいたご要望を、必須要件と将来の検討事項に分けて整理させていただきました。","Tôi đã sắp xếp các mong muốn thành yêu cầu bắt buộc và hạng mục xem xét sau."],
+["こちらは法令上必須でしょうか、それとも運用で{代替|だいたい}できるものでしょうか。","Mục này bắt buộc theo luật, hay có thể thay thế bằng vận hành?"],
+["全部あるに{越|こ}したことはないのですが、予算と期間を踏まえると、優先順位をつける必要がございます。","Có đủ hết thì tốt nhất, nhưng xét ngân sách và thời gian thì cần xếp ưu tiên."],
+["窓口業務の削減という目的に{照|て}らすと、まず電子申請を優先すべきかと存じます。","Đối chiếu với mục tiêu giảm việc tại quầy, tôi nghĩ nên ưu tiên nộp hồ sơ điện tử trước."],
+["要件の背景にある課題を伺えますと、より適切な実現方法をご提案できます。","Nếu được nghe vấn đề đằng sau yêu cầu, tôi có thể đề xuất cách thực hiện phù hợp hơn."],
+["本日の合意事項は、議事録にまとめて明日までに送付いたします。","Các điểm đã thống nhất hôm nay tôi sẽ tổng hợp biên bản và gửi trước ngày mai."]],
+ls:["自治体 システム標準化 ニュース","Nghe tin NHK/ngắn về chuẩn hóa hệ thống địa phương. Shadowing câu dẫn của phát thanh viên."],
+rp:["顧客（市役所・子育て支援課の係長、真面目で前例を重視）","電子申請システム導入のBA","要件一覧のレビュー会。係長が出した要望が40項目あり、予算内に収まらない。","係長が「全部必須です。議会で約束しているので」と言い切り、さらに「他の市はできていると聞きました」と付け加える。","目的に照らして優先順位をつけることに合意してもらう。"],
+n1:"文法｜文の組み立て 8・文章の文法 7"},
+
+{sk:"As-Is 業務フローの説明・確認",vi:"Mô tả và xác nhận luồng nghiệp vụ hiện tại",dom:"log",
+g:["N1：〜に先立ち・〜に伴い・〜に応じて","Mô tả luồng: 「〜に先立ち」 (trước khi), 「〜に伴い」 (đi kèm theo), 「〜に応じて」 (tùy theo). Xác nhận: 「〜という理解で相違ないでしょうか」. Câu hỏi về 属人化 (phụ thuộc vào một người) rất hay gặp trong hearing.",["出荷に先立ち、検品を行います。","受注量に応じて、ピッキングの人数を変えています。"]],
+s:[["まず現状の業務フローを、入荷から出荷まで順を追って確認させてください。","Trước hết cho tôi xác nhận luồng nghiệp vụ hiện tại theo thứ tự từ nhập đến xuất hàng."],
+["入荷検品の後、ロケーションへの{格納|かくのう}は、どなたがどのタイミングで行っていますか。","Sau khi kiểm hàng nhập, ai là người xếp vào vị trí kệ và vào lúc nào?"],
+["この手順は、{属人化|ぞくじんか}している部分はありますか。","Trong quy trình này có phần nào chỉ một người nắm không?"],
+["繁忙期に限って、別の運用をされているということですね。","Tức là chỉ vào mùa cao điểm thì vận hành theo cách khác, đúng không."],
+["この分岐のところで{手戻|てもど}りが発生している、という理解で{相違|そうい}ないでしょうか。","Hiểu là ở nhánh này đang phát sinh làm lại, có đúng không ạ."],
+["例外処理も含めてAs-Isフローを{清書|せいしょ}し、金曜までにご確認いただけるようにいたします。","Tôi sẽ vẽ lại As-Is bao gồm cả xử lý ngoại lệ để anh/chị xem trước thứ Sáu."]],
+ls:["倉庫 WMS 業務フロー 解説","Nghe giải thích luồng nghiệp vụ kho. Ghi lại 5 động từ chỉ thao tác kho (格納, 引当…)."],
+rp:["顧客（物流センター長、現場叩き上げ、早口）","WMS刷新のBA","ホワイトボードを前に、入荷〜出荷のAs-Isフローを確認する打ち合わせ。","センター長が「それは表向きのフローで、実際は…」と例外処理を次々に出し、さらに「前のベンダーもそこを理解してくれなかった」と不満を漏らす。","例外を整理し、正しいAs-Isを口頭で要約して確認する。"],
+n1:"文法｜類似文型の判別（〜につけ・〜につき・〜にあたって 等）15"},
+
+{sk:"To-Be の提案と抵抗への対応",vi:"Đề xuất To-Be và xử lý sự phản đối",dom:"fin",
+g:["N1：〜とはいえ・〜ものの と受け止め表現","Tiếp nhận phản đối trước: 「おっしゃることはごもっともです」「〜という懸念は承知しております」, rồi chuyển: 「とはいえ」「ものの」. Đề xuất nhỏ để giảm sợ hãi: 「まずは〜に限定して試行してはいかがでしょうか」.",["懸念はごもっともです。とはいえ、現状のままでは対応しきれなくなるおそれがございます。","効果は見込めるものの、移行期間の負担は避けられません。"]],
+s:[["To-Beでは、与信審査の一次判定をシステムで自動化することをご提案いたします。","Ở To-Be, chúng tôi đề xuất tự động hóa vòng thẩm định tín dụng đầu tiên."],
+["おっしゃることはごもっともです。現場の負担が一時的に増えるという懸念は、私どもも認識しております。","Anh nói rất đúng. Chúng tôi cũng nhận thức lo ngại gánh nặng tạm thời tăng ở hiện trường.","でもシステムの方が早いです。"],
+["とはいえ、現状のままですと、審査件数の増加に対応しきれなくなるおそれがございます。","Tuy vậy, nếu giữ nguyên, có nguy cơ không theo kịp số hồ sơ tăng."],
+["移行期間中は、従来の手順と並行して運用できるようにいたします。","Trong giai đoạn chuyển đổi, sẽ vận hành song song với quy trình cũ."],
+["最終判断は引き続き審査担当の方が行いますので、責任の{所在|しょざい}は変わりません。","Quyết định cuối cùng vẫn do người thẩm định đưa ra, nên trách nhiệm không thay đổi."],
+["まずは一つの商品に限定して{試行|しこう}し、効果を検証してはいかがでしょうか。","Hay là trước hết thử với một sản phẩm và kiểm chứng hiệu quả?"]],
+ls:["銀行 審査 AI 自動化 ニュース","Nghe tin về tự động hóa thẩm định ở ngân hàng. Shadowing đoạn phỏng vấn người trong ngành."],
+rp:["顧客（銀行の融資審査部・課長、ベテラン審査役、変化に慎重）","審査業務改革のBA","To-Be案（一次判定の自動化）の説明会。","課長が「機械に審査ができるわけがない」「事故が起きたら誰が責任を取るんですか」と強く反対し、部下の前で引けない雰囲気になる。","相手の顔を立てつつ、試行という形で合意の糸口をつかむ。"],
+n1:"読解｜内容理解（短文）5題 5問・語彙/文法 10"},
+
+{sk:"非機能要件・前提条件の確認",vi:"Xác nhận yêu cầu phi chức năng và tiền đề",dom:"api",
+g:["N1：〜を前提に・〜を踏まえて・〜いかんでは","「〜を前提に」 (lấy làm tiền đề), 「〜を踏まえて」 (dựa trên), 「〜いかんでは／いかんによっては」 (tùy vào… mà có thể): 「件数いかんでは、方式を見直す必要がございます」. Tiền đề phải được nói ra miệng và ghi vào biên bản.",["リトライで対応することを前提に設計しております。","データ件数いかんでは、方式を見直す必要がございます。"]],
+s:[["連携方式は、リアルタイムとバッチのどちらを想定されていますか。","Phương thức tích hợp anh/chị đang hình dung là realtime hay batch?"],
+["夜間バッチの処理時間が延びた場合、翌朝の業務に影響はございますか。","Nếu batch đêm kéo dài, có ảnh hưởng đến nghiệp vụ sáng hôm sau không ạ."],
+["連携先の障害時には、リトライで対応するという前提でよろしいでしょうか。","Khi hệ thống đối tác gặp sự cố, ta lấy tiền đề là xử lý bằng retry, được không ạ."],
+["データ件数は、ピーク時でどの程度を見込んでおけばよいでしょうか。","Số lượng dữ liệu lúc cao điểm nên dự tính khoảng bao nhiêu?"],
+["文字コードや{外字|がいじ}の扱いについても、事前に取り決めておきたいと考えております。","Tôi cũng muốn thống nhất trước về mã ký tự và ký tự ngoài bảng mã."],
+["件数{いかん|}では、改めて見積りを調整させていただく可能性がございます。","Tùy số lượng, có khả năng chúng tôi phải điều chỉnh lại báo giá."]],
+ls:["非機能要件 とは 解説","Nghe giải thích yêu cầu phi chức năng. Tìm thêm 「API連携 設計 ポイント」."],
+rp:["顧客（流通業の情報システム部・主任、技術に詳しく細かい）","基幹システムとECの連携プロジェクトのBA","連携方式と非機能要件（性能、障害時、データ量）を確認する打ち合わせ。","主任が「夜間バッチは絶対に止められない。でもリアルタイムでも欲しい」と矛盾する条件を出し、「それくらいベンダーさんで考えてよ」と丸投げしてくる。","前提条件を明文化し、トレードオフを相手に判断してもらう。"],
+n1:"読解｜内容理解（短文）4題 4問・中文 1題 3問・語彙 8"},
+
+{sk:"面接③：強み・弱み",vi:"Phỏng vấn: điểm mạnh, điểm yếu",dom:"job",
+g:["N1：〜きらいがある・〜がちだ と弱みの語り方","「〜きらいがある」 (có khuynh hướng (xấu)…) trang trọng hơn 「〜がちだ」. Mẫu nói điểm yếu: điểm yếu → ví dụ ngắn → cách đang khắc phục bằng cơ chế. Mẫu nói điểm mạnh: 1 từ khóa → ví dụ có số → liên hệ với công việc ứng tuyển.",["細部にこだわりすぎるきらいがあります。","忙しいと一人で抱え込みがちでした。"]],
+s:[["私の強みは、関係者の{利害|りがい}を整理し、合意に導く調整力です。","Điểm mạnh của tôi là khả năng điều phối: sắp xếp lợi ích các bên và dẫn tới đồng thuận."],
+["前のプロジェクトでは、お客様と開発チームの認識のずれを早期に発見し、手戻りを防ぎました。","Ở dự án trước, tôi phát hiện sớm độ lệch nhận thức giữa khách và đội dev, ngăn được làm lại."],
+["弱みとしては、細部にこだわりすぎる{きらい|}がある点です。","Điểm yếu là tôi có khuynh hướng quá chăm chút tiểu tiết.","弱みはありません。"],
+["そのため現在は、作業前に優先度と完了の基準を決めてから着手するようにしています。","Vì vậy hiện tôi luôn quyết định độ ưu tiên và tiêu chí hoàn thành trước khi bắt tay vào việc."],
+["おっしゃるとおり、BAとしては{致命的|ちめいてき}にもなり得ると認識しております。","Đúng như anh nói, tôi nhận thức với BA điều đó có thể thành chí mạng."],
+["だからこそ、{自覚|じかく}したうえで仕組みで補うことを意識しております。","Chính vì vậy, tôi tự nhận thức và chú ý bù đắp bằng cơ chế."]],
+ls:["面接 強み 弱み 答え方 例","Nghe mẫu trả lời điểm mạnh/yếu. Shadowing câu chuyển 「そのため現在は〜」."],
+rp:["面接官（SIerの開発部長、ロジカルで深掘りが多い）","転職希望のBA","一次面接の中盤。強みと弱みを聞かれる。","面接官が「その弱み、BAとして致命的じゃないですか？」「強みの根拠、数字で言えます？」と続けて突っ込む。","根拠と改善策をセットで、動揺せず答える。"],
+n1:"文法｜総合（形式判断 7・並べ替え 4・文章の文法 4）"},
+
+// ===== Week 4 =====
+{sk:"仕様の矛盾指摘（相手の顔を立てる）",vi:"Chỉ ra mâu thuẫn spec mà vẫn giữ thể diện cho khách",dom:"edu",
+g:["顔を立てる指摘：主語をぼかす・自分側に引き取る","Không nói 「仕様が矛盾しています」. Thay bằng: 「私の理解不足かもしれませんが」, 「〜のように見受けられます」, 「どちらかが誤りというより、前提としているケースが違うのかもしれません」. N1: 「〜とも限らない」 (chưa chắc…).",["二つのご回答で、基準日が異なっているように見受けられます。","どちらかが誤りとも限らないのですが、念のため確認させてください。"]],
+s:[["私の理解不足かもしれませんが、一点確認させていただけますでしょうか。","Có thể do tôi hiểu chưa đủ, nhưng cho tôi xác nhận một điểm được không ạ."],
+["前回のQAのご回答と、表示列の仕様とで、参照する履歴の基準日が異なっているように{見受|みう}けられます。","Có vẻ câu trả lời QA trước và spec cột hiển thị đang lấy ngày chuẩn khác nhau khi tham chiếu lịch sử.","仕様が矛盾しています。"],
+["どちらかが誤りというより、前提としているケースが違うのかもしれません。","Có lẽ không phải bên nào sai, mà là trường hợp được giả định khác nhau."],
+["念のため具体例で確認させてください。7月から9月の集計で、9月にクラスが変わった園児の場合です。","Cho tôi xác nhận bằng ví dụ: kỳ tổng hợp tháng 7–9, trẻ đổi lớp vào tháng 9."],
+["以前決めた内容と異なる場合は、影響範囲もあわせて整理いたします。","Nếu khác với nội dung đã quyết trước đây, tôi sẽ sắp xếp luôn phạm vi ảnh hưởng."],
+["ご確認いただけましたら、仕様書に反映し、関係者へ共有いたします。","Khi anh/chị xác nhận xong, tôi sẽ phản ánh vào spec và chia sẻ cho các bên."]],
+ls:["相手を立てる 指摘の仕方 ビジネス","Nghe cách góp ý khéo. Shadowing các câu mở đầu làm mềm (「〜かもしれませんが」)."],
+rp:["顧客（保育施設運営法人の本部担当、要件の決定者に近い立場、丁寧だが自分の回答には自信がある）","保育システムのBA","集計対象設定のQA確認会。前回のQA回答（期間初日時点の履歴）と列仕様（期間内の最新履歴）が食い違っている。","担当者が「それは前に決めましたよね？」とやや不機嫌になり、さらに「現場からは早くしてほしいと言われてるんです」と急かす。","相手を責めずに具体例で矛盾を示し、どちらを採るか決めてもらう。"],
+n1:"読解｜内容理解（短文）5題 5問・語彙/文法 10"},
+
+{sk:"不明点の確認と詰め方",vi:"Hỏi làm rõ và chốt câu trả lời mơ hồ",dom:"ins",
+g:["N1：〜にかかわらず・〜を問わず・〜如何によらず","Chốt câu trả lời mơ hồ: 「〜という理解でよろしいでしょうか」, đặt kỳ hạn 「回答期限を〜とさせていただいてもよろしいでしょうか」, và tiền đề mặc định nếu quá hạn. 「件数の多寡にかかわらず」 (bất kể nhiều hay ít), 「理由を問わず」.",["件数の多寡にかかわらず、対象外とする扱いで問題ないでしょうか。","期限までにご回答が難しい場合は、一旦こちらの仮定で進めさせていただきます。"]],
+s:[["先ほどのご回答ですが、「基本的には不要」というのは、例外もあり得る、という理解でよろしいでしょうか。","Câu trả lời lúc nãy, “về cơ bản là không cần”, tôi hiểu là vẫn có thể có ngoại lệ, đúng không ạ."],
+["特約の途中付加は、契約更新時に限る、ということで相違ございませんか。","Việc thêm điều khoản bổ sung giữa chừng chỉ được làm lúc gia hạn hợp đồng, có đúng không ạ."],
+["社内でご確認が必要でしたら、回答期限を来週水曜とさせていただいてもよろしいでしょうか。","Nếu cần xác nhận nội bộ, cho phép tôi đặt hạn trả lời là thứ Tư tuần sau được không ạ."],
+["期限までにご回答が難しい場合は、一旦こちらの{仮定|かてい}で進めさせていただきます。","Nếu khó trả lời trước hạn, chúng tôi xin tạm tiến hành theo giả định của mình."],
+["件数の{多寡|たか}にかかわらず、対象外とする扱いで問題ないでしょうか。","Bất kể số lượng nhiều hay ít, xử lý là ngoài đối tượng có ổn không ạ."],
+["認識を合わせるため、本日の内容をQA表に{追記|ついき}しておきます。","Để thống nhất nhận thức, tôi sẽ ghi bổ sung nội dung hôm nay vào bảng QA."]],
+ls:["保険 契約 保全 業務 とは","Nghe giải thích nghiệp vụ bảo hiểm (保全, 特約). Ghi lại 3 thuật ngữ mới."],
+rp:["顧客（生命保険会社の契約管理部・PM、多忙で回答が曖昧）","契約管理システム改修のBA","QA表の未回答10件を一気に確認する打ち合わせ（30分枠）。","PMが「基本的には」「ケースバイケースで」と曖昧に答え続け、途中で「それ、そちらで決めてもらえれば」と責任を回避しようとする。","曖昧な回答を「理解の確認＋期限＋仮定」で一つずつ確定させる。"],
+n1:"読解｜内容理解（中文）3題 9問・語彙 6"},
+
+{sk:"進捗報告（定例）",vi:"Báo cáo tiến độ trong họp định kỳ",dom:"mfg",
+g:["数字で語る進捗と N1：〜に至っては・〜をもって","Báo cáo bằng số: 「計画比〇%」「〇日程度の遅れ」「挽回の見込み」. 「〜に至っては」 (thậm chí đến…, nêu ví dụ cực đoan, tốt hoặc xấu). 「以上をもちまして〜とさせていただきます」 để kết thúc trang trọng.",["不良集計機能に至っては、前倒しで完了しております。","以上をもちまして、進捗報告とさせていただきます。"]],
+s:[["今週の進捗について、計画比でご報告いたします。","Tôi xin báo cáo tiến độ tuần này so với kế hoạch."],
+["全体では予定の92%で、2日程度の遅れとなっております。","Tổng thể đạt 92% kế hoạch, chậm khoảng 2 ngày."],
+["遅延の主な要因は、検査成績書の帳票仕様の確定が、当初の見込みより遅れたことです。","Nguyên nhân chính là việc chốt spec biểu mẫu phiếu kết quả kiểm tra chậm hơn dự kiến ban đầu.","お客様の返事が遅かったからです。"],
+["来週中に要員を1名追加し、月末までに{挽回|ばんかい}する見込みです。","Tuần sau bổ sung 1 người, dự kiến bắt kịp trước cuối tháng."],
+["なお、不良集計機能に{至|いた}っては、前倒しで完了しております。","Ngoài ra, riêng chức năng tổng hợp lỗi thì đã xong sớm hơn kế hoạch."],
+["以上をもちまして、進捗報告とさせていただきます。","Báo cáo tiến độ của tôi xin dừng ở đây."]],
+ls:["定例会議 進捗報告 例","Nghe mẫu báo cáo tiến độ. Tìm thêm 「品質管理 トレーサビリティ 製造業」."],
+rp:["顧客（自動車部品メーカーの品質保証部・PM、数字に厳しい）","品質管理システム開発のBA","週次定例での進捗報告。遅延2日。","PMが「その遅れ、本当に2日で済むんですか？根拠は？」「先週も挽回すると言ってましたよね」と詰め、さらに新しい帳票の追加を口にする。","数字と根拠で説明し、追加要望はその場で約束せず持ち帰る。"],
+n1:"読解｜短文 3題 3問・中文 2題 6問・語彙/文法 6"},
+
+{sk:"リスク報告・エスカレーション",vi:"Báo cáo rủi ro, escalation lên cấp trên",dom:"ec",
+g:["エスカレーションの構成と N1：〜おそれがある・〜次第では","Cấu trúc: tóm tắt 1 câu → nguyên nhân → xác suất × ảnh hưởng → phương án và chi phí → điều cần cấp trên quyết. 「〜おそれがある」 (có nguy cơ, trang trọng), 「〜次第では」 (tùy vào…mà).",["本番リリースが2週間遅れるおそれがあります。","先方の回答次第では、さらに判断が必要になるかもしれません。"]],
+s:[["部長、決済代行会社との連携について、エスカレーションさせてください。","Thưa trưởng phòng, cho tôi escalate về việc tích hợp với công ty trung gian thanh toán."],
+["先方のAPI仕様変更により、本番リリースが2週間遅れるおそれがあります。","Do bên đối tác đổi spec API, có nguy cơ release production chậm 2 tuần."],
+["発生確率は高く、影響は年末セールの売上に{直結|ちょっけつ}します。","Xác suất xảy ra cao, ảnh hưởng trực tiếp đến doanh thu đợt sale cuối năm."],
+["対策として、旧APIで先行リリースし、年明けに切り替える案を考えております。","Phương án là release trước với API cũ, sang năm mới chuyển đổi."],
+["この案ですと追加工数が約10{人日|にんにち}発生しますので、ご判断をいただきたく存じます。","Phương án này phát sinh thêm khoảng 10 man-day, nên tôi xin anh quyết định.","どうしましょうか。"],
+["先方の回答次第では、さらに前倒しの判断が必要になるかもしれません。","Tùy câu trả lời của đối tác, có thể cần quyết định sớm hơn nữa."]],
+ls:["リスク報告 エスカレーション 上司","Nghe cách escalation. Shadowing phần trình bày phương án."],
+rp:["上司（自社の部長、結論を急ぐタイプ）","ECサイトリニューアルのBA","決済代行会社のAPI仕様変更により、年末セール前のリリースが危うい。","部長が「で、どうするの？」と結論を急かし、「その10人日、誰が払うの？お客様に言える？」と追い込む。","リスクを定量的に伝え、判断材料と自分の推奨を示す。"],
+n1:"読解｜中文 3題 9問・統合理解 1題 2問・語彙 4"},
+
+{sk:"開発チームへの仕様説明",vi:"Giải thích spec cho đội phát triển",dom:"saas",
+g:["背景から話す説明と N1：〜ゆえに・〜とあって","Với kỹ sư, giải thích “vì sao” trước “cái gì”. Phân biệt điều khách không nhượng bộ (譲れない点) và điều có thể linh hoạt. 「〜ゆえに」 (vì…, văn viết), 「〜とあって」 (vì là… nên): 「監査対応とあって、証跡は必須です」.",["監査対応とあって、証跡を残すことは必須です。","標準機能を優先するがゆえに、画面の自由度は下がります。"]],
+s:[["この仕様の背景から説明させてください。","Cho tôi giải thích bối cảnh của spec này trước."],
+["現行システムでは承認が3段階ありますが、新システムでは標準機能に合わせて2段階に{寄|よ}せる方針です。","Hệ thống cũ có 3 bước phê duyệt, nhưng hệ thống mới sẽ dồn về 2 bước theo chức năng chuẩn."],
+["実装コストが高いということであれば、代替案を一緒に検討させてください。","Nếu chi phí cài đặt cao, ta cùng xem xét phương án thay thế nhé."],
+["お客様にとって{譲|ゆず}れないのは監査証跡が残ることなので、画面の作りは柔軟に考えて大丈夫です。","Điều khách không nhượng bộ là phải lưu audit trail, còn cấu trúc màn hình có thể linh hoạt."],
+["読み違いを防ぐため、受入条件をチケットに{明記|めいき}しておきます。","Để tránh hiểu sai, tôi sẽ ghi rõ tiêu chí nghiệm thu vào ticket."],
+["不明点は実装前に遠慮なく聞いてください。先方への確認は私が{巻|ま}き取ります。","Có gì chưa rõ cứ hỏi trước khi code. Việc hỏi lại khách để tôi lo."]],
+ls:["エンジニア 仕様説明 伝わる","Nghe về cách giải thích spec cho kỹ sư. Tìm thêm 「Fit&Gap 分析 SaaS」."],
+rp:["自社のテックリード（日本人、30代、合理主義で率直）","SaaSリプレイス案件のBA","承認ワークフローの仕様を開発チームに説明する。","テックリードが「その仕様、標準機能から外れるから実装コストが3倍になる。お客様に断ってよ」と言い、BAの調整不足を指摘する。","背景と譲れない点を示し、代替案を一緒に作る方向に持っていく。"],
+n1:"読解｜長文 1題 4問・中文 2題 6問・語彙/文法 5"},
+
+{sk:"面接④：成果を STAR で話す",vi:"Phỏng vấn: kể thành tích theo STAR",dom:"job",
+g:["STAR と N1：〜を皮切りに・〜に至るまで","Situation（状況）→ Task（課題）→ Action（自分の行動）→ Result（結果, có số). Người phỏng vấn Nhật hay hỏi 「あなた個人の貢献は？」, nên Action dùng chủ ngữ 「私は」. 「〜を皮切りに」 (bắt đầu từ…, lan rộng), 「〜に至るまで」 (đến tận…).",["この経験を皮切りに、他の案件でも同じ仕組みが採用されました。","要件定義から運用定着に至るまで担当しました。"]],
+s:[["状況としては、全国約200施設で使うシステムのリプレイス案件でした。","Bối cảnh là dự án thay thế hệ thống dùng ở khoảng 200 cơ sở trên toàn quốc."],
+["課題は、要件変更が{頻発|ひんぱつ}し、手戻りが全体工数の3割に達していたことです。","Vấn đề là thay đổi yêu cầu liên tục, phần làm lại chiếm tới 30% tổng công số."],
+["そこで私は、変更要望を影響度で分類するルールを提案し、週次でお客様と優先度を合意する場を設けました。","Vì vậy tôi đề xuất quy tắc phân loại yêu cầu thay đổi theo mức ảnh hưởng và lập buổi thống nhất ưu tiên hằng tuần với khách."],
+["結果として、手戻りは半年で約半分に減り、リリースも予定どおりに実施できました。","Kết quả là trong nửa năm phần làm lại giảm khoảng một nửa và release đúng kế hoạch."],
+["私個人の貢献としては、ルールの設計と、お客様側の合意を取り付けた点が大きいと考えております。","Đóng góp cá nhân của tôi chủ yếu là thiết kế quy tắc và lấy được sự đồng thuận của khách.","チームみんなで頑張りました。"],
+["この経験を{皮切|かわき}りに、他の案件でも同じ仕組みが採用されました。","Bắt đầu từ kinh nghiệm này, cơ chế đó được áp dụng ở cả các dự án khác."]],
+ls:["STAR 面接 回答例 エピソード","Nghe ví dụ trả lời STAR. Lưu ý: số liệu trong mẫu câu chỉ là ví dụ, hãy thay bằng thành tích thật của bạn."],
+rp:["面接官（コンサル系企業のマネージャー、深掘り型）","転職希望のBA","二次面接。「これまでで最も成果を出した経験」を聞かれる。","面接官が「それ、あなたがいなくても同じ結果だったのでは？」「数字の根拠は？」と何度も深掘りする。","STARの各要素を崩さず、自分の行動と数字を明確に言う。"],
+n1:"読解｜情報検索 2題 4問・中文 2題 6問・語彙 5"},
+
+// ===== Week 5 =====
+{sk:"仕様変更の受け方・影響説明",vi:"Tiếp nhận thay đổi spec và giải thích ảnh hưởng",dom:"acc",
+g:["影響の三点セットと N1：〜たところで","Khi khách yêu cầu thay đổi: tiếp nhận → phạm vi ảnh hưởng → công số và lịch → cách xử lý hợp đồng (有償). 「〜たところで」 (dù có… cũng không…): 「今から対応したところで、今月の締めには間に合いません」. 「恐縮ながら別途お見積りとさせていただけますでしょうか」 là cách nói mềm cho “phải trả thêm tiền”.",["今から対応したところで、今月の締めには間に合いません。","恐縮ながら、別途お見積りとさせていただけますでしょうか。"]],
+s:[["ご要望の内容は承知いたしました。まず影響範囲を確認させてください。","Tôi đã nắm nội dung yêu cầu. Trước hết cho tôi kiểm tra phạm vi ảnh hưởng."],
+["一見小さな変更に見えますが、承認フローと仕訳連携の両方に影響がございます。","Nhìn qua có vẻ là thay đổi nhỏ, nhưng ảnh hưởng cả luồng phê duyệt lẫn liên kết bút toán."],
+["{概算|がいさん}ですが、設計からテストまで約5人日を見込んでおります。","Ước tính sơ bộ, từ thiết kế đến kiểm thử khoảng 5 man-day."],
+["契約の範囲外となりますので、恐縮ながら別途お見積りとさせていただけますでしょうか。","Vì nằm ngoài phạm vi hợp đồng, xin phép được báo giá riêng ạ.","これは有料です。"],
+["今から対応したところで、今月の締めには間に合いませんので、来月分からの適用をご提案いたします。","Dù làm từ bây giờ cũng không kịp chốt tháng này, nên tôi đề xuất áp dụng từ tháng sau."],
+["次回の定例までに、影響一覧とお見積りをお持ちいたします。","Trước buổi họp định kỳ tới, tôi sẽ mang danh sách ảnh hưởng và báo giá."]],
+ls:["仕様変更 対応 追加費用 交渉","Nghe về cách xử lý thay đổi spec và chi phí phát sinh. Tìm thêm 「インボイス制度 経費精算 影響」."],
+rp:["顧客（メーカーの経理課長、人当たりはいいが値切り上手）","経費精算システム導入のBA","UAT中に「承認者を部門ごとに変えられるようにしたい」という要望が出る。","課長が「ほんの少しの変更ですよね？今回はサービスでお願いしますよ」と笑顔で押し、さらに「今月の締めから使いたい」と言う。","関係を保ちながら、影響・費用・時期を明確にして持ち帰る。"],
+n1:"読解｜長文 1題 4問・統合理解 1題 2問・語彙/文法 9"},
+
+{sk:"スコープ交渉・優先順位付け",vi:"Đàm phán phạm vi, xếp ưu tiên",dom:"ec",
+g:["N1：〜ざるを得ない・〜ないことには","「〜ざるを得ない」 (buộc phải, không còn cách nào), 「〜ないことには〜ない」 (nếu không… thì không thể…): 「優先順位を決めないことには、計画が立てられません」. Đàm phán phạm vi: cố định ngày → đổi phạm vi; “nếu thêm cái này thì bỏ cái gì?”.",["すべてを盛り込むと、品質を犠牲にせざるを得ません。","優先順位を決めないことには、計画が立てられません。"]],
+s:[["リリース日を動かせないという前提で、範囲を調整させていただけないでしょうか。","Với tiền đề không dời ngày release, cho phép chúng tôi điều chỉnh phạm vi được không ạ."],
+["今回のリリースでは在庫引当の自動化を最優先とし、分析画面は次フェーズに回す案です。","Phương án là release lần này ưu tiên tự động hóa giữ tồn kho, màn hình phân tích dời sang phase sau."],
+["すべてを{盛|も}り込むと、品質を{犠牲|ぎせい}にせざるを得ません。","Nếu nhồi hết vào, buộc phải hy sinh chất lượng."],
+["店舗の欠品を減らすという目的に照らせば、効果の大部分は初回リリースで得られます。","Đối chiếu với mục tiêu giảm hết hàng tại cửa hàng, phần lớn hiệu quả có được ngay ở lần release đầu."],
+["どうしても外せない機能がございましたら、代わりにどれを{後|あと}ろ{倒|だお}しにするか、ご一緒に決めさせてください。","Nếu có chức năng nhất định không bỏ được, ta cùng quyết xem dời cái nào thay vào."],
+["合意いただいた範囲は、本日中に書面で確認させていただきます。","Phạm vi đã thống nhất tôi sẽ xác nhận bằng văn bản trong hôm nay."]],
+ls:["スコープ 交渉 プロジェクト 優先順位","Nghe về quản lý phạm vi. Tìm thêm 「小売 在庫 最適化 AI ニュース」."],
+rp:["顧客（小売チェーンの事業部長、声が大きく決断が早い）","在庫管理システム刷新のBA","リリース日は株主総会の発表で固定。残り機能が多すぎる。","事業部長が「全部やってもらわないと困る。人を増やせばいいでしょ」と言い、途中で「分析画面こそ社長が一番見たいものだ」と優先順位をひっくり返す。","目的に照らした優先順位で合意し、トレードオフを相手に選ばせる。"],
+n1:"読解｜主張理解（長文）1題 4問・中文 2題 6問・語彙 5"},
+
+{sk:"納期交渉",vi:"Đàm phán deadline",dom:"med",
+g:["段階リリースの提案と N1：〜ないまでも・〜べく","Không nói thẳng 「間に合いません」 rồi dừng; tách phần bắt buộc đúng hạn và phần có thể lùi, kèm cách tạm thời (回避策). 「〜ないまでも」 (dù không đến mức…thì cũng…), 「〜べく」 (để…).",["全面延期とまではいかないまでも、段階リリースが現実的かと存じます。","改定に間に合わせるべく、体制を強化いたします。"]],
+s:[["改定対応の重要性は、十分承知しております。","Chúng tôi hiểu rõ tầm quan trọng của việc đáp ứng sửa đổi."],
+["{率直|そっちょく}に申し上げますと、全機能を4月1日に{揃|そろ}えるのは困難な状況です。","Nói thẳng thắn, để đủ toàn bộ chức năng vào ngày 1/4 là tình hình khó khăn.","4月1日は無理です。"],
+["算定ロジックの改修は、期日までに必ず間に合わせます。","Phần sửa logic tính phí chắc chắn sẽ kịp hạn."],
+["帳票のレイアウト変更については、4月中旬のリリースとさせていただけないでしょうか。","Riêng thay đổi layout biểu mẫu, xin cho phép release vào giữa tháng 4 được không ạ."],
+["その間は、現行帳票に手書きで{補記|ほき}いただく運用で{回避|かいひ}できるかと存じます。","Trong thời gian đó, có thể né bằng cách viết tay bổ sung vào biểu mẫu hiện tại."],
+["全面延期とまではいかないまでも、段階リリースであれば品質を保ったまま対応可能です。","Dù không đến mức hoãn toàn bộ, nếu release theo giai đoạn thì vẫn giữ được chất lượng."]],
+ls:["診療報酬改定 システム対応 ベンダー","Nghe tin về sửa đổi phí khám chữa bệnh và gánh nặng của vendor. Shadowing đoạn giải thích."],
+rp:["顧客（総合病院の医療情報システム課長、普段は温厚だが今回は必死）","電子カルテ周辺システムのBA","診療報酬改定（4/1施行）に合わせた改修。全機能は間に合わない。","課長が「間に合わなかったら病院が損をするんですよ。契約違反じゃないですか」と強く言い、上層部への説明資料を今日中に求める。","できること・できないこと・回避策を整理し、段階リリースで合意する。"],
+n1:"読解｜統合理解 2題 4問・長文 1題 4問・語彙/文法 7"},
+
+{sk:"見積り交渉・値引き要求",vi:"Đàm phán báo giá, xử lý yêu cầu giảm giá",dom:"re",
+g:["根拠で守る見積りと N1：〜とあれば・〜ならいざしらず","Không giảm giá suông; đổi phạm vi/điều kiện lấy giá. 「勉強させていただく」 = giảm giá (cách nói thương mại). 「〜とあれば」 (nếu là… thì…), 「〜ならいざしらず」 (nếu là… thì còn được, chứ…).",["複数年のご契約とあれば、保守費用の面で勉強させていただけるかと存じます。","小規模ならいざしらず、この規模で移行を省くのは危険です。"]],
+s:[["お見積りの{根拠|こんきょ}について、{内訳|うちわけ}をご説明させてください。","Cho tôi giải thích chi tiết căn cứ của báo giá."],
+["他社さんのお見積りと比べて高いとのご指摘、承知いたしました。","Tôi đã ghi nhận ý kiến là đắt hơn báo giá của công ty khác."],
+["恐れ入りますが、他社さんの見積りには、データ移行と研修は含まれていますでしょうか。","Xin lỗi, báo giá của bên kia có bao gồm chuyển đổi dữ liệu và đào tạo không ạ."],
+["単純な値引きは難しいのですが、範囲を見直すことで金額を調整することは可能です。","Giảm giá đơn thuần thì khó, nhưng có thể điều chỉnh số tiền bằng cách xem lại phạm vi.","安くできません。"],
+["複数年のご契約とあれば、保守費用の面で{勉強|べんきょう}させていただけるかと存じます。","Nếu là hợp đồng nhiều năm, chúng tôi có thể ưu đãi phần phí bảo trì."],
+["社内で検討し、{明後日|あさって}までに改めてご提示いたします。","Chúng tôi sẽ cân nhắc nội bộ và gửi lại đề xuất trước ngày kia."]],
+ls:["値引き交渉 断り方 営業","Nghe về cách xử lý yêu cầu giảm giá. Tìm thêm 「不動産テック 賃貸管理」."],
+rp:["顧客（不動産管理会社の購買担当、冷静で数字に強い）","物件管理システム提案のBA（営業同席なし）","見積り提示後の打ち合わせ。","購買担当が「A社は3割安いです。合わせられないなら、この話はなかったことに」と言い、さらに「御社の工数、盛ってませんか？」と疑う。","根拠を示し、値引きではなく条件・範囲で落としどころを探る。"],
+n1:"読解｜主張理解 1題 4問・情報検索 1題 2問・語彙/文法 9"},
+
+{sk:"お断り：関係を壊さず NO",vi:"Từ chối mà không làm hỏng quan hệ",dom:"gov",
+g:["N1：〜わけにはいかない・〜かねます","「〜わけにはいかない／まいりません」 (không thể (vì lý do đạo lý/trách nhiệm)). 「対応いたしかねます」 là từ chối lịch sự chuẩn. Cấu trúc: cảm ơn/tiếp nhận → lý do khách quan → từ chối rõ → phương án thay thế → giữ quan hệ.",["品質を担保できない形でお受けするわけにはまいりません。","現行の契約範囲では、対応いたしかねます。"]],
+s:[["せっかくのご依頼ですが、今回は{見送|みおく}らせていただきたく存じます。","Rất cảm kích lời đề nghị, nhưng lần này xin phép được từ chối."],
+["現行の契約範囲では、対応いたしかねます。","Trong phạm vi hợp đồng hiện tại, chúng tôi không thể đáp ứng."],
+["課長のご意向であることは承知しておりますが、品質を担保できない形でお受けするわけにはまいりません。","Tôi hiểu đây là ý của trưởng phòng, nhưng không thể nhận theo cách không đảm bảo được chất lượng."],
+["ご期待に{沿|そ}えず、大変{心苦|こころぐる}しいのですが…。","Không đáp ứng được kỳ vọng, chúng tôi thật áy náy…"],
+["代わりに、次年度の予算要求に間に合うよう、概算資料をご用意することは可能です。","Thay vào đó, chúng tôi có thể chuẩn bị tài liệu ước tính kịp cho đề xuất ngân sách năm sau."],
+["今後ともお力になれる部分は精一杯対応いたしますので、引き続きよろしくお願いいたします。","Những phần có thể hỗ trợ, chúng tôi sẽ cố hết sức; mong tiếp tục được hợp tác."]],
+ls:["上手な断り方 取引先 ビジネス","Nghe cách từ chối đối tác. Shadowing phần câu đưa phương án thay thế."],
+rp:["顧客（市役所の情報政策課・主査、上司の意向を盾にする）","住民情報システム保守のBA","年度末に「ついでに」と、契約外の帳票追加を無償で頼まれる。","主査が「課長がもうOKしてるんで」「前のベンダーさんはやってくれましたよ」と押し、断ると「次の入札にも影響しますよ」とほのめかす。","はっきり断りつつ、代替案で関係を保つ。"],
+n1:"読解｜長文 1題 4問・統合理解 1題 2問・主張理解 1題 3問・語彙 6"},
+
+{sk:"面接⑤：苦労したプロジェクト",vi:"Phỏng vấn: dự án khó khăn nhất",dom:"job",
+g:["N1：〜ながらも・〜をよそに・〜にもかかわらず","Kể chuyện khó khăn: không đổ lỗi (người phỏng vấn kiểm tra điều này), nói điều mình đã làm và bài học. 「〜ながらも」 (dù… nhưng vẫn), 「〜をよそに」 (mặc kệ, bất chấp…), 「〜にもかかわらず」.",["仕様が固まらないながらも、開発を止めるわけにはいかない状況でした。","周囲の心配をよそに、予定どおりリリースできました。"]],
+s:[["最も苦労したのは、本番直前に法改正の影響が{判明|はんめい}した案件です。","Khó khăn nhất là dự án mà ngay trước go-live mới phát hiện ảnh hưởng của sửa luật."],
+["仕様が固まらないながらも、開発を止めるわけにはいかない状況でした。","Dù spec chưa chốt, tình hình là không thể dừng phát triển."],
+["私は、確定している部分と未確定の部分を切り分け、後者を後から差し替えられる設計を提案しました。","Tôi tách phần đã chốt và chưa chốt, đề xuất thiết kế để có thể thay phần chưa chốt về sau."],
+["上司の判断ミスではなく、当時の情報では誰にも予測できなかったと考えております。","Tôi nghĩ đó không phải lỗi phán đoán của cấp trên, mà với thông tin lúc đó không ai đoán trước được.","上司の判断が悪かったです。"],
+["振り返ると、もっと早い段階でリスクとして共有すべきだったと反省しております。","Nhìn lại, tôi rút kinh nghiệm là lẽ ra nên chia sẻ như một rủi ro sớm hơn."],
+["この経験から、不確実な要素ほど早めに{可視化|かしか}することを{徹底|てってい}しています。","Từ kinh nghiệm đó, tôi luôn đưa các yếu tố bất định ra cho mọi người thấy càng sớm càng tốt."]],
+ls:["面接 苦労した経験 答え方","Nghe mẫu trả lời “kinh nghiệm khó khăn”. Chú ý cách nói bài học (反省・学び)."],
+rp:["面接官（事業会社のIT部門長、穏やかだが鋭い）","転職希望のBA","最終面接。「一番苦労したプロジェクト」を聞かれる。","面接官が「それは上司の判断ミスでは？」「あなたなら最初からどうしましたか？」と、他責か自責かを試す質問を重ねる。","他責にせず、自分の行動と学びを語る。"],
+n1:"言語知識 mini test｜語彙 7・文法 8（15分）",n1t:15},
+
+// ===== Week 6 =====
+{sk:"会議の司会",vi:"Chủ trì cuộc họp",dom:"hr",
+g:["司会の定型と N1：〜はさておき","Mở: 「定刻になりましたので」 → mục tiêu 「本日のゴールは〜」 → thời gian. Kéo lại khi lạc đề: 「〜はさておき、一旦本題に戻らせてください」, 「別途打ち合わせの場を設けます」. Kết: xác nhận 決定事項 và 宿題 (ai, khi nào).",["その件はさておき、一旦本題に戻らせてください。","最後に決定事項と宿題を確認させてください。"]],
+s:[["定刻になりましたので、始めさせていただきます。","Đã đến giờ, xin phép bắt đầu."],
+["本日のゴールは、年末調整の入力画面の仕様を確定することです。","Mục tiêu hôm nay là chốt spec màn hình nhập quyết toán thuế cuối năm."],
+["時間の都合上、各議題15分を目安に進めます。","Vì thời gian, mỗi chủ đề sẽ khoảng 15 phút."],
+["貴重なご意見ありがとうございます。その件は{さておき|}、一旦本題に戻らせてください。","Cảm ơn ý kiến quý báu. Chuyện đó tạm gác lại, cho tôi quay lại chủ đề chính.","話がずれています。"],
+["今の論点は別途打ち合わせの場を設けますので、持ち帰りとさせていただけますか。","Luận điểm này tôi sẽ sắp xếp buổi riêng, xin cho phép mang về được không ạ."],
+["最後に、決定事項と宿題を確認させてください。","Cuối cùng, cho tôi xác nhận các điểm đã quyết và việc cần làm."]],
+ls:["会議 ファシリテーション 進め方","Nghe về kỹ năng facilitation. Shadowing các câu kéo cuộc họp về chủ đề chính."],
+rp:["顧客側の参加者（人事部の課長＝声が大きく話が脱線しがち、Claudeが他の参加者も適宜演じる）","給与システム導入の定例会の司会（BA）","年末調整画面の仕様確定会議（60分）。議題3つ。","課長が「そもそも今のベンダー選定が…」と大きく脱線し、別の参加者が「時間がないので早く決めて」と苛立つ。さらに残り10分で新しい論点が出る。","時間内にゴールに到達し、決定事項と宿題を明確にする。"],
+n1:"聴解（voice mode）｜課題理解 5・ポイント理解 5・語彙 5"},
+
+{sk:"合意形成・意見対立の調整",vi:"Tạo đồng thuận, điều hòa xung đột",dom:"log",
+g:["共通目的への引き上げと N1：〜つつも","Tóm lại lo ngại hai bên bằng lời trung lập → đưa về mục tiêu chung → đề xuất phương án dung hòa (折衷案) → chốt 大筋合意. 「〜つつも」 (vừa…, dù…): 「締め時間を延ばしつつも、負荷を抑える」.",["締め時間を延ばしつつも、倉庫側の負荷を抑える方法を検討しませんか。","この方向で大筋合意ということで、よろしいでしょうか。"]],
+s:[["双方のご懸念を整理いたしますと、営業部は締め時間の延長、倉庫部は作業負荷ということですね。","Tóm lại lo ngại của hai bên: Kinh doanh muốn kéo dài giờ chốt, Kho lo tải công việc."],
+["どちらのご意見も、お客様満足という同じ目的から来ているかと思います。","Ý kiến của cả hai bên đều xuất phát từ cùng mục tiêu là sự hài lòng của khách hàng."],
+["締め時間を延ばし{つつも|}、倉庫側の負荷を抑える方法はないか、検討してみませんか。","Ta thử xem có cách nào vừa kéo dài giờ chốt vừa giảm tải cho kho không."],
+["例えば、当日出荷の対象を在庫品に限定するという{折衷案|せっちゅうあん}はいかがでしょうか。","Ví dụ phương án dung hòa: chỉ giao trong ngày với hàng có sẵn trong kho, thấy sao ạ."],
+["この方向で{大筋|おおすじ}合意ということで、よろしいでしょうか。","Vậy ta thống nhất đại thể theo hướng này, được không ạ."],
+["細部は来週までに、両部門の実務担当の方と詰めさせていただきます。","Chi tiết tôi sẽ chốt với người phụ trách thực tế của hai bộ phận trước tuần sau."]],
+ls:["合意形成 会議 対立 調整","Nghe về cách điều phối xung đột trong họp. Tìm thêm 「物流 当日出荷 締め時間」."],
+rp:["顧客の営業部長と倉庫部長（Claudeが二役を演じ分ける。営業部長は攻撃的、倉庫部長は頑固）","配送管理システム改修のBA（会議の進行役）","当日出荷の受注締め時間を15時から17時に延ばしたい営業部と、反対する倉庫部の調整会議。","二人が感情的になり、営業部長が「倉庫は甘えてる」と言い、倉庫部長が「じゃあ営業が箱詰めしろ」と返す。さらに双方からBAに「どっちの味方なの？」と迫られる。","中立を保ち、共通目的に引き上げて折衷案で大筋合意を取る。"],
+n1:"聴解（voice mode）｜ポイント理解 6・概要理解 4・語彙 5"},
+
+{sk:"UAT フィードバック対応",vi:"Xử lý phản hồi UAT: lỗi hay đúng spec",dom:"edu",
+g:["不具合・仕様・要望の切り分け","Phản hồi UAT chia 3 loại: 不具合 (sai so với spec), 仕様どおり (đúng spec nhưng khách không muốn), 改善要望 (yêu cầu mới). Luôn hỏi 再現手順 và 期待結果 trước khi phán. N1: 「〜に反して」 (trái với): 「ご期待に反して」, 「〜とおり」.",["期待される結果は〜ということでよろしいですね。","こちらは合意済みの仕様どおりの動作でございます。"]],
+s:[["ご指摘ありがとうございます。念のため、{再現|さいげん}手順を確認させてください。","Cảm ơn đã chỉ ra. Để chắc chắn, cho tôi xác nhận các bước tái hiện."],
+["どの画面で、どの園児を選択したときに発生しましたでしょうか。","Lỗi xảy ra ở màn hình nào, khi chọn trẻ nào ạ?"],
+["期待される結果は、退園した園児が一覧に表示されない、ということでよろしいですね。","Kết quả mong muốn là trẻ đã thôi học không hiển thị trong danh sách, đúng không ạ."],
+["確認したところ、こちらは合意済みの仕様どおりの動作でございます。","Tôi đã kiểm tra, đây là hoạt động đúng theo spec đã thống nhất.","これはバグじゃないです。"],
+["ただ、現場の運用に合わないということであれば、改善要望として別途検討させていただきます。","Tuy nhiên nếu không hợp với vận hành thực tế, chúng tôi sẽ xem xét riêng như một yêu cầu cải tiến."],
+["仕様か不具合か判断がつかないものは、一旦{保留|ほりゅう}扱いにして、明日までに回答いたします。","Những gì chưa phân định được là spec hay lỗi, tôi tạm để treo và trả lời trước ngày mai."]],
+ls:["受け入れテスト UAT ユーザー 対応","Nghe về UAT và cách làm việc với người dùng. Shadowing câu hỏi về 再現手順."],
+rp:["顧客（保育園の園長、ITに詳しくないが現場目線が鋭い）","保育システムのBA","UAT中、園長から「集計の画面、退園した子が消えちゃうんだけど、バグでしょ？」と連絡。実は仕様どおり。","園長が「仕様なんて知らない、現場が困るんだから直して」と言い、さらに「前に言ったはずだけど」と過去の発言を持ち出す。","仕様どおりであることを丁寧に説明し、要望として扱う流れに合意してもらう。"],
+n1:"聴解（voice mode）｜概要理解 5・即時応答 10"},
+
+{sk:"UAT 結果報告・リリース判定",vi:"Báo cáo kết quả UAT, quyết định release",dom:"fin",
+g:["条件付きリリースの言い方と N1：〜を条件に","Báo cáo: số liệu (đạt/chưa đạt) → mức ảnh hưởng của lỗi còn lại → 回避策 → đề xuất (リリース可否) → xin quyết định. 「〜を条件に」 (với điều kiện…), 「軽微」 (nhẹ), 「つきましては」 (vì vậy, mở đề xuất).",["残り5件の修正を条件に、予定どおりリリースしたいと考えております。","いずれも業務影響は軽微で、回避策がございます。"]],
+s:[["UATの結果をご報告いたします。全320ケース中、315件が合格です。","Tôi xin báo kết quả UAT: 315 trên tổng 320 case đạt."],
+["未解決の不具合は5件で、うち1件は振込手数料の表示に関するものです。","Còn 5 lỗi chưa xử lý, trong đó 1 lỗi về hiển thị phí chuyển khoản."],
+["いずれも業務影響は{軽微|けいび}で、回避策がございます。","Tất cả đều ảnh hưởng nghiệp vụ nhẹ và có cách né."],
+["つきましては、残り5件の修正を条件に、予定どおりリリースしたいと考えております。","Vì vậy, với điều kiện sửa 5 lỗi còn lại, chúng tôi muốn release đúng kế hoạch."],
+["修正版は来週火曜に適用し、翌日再確認いただく計画です。","Bản sửa sẽ áp dụng thứ Ba tuần sau, kế hoạch là hôm sau anh/chị kiểm tra lại."],
+["リリース{可否|かひ}について、本日中にご判断をいただけますでしょうか。","Về việc có release hay không, mong anh/chị quyết định trong hôm nay."]],
+ls:["リリース判定 会議 基準","Nghe về họp quyết định release. Tìm thêm 「銀行 システム障害 振込 ニュース」 để nghe từ vựng ngân hàng."],
+rp:["顧客（信用金庫の事務部・PM、慎重派。過去の障害がトラウマ）","インターネットバンキング改修のBA","リリース判定会議でUAT結果を報告し、条件付きリリースを提案する。","PMが「手数料の表示ミスは、お客様からのクレームに直結しますよね？」と懸念し、途中で「金融庁に報告が必要になったらどうするんですか」と最悪ケースを持ち出す。","リスクを過小評価せず、条件と回避策を示して判断を引き出す。"],
+n1:"聴解（voice mode）｜即時応答 8・統合理解 2題 4問・語彙 3"},
+
+{sk:"デモ・プレゼン",vi:"Demo, thuyết trình cho cấp lãnh đạo",dom:"saas",
+g:["役員向けプレゼンと N1：〜に他ならない","Với lãnh đạo: kết luận (lợi ích bằng số) trước, demo sau, thời gian ngắn. Khi bị ngắt lời: 「ご質問ありがとうございます。その点は、まさにこの後ご説明する部分でございます」. 「〜に他ならない」 (chính là…, không gì khác).",["この機能こそ、現場の声から生まれたものに他なりません。","結論から申し上げますと、月次の集計作業が約半分になります。"]],
+s:[["本日は、新システムの主要機能を15分でご紹介いたします。","Hôm nay tôi xin giới thiệu các chức năng chính của hệ thống mới trong 15 phút."],
+["結論から申し上げますと、月次の集計作業が約半分になります。","Nói kết luận trước: công việc tổng hợp hằng tháng giảm khoảng một nửa."],
+["では、実際の画面をご覧ください。","Mời quý vị xem màn hình thực tế.","画面を見てください。"],
+["ご質問ありがとうございます。その点は、まさにこの後ご説明する部分でございます。","Cảm ơn câu hỏi. Điểm đó chính là phần tôi sắp giải thích."],
+["この機能こそ、現場の皆様の声から生まれたものに{他|ほか}なりません。","Chức năng này không gì khác chính là được sinh ra từ tiếng nói của các anh chị ở hiện trường."],
+["以上でデモを終わります。ご不明な点がございましたら、お気軽にお尋ねください。","Phần demo đến đây là hết. Có điểm nào chưa rõ xin cứ hỏi."]],
+ls:["プレゼン 役員 説明 コツ","Nghe về thuyết trình cho lãnh đạo. Shadowing câu mở đầu và câu kết."],
+rp:["顧客の役員（専務、忙しく、途中で遮るのが癖）","SaaS導入プロジェクトのBA（デモ担当）","本番稼働前の役員向けデモ（15分）。","専務が冒頭2分で「で、いくら浮くの？」と遮り、途中で「他社のSaaSとの違いは？」「現場は本当に使えるの？」と立て続けに聞く。","結論ファーストで、遮られても流れを取り戻し、時間内に終える。"],
+n1:"聴解（voice mode）｜統合理解 2題 4問・課題理解 5・語彙 6"},
+
+{sk:"質疑応答：答えに詰まったとき",vi:"Hỏi đáp: khi bị câu hỏi khó",dom:"api",
+g:["詰まったときの型と N1：〜に限ったことではない","Không biết thì không đoán: xác nhận ý định câu hỏi → nói phần chắc chắn biết → hẹn thời hạn trả lời. 「〜に限ったことではない」 (không chỉ riêng…), 「確認の上」 (sau khi xác nhận).",["開発担当に確認の上、本日中にご回答いたします。","この問題は本システムに限ったことではございません。"]],
+s:[["ご質問の意図を確認させてください。同時更新時のデータ整合性について、ということでしょうか。","Cho tôi xác nhận ý câu hỏi: là về tính nhất quán dữ liệu khi cập nhật đồng thời phải không ạ."],
+["非常に{鋭|するど}いご指摘です。","Đó là một chỉ ra rất sắc bén."],
+["正確にお答えしたいので、開発担当に確認の上、本日中にご回答いたします。","Để trả lời chính xác, tôi sẽ xác nhận với người phát triển và trả lời trong hôm nay.","わかりません。"],
+["現時点で申し上げられるのは、APIは冪等性を担保する設計になっている、という点です。","Điều có thể nói lúc này là API được thiết kế đảm bảo tính idempotent."],
+["この問題は本システムに限ったことではなく、連携全般に共通する課題かと思います。","Vấn đề này không chỉ riêng hệ thống này mà là thách thức chung của mọi tích hợp."],
+["他にご懸念点はございますか。今のうちに{洗|あら}い出しておければと思います。","Còn lo ngại nào khác không ạ? Tôi muốn liệt kê hết ngay bây giờ."]],
+ls:["質疑応答 答えられない 対応","Nghe cách xử lý câu hỏi khó. Tìm thêm 「API 冪等性 とは」 để nghe giải thích kỹ thuật bằng tiếng Nhật."],
+rp:["顧客の技術者（基幹システム担当、細かく意地悪な質問が多い）","システム連携プロジェクトのBA","連携方式の説明会の質疑応答。","技術者が「同時更新で二重計上されたら？」「障害時の再送で順序が入れ替わったら？」とBAの専門外の質問を連発し、「BAなのに分からないんですか」と言う。","分からないことを認めつつ信頼を失わない。"],
+n1:"聴解（voice mode）｜ミックス（課題・ポイント・概要・即時応答）15"},
+
+// ===== Week 7 =====
+{sk:"謝罪・障害報告（第一報）",vi:"Xin lỗi và báo cáo sự cố (bản tin đầu)",dom:"ec",
+g:["第一報の5要素と謝罪の段階","Bản tin đầu: 事象 (gì), 発生時刻, 影響範囲, 暫定対応, 次回報告時刻. Chưa rõ nguyên nhân vẫn phải báo. Mức xin lỗi: 申し訳ございません < 誠に申し訳ございません < 深くお詫び申し上げます. N1: 「〜を受けて」 (tiếp nhận…, sau khi…).",["原因が判明していなくても、11時時点の状況をご報告いたします。","大変ご迷惑をおかけしており、誠に申し訳ございません。"]],
+s:[["大変ご迷惑をおかけしており、誠に申し訳ございません。","Thành thật xin lỗi vì đã gây phiền phức lớn."],
+["本日10時15分頃より、一部店舗のPOSで会計ができない{事象|じしょう}が発生しております。","Từ khoảng 10h15 hôm nay, đang xảy ra hiện tượng một số cửa hàng không tính tiền được trên POS."],
+["現時点で影響を確認しているのは、関東地区の12店舗です。","Hiện đã xác nhận ảnh hưởng ở 12 cửa hàng khu vực Kantō."],
+["原因は調査中ですが、今朝適用したマスタ更新との関連を疑っております。","Nguyên nhân đang điều tra, nhưng nghi có liên quan đến việc cập nhật master sáng nay."],
+["{暫定|ざんてい}対応として、マスタを切り戻す作業を進めております。","Biện pháp tạm thời: đang rollback master."],
+["次回は11時時点の状況を、原因が判明していなくてもご報告いたします。","Lần tới tôi sẽ báo tình hình lúc 11h, kể cả khi chưa rõ nguyên nhân.","原因がわかったら連絡します。"]],
+ls:["システム障害 謝罪 記者会見","Nghe họp báo xin lỗi về sự cố hệ thống (ngân hàng, viễn thông). Shadowing phần mở đầu xin lỗi."],
+rp:["顧客（小売チェーンの店舗運営部長、怒っているが冷静さは保つ）","POSシステム保守のBA","10時15分からPOS障害。10時40分、部長に電話で第一報を入れる。","部長が「原因も分からないのに電話してきたの？」「何店舗？売上の損失どうするの？」「社長に何て言えばいい？」と矢継ぎ早に詰める。","事実と未確定事項を分けて伝え、次回報告時刻を約束する。"],
+n1:"言語知識 mini test｜語彙 7・文法 8（15分）",n1t:15},
+
+{sk:"再発防止策の説明",vi:"Giải thích biện pháp phòng tái phát",dom:"ins",
+g:["真因と仕組みで語る N1：〜を余儀なくされる","Khách Nhật ghét 精神論 (“sẽ chú ý hơn”). Phải có: 直接原因 → 真因 (vì sao cơ chế không chặn được) → 対策 bằng cơ chế (自動化, ダブルチェック, 承認) → thời hạn → cách đo hiệu quả. 「〜を余儀なくされる」 (buộc phải), 「形骸化」 (thành hình thức).",["お客様には手続きのやり直しを余儀なくさせてしまいました。","真因はレビューの仕組みが形骸化していたことにございます。"]],
+s:[["今回の障害を受けて、再発防止策をご説明いたします。","Sau sự cố lần này, tôi xin giải thích biện pháp phòng tái phát."],
+["直接の原因は設定ミスですが、{真因|しんいん}はレビューの仕組みが{形骸化|けいがいか}していたことにございます。","Nguyên nhân trực tiếp là sai cấu hình, nhưng nguyên nhân gốc là cơ chế review đã thành hình thức."],
+["ご指摘のとおり、「注意を{徹底|てってい}する」だけでは再発は防げません。","Đúng như anh chỉ ra, chỉ “chú ý triệt để” thì không ngăn được tái phát.","今後は気をつけます。"],
+["そのため、設定変更はツールで差分を自動検知し、承認なしでは適用できない仕組みに改めます。","Vì vậy, chúng tôi đổi sang cơ chế tự động phát hiện khác biệt bằng công cụ, không có phê duyệt thì không áp dụng được."],
+["全ての対策は来月末までに完了させ、効果を四半期ごとにご報告いたします。","Tất cả biện pháp hoàn thành trước cuối tháng sau, và báo cáo hiệu quả mỗi quý."],
+["二度とこのような事態を{招|まね}かぬよう、全社を挙げて取り組んでまいります。","Toàn công ty sẽ nỗ lực để không bao giờ gây ra tình trạng như vậy nữa."]],
+ls:["再発防止策 なぜなぜ分析 書き方","Nghe về phân tích なぜなぜ và viết biện pháp phòng tái phát."],
+rp:["顧客（損害保険会社のシステム部長、論理的で妥協しない）","保険金請求システム保守のBA","先週の障害（保険金の二重支払い通知）について、再発防止策を説明する報告会。","部長が「それ精神論ですよね」「なぜレビューで止まらなかったの？」「同じことが他のシステムでも起きない根拠は？」と追及する。","真因と仕組みで説明し、横展開まで約束する。"],
+n1:"読解 mini test｜短文 2・中文 2題 6問・長文 1題 4問・統合 1題 3問（25分）",n1t:25},
+
+{sk:"上司への相談・提案",vi:"Đề xuất cải tiến với cấp trên",dom:"mfg",
+g:["提案の型と N1：〜に足る・〜てしかるべきだ","Đề xuất: vấn đề (có số) → giải pháp → chi phí và thời gian hoàn vốn → cách thử nhỏ → xin phép. 「〜に足る」 (đủ để…): 「検証に足るデータ」. 「〜てしかるべきだ」 (lẽ ra nên…, đương nhiên phải…).",["効果が検証できるに足るデータが集まりましたら、改めてご報告いたします。","テストの準備はもっと効率化されてしかるべきだと考えております。"]],
+s:[["課長、少しご相談よろしいでしょうか。改善提案がございまして。","Trưởng phòng, cho em xin chút thời gian trao đổi ạ. Em có một đề xuất cải tiến."],
+["受入テストの準備に毎回約3日かかっているので、テンプレート化してはいかがでしょうか。","Mỗi lần chuẩn bị kiểm thử nghiệm thu mất khoảng 3 ngày, mình thử template hóa thì sao ạ."],
+["初期工数は2日ほどですが、次の案件から{回収|かいしゅう}できる見込みです。","Công số ban đầu khoảng 2 ngày, nhưng dự kiến thu hồi được từ dự án sau."],
+["予算が厳しいのは承知しておりますので、まずは空き時間で{試作|しさく}させていただけませんか。","Em biết ngân sách đang khó, nên trước hết cho em làm thử trong thời gian rảnh được không ạ."],
+["効果が検証できるに{足|た}るデータが集まりましたら、改めてご報告いたします。","Khi có đủ dữ liệu để kiểm chứng hiệu quả, em sẽ báo cáo lại."],
+["もし懸念点がございましたら、遠慮なくご指摘ください。","Nếu anh có lo ngại gì, xin cứ chỉ ra ạ."]],
+ls:["上司 提案 通し方 コツ","Nghe cách đề xuất được sếp duyệt. Tìm thêm 「製造業 DX 現場 改善」."],
+rp:["上司（自社の課長、基本的に保守的で忙しい）","製造業向け案件のBA","UAT準備の効率化（テンプレート化）を提案する。","課長が「予算もないし、今それやる余裕ある？」「前にも誰か同じこと言って立ち消えたよ」と消極的で、途中で電話が入り「あと3分で」と言われる。","短時間で費用対効果を示し、小さく試す許可を得る。"],
+n1:"聴解 mini test（voice mode）｜課題 3・ポイント 3・即時応答 6・統合 1題 3問（約20分）",n1t:20},
+
+{sk:"面接⑥：逆質問・条件面の確認",vi:"Phỏng vấn: câu hỏi ngược, xác nhận điều kiện",dom:"job",
+g:["条件の聞き方と N1：〜次第・〜に応じて","Hỏi lương/đánh giá: 「差し支えなければ」, và nêu mong muốn có căn cứ (現職の水準を踏まえ). Câu hỏi ngược tốt: về vai trò 3 tháng đầu, đặc điểm người thành công, thách thức của team. Không hỏi những gì đã có trên website.",["差し支えなければ、評価制度についても伺えますでしょうか。","ご経験に応じて決定とのことですが、目安を伺えますか。"]],
+s:[["本日はありがとうございました。二点ほど質問させていただいてもよろしいでしょうか。","Cảm ơn quý công ty hôm nay. Cho tôi hỏi khoảng hai điểm được không ạ."],
+["入社後、最初の3か月で期待される役割を伺えますか。","Xin cho biết vai trò được kỳ vọng trong 3 tháng đầu sau khi vào công ty."],
+["活躍されているBAの方に共通する特徴があれば、お聞かせください。","Nếu những BA đang làm tốt có đặc điểm chung nào, xin cho tôi biết.","残業は多いですか。"],
+["差し支えなければ、評価制度と昇給の仕組みについても伺えますでしょうか。","Nếu không phiền, cho tôi hỏi về chế độ đánh giá và cơ chế tăng lương."],
+["希望年収は、現職の水準を踏まえ、〇〇万円程度を考えております。御社の規定を踏まえてご相談できれば幸いです。","Mức lương mong muốn, dựa trên mức hiện tại, khoảng ○○ man yên. Mong được trao đổi dựa trên quy định của quý công ty."],
+["入社時期は、引き継ぎを考慮しますと、内定から2か月程度を見込んでおります。","Thời điểm vào công ty, xét việc bàn giao, tôi dự kiến khoảng 2 tháng sau khi nhận offer."]],
+ls:["逆質問 面接 良い例 悪い例","Nghe ví dụ câu hỏi ngược tốt/xấu. Tìm thêm 「年収交渉 転職 タイミング」."],
+rp:["面接官（IT企業の人事部長＋事業部長、最終面接）","転職希望のBA","最終面接の終盤。「何か質問はありますか」の後、条件面の話になる。","人事部長が逆質問の前に「ちなみに希望年収はいくらですか？他社の選考状況は？」と先に聞き、提示額が希望より低いことをほのめかす。","好印象を保ちながら、条件を具体的に確認・交渉する。"],
+n1:"文法｜苦手文型の総復習（今週のメモから）15"},
+
+{sk:"雑談・飲み会",vi:"Nói chuyện phiếm, buổi nhậu với khách",dom:"log",
+g:["懇親会のマナーと雑談の型","Rót bia: 「お注ぎします」 (không phải 「注いであげます」). Hỏi chuyện riêng: chủ đề an toàn (cuối tuần, đồ ăn, du lịch, sở thích), tránh lương/tôn giáo/chính trị. Đáp lời: lặp từ khóa + cảm xúc (「へえ、釣りですか」). Kết: 「本日はありがとうございました。今後ともよろしくお願いいたします」. Ghế: 上座 xa cửa.",["課長、何をお飲みになりますか。お注ぎします。","今日は楽しかったです。今後ともよろしくお願いいたします。"]],
+s:[["本日はお招きいただき、ありがとうございます。","Cảm ơn anh đã mời tôi hôm nay."],
+["課長、何をお飲みになりますか。お{注|つ}ぎします。","Anh dùng gì ạ? Để tôi rót cho anh.","お酒を注いであげます。"],
+["週末は何をされているんですか。","Cuối tuần anh thường làm gì ạ?"],
+["へえ、釣りですか。一度行ってみたいと思っていたんです。","Ồ, câu cá ạ. Tôi cũng từng muốn thử một lần."],
+["実は私も、最初は日本の会議の進め方に{戸惑|とまど}いました。","Thật ra lúc đầu tôi cũng bối rối với cách tiến hành họp ở Nhật."],
+["今日は楽しかったです。今後ともよろしくお願いいたします。","Hôm nay vui lắm ạ. Mong tiếp tục được anh chiếu cố."]],
+ls:["飲み会 マナー 取引先 接待","Nghe về phép lịch sự khi nhậu với khách. Tìm thêm video 「雑談力 ビジネス」."],
+rp:["顧客（物流会社の課長、プロジェクト打ち上げで上機嫌、関西弁まじり）","WMS導入プロジェクトのBA","プロジェクト打ち上げの懇親会。","課長が酔って「正直、ベトナムの開発ってどうなの？」「あなたは日本に住みたいの？」「うちの部長のこと、どう思う？」と答えにくい質問をしてくる。","楽しい雰囲気を保ちつつ、際どい質問をかわし、関係を深める。"],
+n1:"読解｜苦手形式の総復習（今週のメモから）15"},
+
+{sk:"面接⑦：深掘り・圧迫質問",vi:"Phỏng vấn: bị hỏi dồn, hỏi gây áp lực",dom:"job",
+g:["圧迫への型と N1：〜とは言い切れない・〜までもない","Không cãi, không xin lỗi quá: 「ご指摘のとおり〜。一方で〜」. Xin thời gian suy nghĩ: 「少し考える時間をいただいてもよろしいでしょうか」. 「〜とは言い切れない」 (không thể khẳng định là…). Giữ nhịp nói bình thường, câu ngắn.",["必ずしも不利とは言い切れないと考えております。","少し考える時間をいただいてもよろしいでしょうか。"]],
+s:[["ご指摘のとおり、同じ顧客を長く担当してきた点は、経験の幅として物足りなく映るかもしれません。","Đúng như anh chỉ ra, việc phụ trách một khách hàng lâu dài có thể bị nhìn là thiếu bề rộng kinh nghiệm."],
+["一方で、一つの業務を深く理解したからこそ、他業界でも応用できる型を身につけたと考えております。","Mặt khác, chính vì hiểu sâu một nghiệp vụ mà tôi có được cái khung áp dụng được cho ngành khác."],
+["ネイティブでない点は否定しませんが、日本語での要件定義書の作成は日常的に行っております。","Tôi không phủ nhận mình không phải người bản xứ, nhưng việc viết tài liệu định nghĩa yêu cầu bằng tiếng Nhật là hằng ngày."],
+["少し考える時間をいただいてもよろしいでしょうか。","Cho tôi xin chút thời gian suy nghĩ được không ạ.","えーと、えーと…"],
+["結論から申しますと、同じ状況でも私は同じ判断をすると思います。理由は二つございます。","Nói kết luận trước: trong tình huống tương tự tôi vẫn sẽ phán đoán như vậy. Có hai lý do."],
+["厳しいご質問をいただき、改めて自分の課題を整理する機会になりました。","Câu hỏi khó của anh là dịp để tôi sắp xếp lại các thách thức của bản thân."]],
+ls:["圧迫面接 対処法 回答例","Nghe cách ứng phó phỏng vấn áp lực. Shadowing cấu trúc 「ご指摘のとおり〜。一方で〜」."],
+rp:["面接官（外資系IT企業の日本人マネージャー、意図的に圧迫的）","転職希望のBA","二次面接。経歴の深掘り。","面接官が「日本語ネイティブじゃないBAに任せるメリットは？」「7年同じ顧客ってことは、他では通用しないのでは？」「今の答え、全然具体的じゃないですね」と畳みかける。","感情的にならず、認めるべきは認めて根拠で切り返す。"],
+n1:"総合 mini test｜語彙 5・文法 5・読解短文 3・聴解即時応答 2（20分）",n1t:20},
+
+
+// ===== Week 8 (mới) =====
+{sk:"稟議・投資対効果の説明",vi:"Trình bày đề xuất đầu tư (稟議) và hiệu quả đầu tư",dom:"acc",
+g:["稟議の論理と N1：〜をもってすれば・〜に見合う","Đề xuất với cấp quản lý Nhật cần: 現状の損失 (bằng số) → 投資額 → 回収期間 → リスク → 代替案. 「〜に見合う」 (tương xứng với): 「投資に見合う効果」. 「〜をもってすれば」 (nếu dùng… thì): 「現行の体制をもってすれば、半年で回収可能です」.",["投資に見合う効果が得られるかが論点かと存じます。","現行の体制をもってすれば、約14か月で回収できる見込みです。"]],
+s:[["本件は、請求書処理の自動化に関する{稟議|りんぎ}でございます。","Đây là tờ trình về việc tự động hóa xử lý hóa đơn."],
+["現状、月に約200時間が{手入力|ていにゅうりょく}と確認作業に費やされております。","Hiện mỗi tháng khoảng 200 giờ bị tiêu tốn cho nhập tay và kiểm tra."],
+["初期投資は約800万円で、{回収|かいしゅう}期間は14か月程度を見込んでおります。","Đầu tư ban đầu khoảng 8 triệu yên, thời gian hoàn vốn dự kiến khoảng 14 tháng."],
+["試算は{保守的|ほしゅてき}な前提に基づいており、効果を{過大|かだい}に見積もってはおりません。","Ước tính dựa trên tiền đề thận trọng, không đánh giá hiệu quả quá cao.","絶対に効果があります。"],
+["効果が出なかった場合に備え、半年後に{継続|けいぞく}可否を判断する{関門|かんもん}を設けます。","Để phòng trường hợp không hiệu quả, chúng tôi đặt mốc đánh giá có tiếp tục hay không sau nửa năm."],
+["つきましては、まず3か月の{試行|しこう}についてご承認を{賜|たまわ}りたく存じます。","Vì vậy, kính mong được phê duyệt trước cho giai đoạn thử 3 tháng."]],
+ls:["稟議書 書き方 投資対効果","Nghe cách viết/trình bày 稟議. Ghi lại cách người Nhật nói về 費用対効果 và 回収期間."],
+rp:["顧客の経理部長（50代、数字に厳しく、IT投資に懐疑的）","経費・請求書処理改革のBA","経営会議に上げる前の、部長への事前説明。","部長が「その200時間、本当に削減できるの？人は減らせないよね？」「去年のRPAも効果が出なかったんだけど」と過去の失敗を持ち出す。","数字の前提を説明し、小さく始める形で承認の道筋をつける。"],
+n1:"読解｜主張理解（長文）1題 4問・統合理解 1題 3問・語彙/文法 8"},
+
+{sk:"経営層へのインタビュー",vi:"Phỏng vấn cấp lãnh đạo về bài toán kinh doanh",dom:"mfg",
+g:["役員への質問の作法と N1：〜ともなれば・〜あっての","Với lãnh đạo: xin ít thời gian, hỏi về 経営課題 (không hỏi chi tiết thao tác), xác nhận ưu tiên. 「〜ともなれば」 (khi đã đến mức…): 「海外拠点ともなれば」. 「〜あっての」 (có… thì mới có…): 「現場あっての改革」.",["海外拠点ともなれば、管理の難しさも増すかと存じます。","現場の理解あっての改革だと考えております。"]],
+s:[["本日は貴重なお時間をいただき、ありがとうございます。30分ほどで{伺|うかが}えればと存じます。","Cảm ơn ngài đã dành thời gian quý báu. Tôi xin được hỏi trong khoảng 30 phút."],
+["3年後、どのような会社になっていたいとお考えでしょうか。","Ngài muốn công ty trở thành như thế nào sau 3 năm nữa?"],
+["その実現にあたって、一番の{足|あし}かせになっているのは何でしょうか。","Để thực hiện điều đó, rào cản lớn nhất là gì ạ?"],
+["現場の方々からは在庫の{見える化|みえるか}が課題だと伺いましたが、経営のお立場からはいかがでしょうか。","Từ hiện trường tôi nghe vấn đề là trực quan hóa tồn kho; từ góc độ quản trị thì ngài thấy sao ạ."],
+["{僭越|せんえつ}ながら、現場と経営とで優先度に{温度差|おんどさ}があるように感じました。","Xin mạo muội, tôi cảm thấy giữa hiện trường và lãnh đạo có độ chênh về mức ưu tiên.","現場と社長の意見が違います。"],
+["本日伺った内容をもとに、優先課題を3つに{絞|しぼ}ってご報告いたします。","Dựa trên nội dung hôm nay, tôi sẽ thu gọn thành 3 vấn đề ưu tiên và báo cáo lại."]],
+ls:["経営者 インタビュー 製造業 DX","Nghe phỏng vấn giám đốc doanh nghiệp sản xuất. Chú ý cách người hỏi dẫn dắt và cách giám đốc nói về chiến lược."],
+rp:["顧客の代表取締役（60代、創業家出身、話が大きく抽象的）","生産管理システム刷新のBA","社長への30分インタビュー。経営課題と優先順位を聞き出す。","社長が「とにかくDXだよ」「細かいことは部長に聞いて」と抽象論に終始し、途中で「君はうちの会社をどう思う？」と逆に聞いてくる。","抽象的な発言から具体的な経営課題と優先順位を引き出す。"],
+n1:"文字・語彙｜N1頻出の抽象語・慣用表現 15（難度高め）"},
+
+{sk:"業務改革（BPR）の必要性を説く",vi:"Thuyết phục cải cách nghiệp vụ, không chỉ thay hệ thống",dom:"gov",
+g:["「システムに合わせる」説得と N1：〜ずにはおかない・〜を余儀なくされる","Người Nhật thường muốn giữ nguyên nghiệp vụ và “bắt hệ thống theo”. BA cần chỉ ra chi phí của tùy biến. 「〜を余儀なくされる」 (buộc phải): 「改修を余儀なくされる」. 「〜ずにはおかない」 (chắc chắn sẽ gây ra…).",["現行業務をそのまま再現すれば、毎年の改修を余儀なくされます。","このままでは現場の負担を増やさずにはおかないでしょう。"]],
+s:[["今回の目的は、システムの入れ替えではなく、業務そのものを見直すことにあると考えております。","Tôi cho rằng mục đích lần này không phải thay hệ thống, mà là xem lại chính nghiệp vụ."],
+["現行の{帳票|ちょうひょう}を{一字一句|いちじいっく}再現しますと、標準化の効果がほぼ失われてしまいます。","Nếu tái hiện y nguyên từng chữ biểu mẫu hiện tại, hiệu quả chuẩn hóa gần như mất hết."],
+["{独自|どくじ}の改修を重ねると、制度改正のたびに改修を{余儀|よぎ}なくされます。","Nếu cứ chồng thêm tùy biến riêng, mỗi lần sửa chế độ lại buộc phải sửa hệ thống."],
+["{慣|な}れたやり方を変えるご負担は、重々承知しております。","Tôi hiểu rất rõ gánh nặng khi phải thay đổi cách làm đã quen."],
+["他の自治体でも、最初は{抵抗|ていこう}がありましたが、半年で定着した事例がございます。","Ở các địa phương khác ban đầu cũng có phản đối, nhưng có trường hợp sau nửa năm đã ổn định."],
+["業務を変える部分と、どうしても残す部分を、一緒に{線引|せんび}きさせていただけませんか。","Xin được cùng ngài vạch ranh giới phần thay đổi nghiệp vụ và phần nhất định phải giữ."]],
+ls:["BPR 業務改革 とは 事例","Nghe giải thích BPR và ví dụ. Tìm thêm 「Fit to Standard 自治体」."],
+rp:["顧客（市役所の税務課長、ベテラン、現行の帳票に強いこだわり）","標準準拠システム移行のBA","標準仕様への移行にあたり、独自帳票の扱いを協議する。","課長が「住民にとっては今の様式が一番わかりやすい」「標準に合わせて苦情が来たら誰が対応するの」と強く反発し、部下の前で譲れない雰囲気になる。","相手の懸念を尊重しつつ、標準に合わせる部分を合意する。"],
+n1:"文法｜硬い書き言葉の文型（〜をもってすれば・〜たるもの・〜ずにはおかない 等）15"},
+
+{sk:"AI活用の提案と期待値調整",vi:"Đề xuất ứng dụng AI và điều chỉnh kỳ vọng",dom:"ai",
+g:["過度な期待の抑え方と N1：〜とは限らない・〜に越したことはない","Khi khách kỳ vọng AI “làm được hết”: công nhận tiềm năng → nói rõ giới hạn (精度, データ品質) → đề xuất PoC nhỏ có tiêu chí đánh giá. 「必ずしも〜とは限りません」, 「精度は高いに越したことはありませんが」.",["AIを導入すれば必ずしも工数が減るとは限りません。","精度は高いに越したことはありませんが、まずは業務で使える水準を定義しましょう。"]],
+s:[["生成AIの活用によって、問い合わせ対応の{一次回答|いちじかいとう}を効率化できる可能性がございます。","Nhờ ứng dụng AI tạo sinh, có khả năng hiệu quả hóa phần trả lời sơ bộ cho các câu hỏi."],
+["ただし、AIの回答が常に正しいとは限りませんので、人による確認の{工程|こうてい}は残す必要がございます。","Tuy nhiên câu trả lời của AI không phải lúc nào cũng đúng, nên cần giữ khâu con người kiểm tra."],
+["精度を{左右|さゆう}するのは、モデルよりもむしろ社内データの品質です。","Điều quyết định độ chính xác, đúng hơn là chất lượng dữ liệu nội bộ chứ không phải mô hình."],
+["まずは{概念実証|がいねんじっしょう}として、1部署・2か月に限定して試すことをご提案いたします。","Trước hết tôi đề xuất làm PoC, giới hạn 1 bộ phận trong 2 tháng."],
+["評価の{基準|きじゅん}は、正答率と、担当者の対応時間の二つでいかがでしょうか。","Tiêu chí đánh giá là tỷ lệ trả lời đúng và thời gian xử lý của nhân viên, được không ạ."],
+["{全社展開|ぜんしゃてんかい}は、効果が確認できた段階で改めてご判断いただければと存じます。","Việc triển khai toàn công ty, xin quyết định lại khi đã xác nhận được hiệu quả.","すぐに全社で使えます。"]],
+ls:["生成AI 業務活用 事例 課題","Nghe về ứng dụng AI tạo sinh trong doanh nghiệp Nhật. Ghi lại 5 thuật ngữ (精度, 学習データ, ハルシネーション…)."],
+rp:["顧客の常務（60代、AIのニュースに影響され期待が大きい）","問い合わせ業務改善のBA","常務から「AIで問い合わせ対応を全部自動化したい。来月から」と言われる打ち合わせ。","常務が「他社はもうやっている」「人はいらなくなるんでしょ？」と過大な期待を語り、懸念を伝えると「君は後ろ向きだね」と不機嫌になる。","相手の意欲を損なわずに現実的な期待値とPoCに着地させる。"],
+n1:"読解｜長文（評論）1題 4問・情報検索 1題 3問・語彙 8"},
+
+{sk:"ベンダー選定・RFPの説明",vi:"Giải thích RFP và tiêu chí chọn nhà cung cấp",dom:"ins",
+g:["中立な評価の言い方と N1：〜を踏まえ・〜如何によらず","BA bên khách hoặc tư vấn: giải thích tiêu chí đánh giá công bằng, không thiên vị. 「価格の多寡のみならず」, 「〜を総合的に勘案し」. Khi bị hỏi “nên chọn ai?”: nêu điểm mạnh/rủi ro từng bên, để người ra quyết định chọn.",["価格の多寡のみならず、保守体制を総合的に勘案して評価いたしました。","各社の提案を踏まえ、評価結果を整理いたしました。"]],
+s:[["今回のRFPでは、機能要件だけでなく、移行と保守の体制も評価の対象としております。","Trong RFP lần này, không chỉ yêu cầu chức năng mà cả nhân sự chuyển đổi và bảo trì cũng là đối tượng đánh giá."],
+["評価項目と{配点|はいてん}は、事前に関係部署と合意したものでございます。","Các hạng mục đánh giá và thang điểm đã thống nhất trước với các bộ phận liên quan."],
+["A社は価格面で優位ですが、{保険業界|ほけんぎょうかい}での導入実績が少ない点がリスクです。","Công ty A có lợi thế về giá, nhưng rủi ro là ít thành tích triển khai trong ngành bảo hiểm."],
+["B社は実績が豊富な一方、カスタマイズの{自由度|じゆうど}が低く、運用の見直しが前提となります。","Công ty B nhiều thành tích, nhưng độ tự do tùy biến thấp, nên tiền đề là phải xem lại vận hành."],
+["どちらを選ぶべきかは、{何|なに}を最も重視されるか次第かと存じます。","Nên chọn bên nào, tôi nghĩ tùy vào việc quý công ty coi trọng điều gì nhất.","B社がいいと思います。"],
+["評価の{経緯|けいい}は、監査にも耐えられるよう記録に残しております。","Quá trình đánh giá được lưu hồ sơ để có thể đáp ứng cả kiểm toán."]],
+ls:["RFP 提案依頼書 ベンダー選定","Nghe về quy trình RFP và chọn vendor. Tìm thêm 「保険 基幹システム 刷新」."],
+rp:["顧客の情報システム部長（慎重、社内政治に敏感）","ベンダー選定を支援するBA（コンサル側）","2社の提案を評価した結果を報告する。","部長が「で、君ならどっち？」と結論を迫り、さらに「実は役員がA社推しなんだよね」と打ち明け、評価結果の見直しをほのめかす。","中立性を保ちながら、判断材料を明確に示す。"],
+n1:"聴解（voice mode）｜統合理解 2題 4問・ポイント理解 5・即時応答 6"},
+
+{sk:"面接⑩：キャリアビジョン",vi:"Phỏng vấn: tầm nhìn sự nghiệp, định hướng quản lý",dom:"job",
+g:["将来像の語り方と N1：〜ゆくゆくは・〜を通じて","Nói tầm nhìn: ngắn hạn (1–2 năm) → trung hạn (3–5 năm) → liên hệ với công ty ứng tuyển. 「ゆくゆくは」 (về lâu dài), 「〜を通じて」 (thông qua). Tránh nói như thể sẽ sớm rời đi.",["ゆくゆくは、BAチームを率いる立場を目指したいと考えております。","案件を通じて、業界知識を体系的に身につけたいと思います。"]],
+s:[["入社後1〜2年は、まず御社の業務とお客様を深く理解することに集中したいと考えております。","1–2 năm đầu sau khi vào, tôi muốn tập trung hiểu sâu nghiệp vụ và khách hàng của quý công ty."],
+["3年後には、複数業界の上流工程をリードできるBAになっていたいです。","Sau 3 năm, tôi muốn trở thành BA có thể dẫn dắt công đoạn thượng nguồn của nhiều ngành."],
+["ゆくゆくは、後進の育成にも{携|たずさ}わりたいと考えております。","Về lâu dài, tôi cũng muốn tham gia đào tạo thế hệ sau."],
+["マネジメントにも関心はございますが、現場の{勘所|かんどころ}を失わない形で関わりたいです。","Tôi cũng quan tâm đến quản lý, nhưng muốn tham gia theo cách không đánh mất cảm nhận thực tế."],
+["その意味で、御社の{専門職|せんもんしょく}コースには大変魅力を感じております。","Theo nghĩa đó, tôi thấy lộ trình chuyên gia của quý công ty rất hấp dẫn."],
+["長く腰を{据|す}えて、御社の成長に貢献したいと考えております。","Tôi muốn gắn bó lâu dài và đóng góp vào sự phát triển của quý công ty.","いい会社があれば、また転職するかもしれません。"]],
+ls:["面接 キャリアプラン 5年後 答え方","Nghe cách trả lời “5 năm sau bạn muốn thế nào”. Chú ý cách liên hệ với công ty ứng tuyển."],
+rp:["面接官（大手SIerの人事部長＋事業部長、最終面接）","転職希望のBA","最終面接。キャリアビジョンを聞かれる。","事業部長が「うちではBAは管理職になれないけど、それでもいい？」「3年後に辞めない保証は？」と揺さぶる。","一貫したキャリアの軸を示し、会社との接点を具体的に語る。"],
+n1:"言語知識 本番形式｜語彙 7・文法 8（12分）",n1t:12},
+
+// ===== Week 9 (mới) =====
+{sk:"マルチベンダーの責任分界",vi:"Phân định trách nhiệm giữa nhiều nhà cung cấp",dom:"api",
+g:["責任分界の議論と N1：〜をよそに・〜に即して","Khi sự cố nằm giữa hai vendor: không đổ lỗi, đưa về sự thật (ログ, インターフェース仕様), đề xuất cách xác định nguyên nhân chung. 「インターフェース仕様に即して」 (dựa sát theo spec), 「〜をよそに」 (mặc kệ…).",["インターフェース仕様に即して、事実を一つずつ確認させてください。","お客様の不安をよそに、責任の押し付け合いをしている場合ではございません。"]],
+s:[["まず、どちらの責任かという話の前に、事実関係を{整理|せいり}させてください。","Trước khi bàn trách nhiệm của bên nào, cho tôi sắp xếp lại các sự thật."],
+["ログを見る限り、データ自体は{連携先|れんけいさき}に正常に送信されております。","Theo log, bản thân dữ liệu đã được gửi bình thường đến hệ thống đối tác."],
+["インターフェース仕様書には、文字コードの{規定|きてい}がございませんでした。","Trong tài liệu spec giao diện không có quy định về mã ký tự."],
+["つまり、どちらかの誤りというより、仕様の{空白|くうはく}だったと考えております。","Tức là, tôi cho rằng đây là khoảng trống của spec chứ không phải lỗi của bên nào.","B社のミスです。"],
+["{暫定|ざんてい}対応は弊社で行い、{恒久|こうきゅう}対応は三者で協議させていただけませんか。","Biện pháp tạm thời chúng tôi làm, còn biện pháp lâu dài xin để ba bên cùng thảo luận."],
+["今後は、仕様の変更時に三者で確認する場を{設|もう}けることをご提案いたします。","Từ nay, tôi đề xuất lập buổi xác nhận ba bên mỗi khi thay đổi spec."]],
+ls:["マルチベンダー 障害 責任 切り分け","Nghe về quản lý nhiều vendor và phân định sự cố. Ghi lại 5 cụm từ về 責任分界."],
+rp:["他社ベンダーのPM（強気で、自社の非を認めない）と顧客の情シス課長（Claudeが二役）","連携プロジェクトのBA（自社）","本番で連携データの文字化けが発生。原因がどちら側か不明。","他社PMが「うちは仕様どおり。そっちの受信処理の問題でしょう」と言い切り、課長は「どっちでもいいから今日中に直して」と苛立つ。","責任追及より事実と解決を優先させ、三者の合意を作る。"],
+n1:"文法｜文章の文法（長め）2題 10問・並べ替え 5"},
+
+{sk:"顧客社内の対立の仲裁",vi:"Đứng giữa xung đột nội bộ của khách hàng",dom:"hr",
+g:["中立の保ち方と N1：〜はおろか・〜なりとも","BA không phải người quyết định nội bộ khách. Vai trò: làm rõ lập luận hai bên, đưa dữ liệu, đề xuất người có quyền quyết định (決裁者). 「〜はおろか」 (chứ đừng nói…), 「少しなりとも」 (dù chỉ một chút).",["このままでは、来月のリリースはおろか、年内の稼働も危ぶまれます。","少しなりとも、判断材料のお役に立てればと思います。"]],
+s:[["私どもはどちらかの立場に立つものではございません。","Chúng tôi không đứng về phía bên nào."],
+["人事部としては{法令遵守|ほうれいじゅんしゅ}、各事業部としては現場の柔軟性、というご主張と理解しております。","Tôi hiểu chủ trương của Nhân sự là tuân thủ pháp luật, còn các bộ phận kinh doanh là sự linh hoạt ở hiện trường."],
+["双方のご主張を、影響とコストの{観点|かんてん}で並べてみました。","Tôi đã đặt hai chủ trương cạnh nhau theo góc độ ảnh hưởng và chi phí."],
+["このまま決まらないと、来月のリリースはおろか、年内の{稼働|かどう}も危うくなります。","Nếu cứ không quyết, đừng nói release tháng sau, ngay cả vận hành trong năm cũng nguy."],
+["最終的なご判断は、{決裁権|けっさいけん}をお持ちの本部長にお願いするのが{筋|すじ}かと存じます。","Tôi nghĩ hợp lẽ là nhờ Giám đốc khối, người có quyền phê duyệt, đưa ra quyết định cuối cùng."],
+["判断材料は、明日中に一枚にまとめてお送りいたします。","Tài liệu phục vụ quyết định, tôi sẽ tóm vào một trang và gửi trong ngày mai."]],
+ls:["社内調整 部門間 対立 解決","Nghe về điều phối xung đột giữa các phòng ban. Tìm thêm 「勤怠管理 働き方改革 法令」."],
+rp:["顧客の人事部長と営業本部長（Claudeが二役。互いに譲らない）","勤怠システム導入のBA","打刻ルールを全社統一したい人事と、営業の直行直帰を例外にしたい営業本部が対立している会議。","二人がBAに「ベンダーとしてどっちが正しいか言ってよ」と迫り、さらに営業本部長が「人事は現場を知らない」と感情的になる。","中立を保ち、論点を整理して決裁者の判断につなげる。"],
+n1:"読解｜中文 3題 9問・語彙 6"},
+
+{sk:"契約形態と責任範囲",vi:"Bàn về loại hợp đồng (請負/準委任) và phạm vi trách nhiệm",dom:"saas",
+g:["契約の話し方と N1：〜とあっては・〜までもない","請負 = cam kết hoàn thành sản phẩm; 準委任 = cam kết thực hiện công việc (không cam kết kết quả). BA phải nói rõ hệ quả với 瑕疵/契約不適合. 「〜とあっては」 (nếu đã là…), 「〜までもなく」 (không cần đến…).",["本番障害とあっては、契約形態にかかわらず全力で対応いたします。","申し上げるまでもなく、品質への責任は変わりません。"]],
+s:[["本フェーズは{準委任|じゅんいにん}契約ですので、成果物の完成をお約束する形ではございません。","Giai đoạn này là hợp đồng chuẩn ủy thác, nên không phải hình thức cam kết hoàn thành sản phẩm."],
+["一方、開発フェーズは{請負|うけおい}契約となり、{契約不適合|けいやくふてきごう}の責任を負います。","Ngược lại, giai đoạn phát triển là hợp đồng nhận khoán, chúng tôi chịu trách nhiệm về sự không phù hợp hợp đồng."],
+["要件の{確定|かくてい}が遅れた場合の扱いについて、事前に合意しておければと存じます。","Tôi muốn thống nhất trước về cách xử lý khi việc chốt yêu cầu bị chậm."],
+["申し上げるまでもなく、品質に対する責任感は契約形態によって変わるものではございません。","Không cần phải nói, tinh thần trách nhiệm về chất lượng không thay đổi theo loại hợp đồng."],
+["ただ、範囲外の作業を{無償|むしょう}でお受けすることは、いたしかねます。","Tuy nhiên, việc nhận làm miễn phí công việc ngoài phạm vi thì chúng tôi không thể."],
+["契約の解釈については、念のため{法務|ほうむ}にも確認のうえご回答いたします。","Về cách hiểu hợp đồng, để chắc chắn tôi sẽ xác nhận với bộ phận pháp chế rồi trả lời.","たぶん大丈夫です。"]],
+ls:["請負 準委任 違い IT","Nghe giải thích khác biệt 請負/準委任. Ghi lại 3 thuật ngữ pháp lý."],
+rp:["顧客の購買・法務担当（理詰めで細かい）","SaaS導入のBA","要件定義が遅れ、開発スケジュールに影響。費用負担について協議する。","担当者が「準委任でも結果が出なかったら払う意味がない」「遅延は御社のヒアリング不足が原因ですよね」と責任を押し付けてくる。","契約上の整理を冷静に説明し、関係を壊さずに落としどころを探る。"],
+n1:"聴解（voice mode）｜概要理解 5・即時応答 10（速め）"},
+
+{sk:"セキュリティ・監査要件の説明",vi:"Giải thích yêu cầu bảo mật và kiểm toán",dom:"fin",
+g:["リスクの伝え方と N1：〜ともすれば・〜を禁じ得ない","Với ngân hàng/kiểm toán: nói bằng cơ chế, tiêu chuẩn (FISC, 権限分離, ログ保全) chứ không nói “an toàn mà”. 「ともすれば」 (dễ có xu hướng…): 「ともすれば利便性が優先されがちです」.",["ともすれば利便性が優先されがちですが、権限の分離は譲れません。","監査の観点から、操作ログは5年間保全いたします。"]],
+s:[["本システムでは、{権限|けんげん}の分離を前提に設計しております。","Hệ thống này được thiết kế với tiền đề phân tách quyền hạn."],
+["承認者と{起票者|きひょうしゃ}が同一人物になることは、仕組み上できません。","Về cơ chế, người lập phiếu và người phê duyệt không thể là cùng một người."],
+["すべての操作ログは{改ざん|かいざん}できない形で5年間保全いたします。","Toàn bộ log thao tác được lưu giữ 5 năm theo cách không thể sửa đổi."],
+["ともすれば利便性が優先されがちですが、この点は{譲|ゆず}れない要件と考えております。","Dễ có xu hướng ưu tiên sự tiện lợi, nhưng chúng tôi coi đây là yêu cầu không thể nhượng bộ."],
+["{脆弱性|ぜいじゃくせい}診断は、リリース前と年1回、第三者機関に{依頼|いらい}いたします。","Kiểm tra lỗ hổng sẽ nhờ tổ chức bên thứ ba thực hiện trước release và mỗi năm một lần."],
+["監査でのご質問に備え、{証跡|しょうせき}の一覧を別紙にまとめております。","Để chuẩn bị cho câu hỏi kiểm toán, danh sách bằng chứng đã được tổng hợp ở tài liệu riêng.","たぶん安全です。"]],
+ls:["FISC 安全対策基準 解説","Nghe giải thích tiêu chuẩn an toàn hệ thống ngân hàng. Tìm thêm 「内部監査 IT統制」."],
+rp:["顧客の内部監査室長（元銀行員、厳格、細部まで突く）","融資システム刷新のBA","監査室によるシステム監査の事前ヒアリング。","室長が「管理者権限を持つ人は何人？その人が不正をしたら？」「ログを消せる人はいないと証明できますか」と追及し、回答の矛盾を指摘してくる。","仕組みと証跡で答え、わからない点は誤魔化さず持ち帰る。"],
+n1:"読解｜長文 1題 4問・主張理解 1題 4問・語彙 7（20分）",n1t:20},
+
+{sk:"障害の最終報告と訪問謝罪",vi:"Báo cáo cuối về sự cố và đến xin lỗi trực tiếp",dom:"med",
+g:["訪問謝罪の構成と N1：〜に至った・〜をもって","Thứ tự: 謝罪 → 経緯 (時系列) → 原因 (真因) → 影響 → 再発防止策 → 再度の謝罪. 「〜に至った経緯」 (diễn biến dẫn đến…), 「本日をもって」. Không biện minh trước khi xin lỗi.",["障害の発生に至った経緯をご説明いたします。","本日をもって、すべての対策が完了いたしました。"]],
+s:[["このたびは、多大なるご迷惑をおかけし、{誠|まこと}に申し訳ございませんでした。","Lần này đã gây phiền phức lớn, chúng tôi thành thật xin lỗi."],
+["まず、障害の発生に{至|いた}った経緯を、時系列でご説明いたします。","Trước hết, tôi xin trình bày theo trình tự thời gian diễn biến dẫn đến sự cố."],
+["影響は、予約患者様約150名、外来の待ち時間が最大2時間延びたことでございます。","Ảnh hưởng là khoảng 150 bệnh nhân đặt lịch, thời gian chờ khám ngoại trú kéo dài tối đa 2 giờ."],
+["{真因|しんいん}は、負荷試験の想定が実際の{繁忙日|はんぼうび}を下回っていたことにございます。","Nguyên nhân gốc là giả định của kiểm thử tải thấp hơn ngày cao điểm thực tế."],
+["患者様と現場の皆様にご負担をおかけしたことを、重く受け止めております。","Chúng tôi tiếp nhận một cách nghiêm túc việc đã gây gánh nặng cho bệnh nhân và nhân viên.","システムの問題なので仕方なかったです。"],
+["本日をもって対策はすべて完了しましたが、今後3か月は{監視|かんし}を強化いたします。","Đến hôm nay mọi biện pháp đã hoàn tất, nhưng 3 tháng tới chúng tôi sẽ tăng cường giám sát."]],
+ls:["障害報告書 訪問 謝罪 マナー","Nghe về cách đi xin lỗi khách hàng trực tiếp. Shadowing câu mở đầu và câu kết."],
+rp:["顧客の病院長と事務長（Claudeが二役。院長は静かに怒り、事務長は感情的）","予約・受付システム保守のBA（上司と同行）","先週の大規模障害について、病院を訪問して最終報告と謝罪を行う。","院長が「患者さんにとって2時間の重みがわかりますか」と静かに問い、事務長が「契約を見直すことも考えています」と言う。","心からの謝罪と事実の説明を両立し、信頼回復の一歩をつくる。"],
+n1:"文字・語彙｜紛らわしい語の総ざらい 15"},
+
+{sk:"面接⑪：外国籍BAとしての価値",vi:"Phỏng vấn: giá trị và lo ngại khi là BA người nước ngoài",dom:"job",
+g:["懸念を強みに変える型と N1：〜ならではの・〜にひきかえ","Người phỏng vấn có thể lo: tiếng Nhật, văn hóa, gắn bó lâu dài. Trả lời: thừa nhận lo ngại → dữ liệu/kinh nghiệm phản chứng → giá trị riêng (〜ならではの). 「〜にひきかえ」 (trái ngược với…).",["日越両方の現場を知る私ならではの視点で貢献できると考えております。","以前の私にひきかえ、今では日本語で要件定義書を書くことに抵抗はございません。"]],
+s:[["日本語での{細|こま}かなニュアンスについて、ご懸念があるのは当然かと存じます。","Việc quý công ty lo ngại về sắc thái tinh tế trong tiếng Nhật là điều đương nhiên."],
+["現在、要件定義書や議事録はすべて日本語で作成し、お客様から修正を受けることはほとんどございません。","Hiện tôi viết toàn bộ tài liệu yêu cầu và biên bản bằng tiếng Nhật, hầu như không bị khách sửa."],
+["日越両方の開発現場を知る、私ならではの視点で貢献できると考えております。","Tôi nghĩ mình có thể đóng góp bằng góc nhìn riêng của người hiểu hiện trường phát triển cả Nhật và Việt."],
+["オフショアとの{橋渡|はしわた}しで生じる{認識齟齬|にんしきそご}を、早い段階で防げます。","Tôi có thể ngăn sớm những lệch nhận thức phát sinh khi làm cầu nối với offshore."],
+["日本での生活基盤も整っており、長期的に働く{所存|しょぞん}でございます。","Nền tảng cuộc sống ở Nhật của tôi đã ổn định, tôi có ý định làm việc lâu dài."],
+["分からない言葉は、その場で確認する習慣を{徹底|てってい}しております。","Tôi luôn duy trì thói quen xác nhận ngay những từ chưa hiểu.","分からなくても大丈夫です。"]],
+ls:["外国人 採用 面接 質問 懸念","Nghe về những lo ngại khi tuyển người nước ngoài. Chuẩn bị câu trả lời cho từng lo ngại."],
+rp:["面接官（日系大手の部長、本音ベースで遠慮なく聞く）","転職希望のBA","二次面接。外国籍であることに関する懸念を率直に聞かれる。","部長が「正直、お客様の中には外国人を嫌がる人もいるけど、どうする？」「いずれ国に帰るんでしょ？」と踏み込んだ質問をする。","感情的にならず、事実と価値で懸念を払拭する。"],
+n1:"総合 mini test｜語彙 4・文法 4・読解 4・聴解 3（25分）",n1t:25},
+
+// ===== Week 10 (mới) =====
+{sk:"本音と建前を読み取る",vi:"Đọc ý thật sau lời nói khéo của người Nhật",dom:"re",
+g:["曖昧表現の真意と N1：〜ともなく・〜でもあるまい","「前向きに検討します」「持ち帰らせてください」「難しいかもしれません」 thường là từ chối mềm. BA cần xác nhận lại bằng câu hỏi không gây khó xử: 「差し支えなければ、ご懸念の点を伺えますか」. 「〜でもあるまい」 (không đến mức…).",["今さら全面的に見直すわけでもあるまいし、まずは懸念点を伺いましょう。","「検討します」が、必ずしも前向きな意味とは限りません。"]],
+s:[["「前向きに検討します」というお言葉、ありがとうございます。","Cảm ơn ngài đã nói sẽ “cân nhắc tích cực”."],
+["差し{支|つか}えなければ、現時点で{引|ひ}っかかっている点を伺えますでしょうか。","Nếu không phiền, cho tôi hỏi hiện tại ngài đang vướng ở điểm nào ạ."],
+["もしご予算の面でしたら、範囲を絞った案もご用意できます。","Nếu là về ngân sách, chúng tôi có thể chuẩn bị phương án thu hẹp phạm vi."],
+["社内でご説明いただく際の資料が必要でしたら、こちらで作成いたします。","Nếu cần tài liệu để ngài giải thích trong nội bộ, chúng tôi sẽ soạn."],
+["もし今回は見送りということでしたら、{率直|そっちょく}に{仰|おっしゃ}っていただけると助かります。","Nếu lần này ngài quyết định không tiến hành, nói thẳng cho chúng tôi thì rất quý.","はっきり言ってください。"],
+["いずれにしても、次回いつ頃ご連絡を差し上げればよろしいでしょうか。","Dù thế nào, lần tới tôi nên liên lạc lại vào khoảng khi nào ạ."]],
+ls:["日本人 本音 建前 ビジネス 曖昧","Nghe về văn hóa 本音・建前 trong kinh doanh. Ghi lại 5 cách nói “từ chối mềm”."],
+rp:["顧客（不動産会社の部長、穏やかで決して「NO」と言わない）","賃貸管理システム提案のBA","提案から1か月後のフォロー訪問。話は和やかだが進展がない。","部長が「いい提案だと思いますよ」「上とも相談してみます」と繰り返すが、実は競合に傾いている。途中で「最近は他社さんもいろいろ来てましてね」とほのめかす。","建前の裏にある本当の懸念を、角を立てずに引き出す。"],
+n1:"読解｜筆者の主張・意図を問う問題 3題 9問・語彙 6"},
+
+{sk:"根回し：会議前の合意づくり",vi:"Nemawashi: vận động đồng thuận trước cuộc họp",dom:"gov",
+g:["根回しの作法と N1：〜に先駆けて・〜べからざる","Trước họp lớn, gặp riêng từng người có ảnh hưởng: chia sẻ trước nội dung, nghe lo ngại, điều chỉnh đề xuất. 「会議に先駆けて」 (đi trước cuộc họp), 「欠くべからざる」 (không thể thiếu, văn trang trọng).",["会議に先駆けて、課長のご意見を伺いたく参りました。","この点は、計画に欠くべからざる要素だと考えております。"]],
+s:[["来週の{庁内|ちょうない}会議に先駆けて、事前にご相談に参りました。","Trước cuộc họp nội bộ tuần sau, tôi đến để trao đổi trước với ngài."],
+["{資料|しりょう}の{叩|たた}き台をお持ちしましたので、率直なご意見をいただけますか。","Tôi mang bản nháp tài liệu đến, xin ngài cho ý kiến thẳng thắn."],
+["会議の場で初めてお聞きになるよりは、と思いまして。","Tôi nghĩ tốt hơn là ngài không phải lần đầu nghe ở cuộc họp."],
+["ご懸念の点は、資料に反映したうえで、改めてお見せいたします。","Những điểm ngài lo ngại, tôi sẽ phản ánh vào tài liệu rồi trình lại."],
+["当日は、課長からも一言いただけますと、議論がスムーズに進むかと存じます。","Hôm đó nếu ngài nói một lời ủng hộ, tôi nghĩ thảo luận sẽ suôn sẻ hơn.","会議で味方してください。"],
+["他の課の皆様にも、同様にご説明に回る予定でございます。","Tôi cũng dự định đi giải thích tương tự với các phòng khác."]],
+ls:["根回し 意味 やり方 ビジネス","Nghe về 根回し và cách làm. Chú ý những câu dùng khi xin gặp riêng."],
+rp:["顧客（市役所の財政課長、予算権限を持つ実力者。会議で反対しがち）","電子申請システム拡張のBA","来週の庁内会議で追加予算を提案する前に、財政課長に根回しに行く。","課長が「会議の前に来るなんて、うまくやろうとしてるね」と皮肉を言い、「この金額じゃ通らないよ」と条件を出す。","警戒を解き、懸念を聞き出して提案に反映し、当日の協力を得る。"],
+n1:"文法｜敬語・待遇表現を含む形式判断 15"},
+
+{sk:"上司の代理で会議に出る",vi:"Thay mặt cấp trên dự họp",dom:"ec",
+g:["代理出席の言い方と N1：〜に代わって・〜かねない","Nói rõ phạm vi quyền hạn: điều gì mình quyết được, điều gì phải mang về. 「部長に代わりまして」, 「私の一存では決めかねますので」 (không thể tự quyết). Tránh hứa vượt quyền: 「〜と約束しかねない」 rủi ro.",["本日は部長に代わりまして、私が出席させていただきます。","この件は私の一存では決めかねますので、持ち帰らせてください。"]],
+s:[["本日は、部長の田中に代わりまして、私グエンが出席させていただきます。","Hôm nay, thay mặt trưởng phòng Tanaka, tôi là Nguyễn xin được tham dự."],
+["田中からは、本件について{一任|いちにん}されている範囲がございますので、先に共有させてください。","Tôi được trưởng phòng Tanaka ủy quyền trong một phạm vi về việc này, xin chia sẻ trước."],
+["スケジュールの調整までは、私の{判断|はんだん}でお答えできます。","Đến mức điều chỉnh lịch, tôi có thể trả lời theo phán đoán của mình."],
+["一方、費用に関わる部分は、私の{一存|いちぞん}では決めかねます。","Mặt khác, phần liên quan đến chi phí thì tôi không thể tự quyết.","大丈夫です、やります。"],
+["本日中に田中に報告し、明日の午前中までにご回答いたします。","Trong hôm nay tôi sẽ báo cáo trưởng phòng Tanaka và trả lời trước trưa mai."],
+["田中からも、くれぐれもよろしくとのことでございます。","Trưởng phòng Tanaka cũng gửi lời hỏi thăm trân trọng."]],
+ls:["代理出席 会議 マナー 挨拶","Nghe cách chào và cách nói khi dự họp thay sếp."],
+rp:["顧客（EC事業部長、せっかちで即決を求める）","ECリニューアルのBA（上司の代理）","上司が急病で欠席。代理で定例会に出席する。","事業部長が「田中さんいないなら、あなたが決めて。今日決めないと間に合わない」と、追加機能と費用の即決を迫る。","権限の範囲を明確にし、決められないことは期限付きで持ち帰る。"],
+n1:"聴解（voice mode）｜ポイント理解（速め）6・統合理解 2題 4問・即時応答 5"},
+
+{sk:"社外セミナー登壇・事例発表",vi:"Diễn giả hội thảo, trình bày case study",dom:"saas",
+g:["講演の構成と N1：〜を皮切りに・〜にとどまらず","Cấu trúc: tự giới thiệu ngắn → câu hỏi mở cho khán giả → bối cảnh → thử thách → giải pháp → kết quả (số) → bài học. 「〜にとどまらず」 (không chỉ dừng ở…), 「〜を皮切りに」.",["効果は工数削減にとどまらず、社員の働き方にも及びました。","経理部門を皮切りに、全社へと展開いたしました。"]],
+s:[["ご{紹介|しょうかい}にあずかりました、グエンと申します。本日はよろしくお願いいたします。","Tôi là Nguyễn, người vừa được giới thiệu. Hôm nay rất mong được quý vị chỉ giáo."],
+["まず、会場の皆様に伺います。社内に「Excelの{達人|たつじん}」がいらっしゃる方は、手を挙げていただけますか。","Trước hết tôi xin hỏi quý vị: ai có “cao thủ Excel” trong công ty xin giơ tay?"],
+["本日は、ある中堅企業がSaaS導入でつまずき、立ち直るまでの事例をお話しします。","Hôm nay tôi kể câu chuyện một doanh nghiệp vừa vấp ngã khi triển khai SaaS và vực dậy."],
+["効果は工数削減にとどまらず、属人化の{解消|かいしょう}にも及びました。","Hiệu quả không chỉ dừng ở giảm công số, mà còn xóa được tình trạng phụ thuộc vào một người."],
+["最大の学びは、ツールより先に、業務の{持|も}ち{主|ぬし}を決めることでした。","Bài học lớn nhất là phải xác định người sở hữu nghiệp vụ trước công cụ."],
+["ご{清聴|せいちょう}ありがとうございました。","Cảm ơn quý vị đã lắng nghe.","聞いてくれてありがとうございました。"]],
+ls:["IT セミナー 登壇 事例発表 SaaS","Xem một bài phát biểu case study bằng tiếng Nhật. Ghi lại câu mở đầu, câu chuyển ý và câu kết."],
+rp:["セミナーの司会者と参加者（Claudeが複数役。質問者の一人は競合ベンダー）","事例発表をするBA","IT業界セミナーで15分の事例発表をし、その後質疑応答を受ける。","質疑で参加者が「それはSaaSの選定ミスでは？」と鋭く聞き、競合の人が「御社のツールでないとできないんですか」と誘導する。","聴衆を引き込む話し方をし、意地悪な質問にも品よく答える。"],
+n1:"読解 本番形式｜中文 2題 6問・長文 1題 4問・情報検索 1題 2問・語彙 3（30分）",n1t:30},
+
+{sk:"クレーム後の関係修復",vi:"Hàn gắn quan hệ sau khiếu nại",dom:"log",
+g:["関係修復の言い方と N1：〜ばこそ・〜てやまない","Sau sự cố: chủ động liên lạc định kỳ, báo cáo cải thiện bằng số, xin ý kiến. 「ご期待いただいていればこそ」 (chính vì kỳ vọng mà…), 「〜を願ってやみません」 (mong mỏi không ngừng).",["厳しいご指摘も、ご期待いただいていればこそと受け止めております。","今後も末永いお付き合いを願ってやみません。"]],
+s:[["先日はご迷惑をおかけしました。その後の状況をご報告に{伺|うかが}いました。","Hôm trước đã gây phiền phức. Hôm nay tôi đến để báo cáo tình hình sau đó."],
+["対策後の1か月で、{誤出荷|ごしゅっか}はゼロ件となっております。","Trong 1 tháng sau khi có biện pháp, số lần xuất hàng sai là 0."],
+["厳しいご指摘も、ご期待いただいていればこそと{受|う}け{止|と}めております。","Những chỉ trích nghiêm khắc, chúng tôi tiếp nhận là chính vì quý công ty đã kỳ vọng."],
+["現場の皆様から、使いにくい点などがあれば、ぜひ{忌憚|きたん}のないご意見をいただきたいです。","Nếu nhân viên hiện trường thấy chỗ nào khó dùng, chúng tôi rất mong nhận ý kiến thẳng thắn."],
+["{信頼|しんらい}は一日にしては戻らないと承知しております。","Chúng tôi hiểu niềm tin không thể lấy lại trong một ngày."],
+["今後とも{末永|すえなが}いお付き合いを願ってやみません。","Chúng tôi luôn mong mỏi được hợp tác lâu dài."]],
+ls:["信頼回復 顧客 関係修復","Nghe về cách lấy lại niềm tin khách hàng sau sự cố."],
+rp:["顧客（物流センター長、まだ不信感が残り冷たい）","WMS保守のBA","誤出荷トラブルの1か月後、改善報告のために訪問する。","センター長が「数字はいいけど、現場はまだ不安がってるよ」「担当、また変わるんじゃないの？」と冷たく返し、最後に小さな新しい要望を試すように出してくる。","誠実さを示しつつ、関係を一歩前に進める。"],
+n1:"文字・語彙 本番形式｜漢字読み 3・文脈 4・言い換え 4・用法 4（10分）",n1t:10},
+
+{sk:"面接⑫：グループディスカッション",vi:"Phỏng vấn: thảo luận nhóm",dom:"job",
+g:["GDでの役割と進行フレーズ","GD đánh giá: lắng nghe, tổng hợp, dẫn về mục tiêu, quản lý thời gian. Câu hữu ích: 「一旦論点を整理させてください」「〇〇さんのご意見に付け加えると」. Tránh độc chiếm lời.",["時間が限られているので、一旦論点を整理させてください。","佐藤さんのご意見に付け加えると、コストの観点も必要かと思います。"]],
+s:[["時間が30分ですので、最初の5分で{進|すす}め{方|かた}を決めませんか。","Chúng ta có 30 phút, hay là dùng 5 phút đầu để quyết cách tiến hành?"],
+["佐藤さんのご意見に付け加えますと、運用コストの観点も必要かと思います。","Bổ sung cho ý kiến của anh Satō, tôi nghĩ cần cả góc độ chi phí vận hành."],
+["一旦、ここまでの論点を整理させてください。","Cho tôi tạm sắp xếp lại các luận điểm đến giờ."],
+["まだご意見を伺っていない鈴木さんは、いかがお考えですか。","Anh Suzuki, người chưa phát biểu, anh nghĩ sao ạ?","鈴木さん、何か言ってください。"],
+["残り5分ですので、結論の方向性を決めたいと思います。","Còn 5 phút, tôi muốn chúng ta chốt hướng kết luận."],
+["私たちのチームの結論は、段階的導入です。理由は三つございます。","Kết luận của nhóm chúng tôi là triển khai theo giai đoạn. Có ba lý do."]],
+ls:["グループディスカッション 役割 コツ 転職","Nghe về các vai trò trong GD và điểm được đánh giá."],
+rp:["他の候補者3人（Claudeが演じ分ける：話しすぎる人、反対ばかりの人、黙っている人）と試験官","転職希望のBA（候補者の一人）","テーマ「中小企業がAIを導入すべきか」で30分のグループディスカッション。","話しすぎる候補者が議論を独占し、反対ばかりの人が結論を妨げ、終盤で試験官が「残り3分です」と告げる。","議論を整理して全員を巻き込み、時間内に結論へ導く。"],
+n1:"聴解 本番形式（voice mode）｜課題 3・ポイント 4・概要 2・即時応答 6（約25分）",n1t:25},
+
+// ===== Week 11 (mới) =====
+{sk:"運用移行・保守契約の交渉",vi:"Chuyển sang vận hành và đàm phán hợp đồng bảo trì",dom:"ins",
+g:["保守の範囲の言い方と N1：〜を限りに・〜いかんにかかわらず","Phân biệt: 保守 (sửa lỗi), 運用 (vận hành hằng ngày), 改修 (thay đổi chức năng). SLA: 受付時間, 一次回答時間, 復旧目標. 「本日を限りに」 (kể từ hôm nay chấm dứt), 「理由のいかんにかかわらず」.",["プロジェクト体制は今月末を限りに解散し、保守体制へ移行いたします。","問い合わせ内容のいかんにかかわらず、一次回答は2時間以内といたします。"]],
+s:[["プロジェクト体制は今月末を{限|かぎ}りに解散し、保守体制へ移行いたします。","Nhân sự dự án sẽ giải tán vào cuối tháng này và chuyển sang chế độ bảo trì."],
+["保守の範囲は不具合の修正までで、機能の追加は{別途|べっと}ご相談となります。","Phạm vi bảo trì là đến sửa lỗi; thêm chức năng sẽ trao đổi riêng."],
+["受付は平日9時から18時、一次回答は2時間以内とさせていただきます。","Tiếp nhận từ 9h–18h ngày thường, phản hồi sơ bộ trong vòng 2 giờ."],
+["夜間・休日の対応をご希望の場合は、{費用|ひよう}が変わってまいります。","Nếu muốn hỗ trợ đêm và ngày nghỉ, chi phí sẽ thay đổi."],
+["問い合わせ件数の{実績|じっせき}を見て、半年後に体制を見直すことも可能です。","Có thể xem số liệu thực tế về số câu hỏi để xem lại nhân sự sau nửa năm."],
+["移行後も最初の1か月は、私が{窓口|まどぐち}として残りますのでご安心ください。","Sau khi chuyển, tháng đầu tôi vẫn là đầu mối, xin quý công ty yên tâm."]],
+ls:["保守 運用 違い SLA 契約","Nghe giải thích 保守 vs 運用 và SLA."],
+rp:["顧客の契約管理部長（コストに厳しく、手厚さも求める）","契約管理システム導入のBA","本番稼働後、保守契約の内容を詰める打ち合わせ。","部長が「24時間対応で、今の半額にできない？」「小さな改修くらい保守に含めてよ」と求め、さらに「あなたが抜けたら誰が分かるの」と不安を示す。","範囲と費用の関係を明確にし、安心感も与えて合意する。"],
+n1:"言語知識 本番形式｜語彙 7・文法 8（15分）",n1t:15},
+
+{sk:"振り返り（KPT）の司会",vi:"Dẫn buổi rút kinh nghiệm dự án (KPT)",dom:"mfg",
+g:["責めない振り返りと N1：〜にもまして・〜べくして","KPT: Keep (giữ), Problem (vấn đề), Try (thử). Nguyên tắc: nhìn vào cơ chế, không nhìn vào người. 「起こるべくして起きた」 (xảy ra là tất yếu), 「何にもまして」 (hơn tất cả).",["今回の遅延は、仕組み上起こるべくして起きたものだと思います。","何にもまして、早期の情報共有が効果的でした。"]],
+s:[["本日は個人の責任を問う場ではなく、次に活かすための場です。","Hôm nay không phải buổi truy cứu trách nhiệm cá nhân, mà là để áp dụng cho lần sau."],
+["まずKeep、続けたい良かった点から{挙|あ}げていきましょう。","Trước hết là Keep, hãy nêu những điểm tốt muốn tiếp tục."],
+["今回の{手戻|てもど}りは、仕組み上、起こるべくして起きたのではないでしょうか。","Phần làm lại lần này, xét về cơ chế, chẳng phải là tất yếu xảy ra sao."],
+["{犯人探|はんにんさが}しではなく、どこで{気付|きづ}けたかを考えてみましょう。","Không phải đi tìm thủ phạm, hãy nghĩ xem lẽ ra có thể nhận ra ở đâu.","誰のミスですか。"],
+["Tryは、次の案件で実行できるものに{絞|しぼ}りましょう。","Phần Try, hãy thu gọn vào những việc làm được ở dự án tiếp theo."],
+["{担当|たんとう}と期限を決めて、来月の定例で{確認|かくにん}します。","Quyết định người phụ trách và hạn, rồi kiểm tra ở buổi họp định kỳ tháng sau."]],
+ls:["KPT 振り返り やり方 ファシリテーション","Nghe về cách làm KPT. Tìm thêm 「プロジェクト 振り返り 失敗から学ぶ」."],
+rp:["プロジェクトメンバー3人（Claudeが演じる：防衛的な開発リーダー、不満を溜めたテスター、遠慮がちな新人）","品質管理システム案件のBA（司会）","リリース後のKPT振り返り会（45分）。","開発リーダーが「要件がコロコロ変わったせい」とBAを暗に批判し、テスターが「いつもテストにしわ寄せが来る」と不満をぶつける。","責めない場を保ち、具体的なTryと担当を決める。"],
+n1:"読解 本番形式｜短文 2・中文 6・統合 3・主張 4（40分）",n1t:40},
+
+{sk:"オフショア品質問題の説明",vi:"Giải thích vấn đề chất lượng offshore với phía Nhật",dom:"ec",
+g:["身内の問題を説明する難しさと N1：〜は否めない・〜とはいえ","Khi phía Việt Nam có lỗi: không bao che, không đổ lỗi cá nhân; trình bày nguyên nhân cơ chế và biện pháp. Đồng thời giải thích hợp lý những gì phía Nhật cần cải thiện (spec mơ hồ).",["弊社側の確認不足であることは否めません。","とはいえ、仕様の曖昧さも一因であったと考えております。"]],
+s:[["今回の不具合多発について、弊社側の確認不足であることは{否|いな}めません。","Về việc phát sinh nhiều lỗi lần này, không thể phủ nhận là do phía chúng tôi kiểm tra chưa đủ."],
+["原因を分析したところ、7割が仕様の{読|よ}み{違|ちが}いに起因しておりました。","Phân tích nguyên nhân cho thấy 70% bắt nguồn từ việc hiểu sai spec."],
+["とはいえ、仕様書の{記載|きさい}が曖昧だった箇所も一因と考えております。","Tuy vậy, chúng tôi nghĩ những chỗ ghi mơ hồ trong spec cũng là một nguyên nhân.","仕様書が悪いです。"],
+["対策として、実装前に{読|よ}み{合|あ}わせ会を設け、疑問点をすべて{潰|つぶ}してから着手します。","Biện pháp là tổ chức buổi đọc chung trước khi code, xử lý hết các nghi vấn rồi mới bắt tay."],
+["お手数ですが、仕様の変更時には変更理由も{添|そ}えていただけますと助かります。","Phiền anh/chị, khi thay đổi spec nếu ghi kèm lý do thì rất tốt."],
+["改善の効果は、次の2スプリントの不具合数でご報告いたします。","Hiệu quả cải thiện tôi sẽ báo bằng số lỗi của 2 sprint tới."]],
+ls:["オフショア開発 品質 課題 ベトナム","Nghe về các vấn đề và cách quản lý chất lượng offshore."],
+rp:["顧客のPM（日本人、オフショアに不信感を持ち始めている）","ECサイト開発のBA（ブリッジ役）","テスト工程で不具合が多発。顧客PMへの説明会。","PMが「やっぱりオフショアは品質が…」と一般化し、「日本側の仕様が悪いと言いたいの？」と身構える。","自社の非を認めつつ、仕様側の改善も角を立てずに依頼する。"],
+n1:"聴解 本番形式（voice mode）｜課題 3・ポイント 4・概要 3・即時応答 5（約25分）",n1t:25},
+
+{sk:"退職の申し出と引き継ぎ",vi:"Xin nghỉ việc và bàn giao",dom:"hr",
+g:["円満退職の言い方と N1：〜ながらも・〜に際して","Báo nghỉ: gặp trực tiếp sếp trước, lý do tích cực, không chê công ty, đưa kế hoạch bàn giao. 「退職に際して」 (nhân dịp nghỉ việc), 「私事で恐縮ですが」.",["私事で恐縮ですが、ご相談したいことがございます。","退職に際して、引き継ぎに万全を期したいと考えております。"]],
+s:[["お忙しいところ恐縮ですが、少しお時間をいただけますでしょうか。{私事|わたくしごと}でご相談がございまして。","Xin lỗi lúc anh bận, cho tôi xin chút thời gian. Tôi có việc riêng muốn trao đổi."],
+["{熟慮|じゅくりょ}の末、来年1月末をもって退職させていただきたく存じます。","Sau khi suy nghĩ kỹ, tôi xin được nghỉ việc vào cuối tháng 1 năm sau."],
+["こちらで多くのことを学ばせていただき、心から感謝しております。","Tôi đã học được rất nhiều ở đây và thật lòng biết ơn.","給料が低いので辞めます。"],
+["{慰留|いりゅう}のお言葉はありがたいのですが、気持ちは固まっております。","Tôi rất cảm kích lời giữ lại của anh, nhưng quyết định của tôi đã chắc chắn."],
+["退職に{際|さい}して、引き継ぎに{万全|ばんぜん}を期したいと考えております。","Nhân dịp nghỉ việc, tôi muốn bàn giao một cách chu toàn nhất."],
+["引き継ぎ計画を作成しましたので、ご確認いただけますでしょうか。","Tôi đã lập kế hoạch bàn giao, xin anh xem giúp."]],
+ls:["円満退職 伝え方 上司 引き止め","Nghe cách báo nghỉ việc với sếp và xử lý khi bị giữ lại."],
+rp:["上司（自社の部長、部下思いだが引き止めが強い）","転職先が決まったBA","部長に退職の意向を初めて伝える面談。","部長が「今のプロジェクト、君がいないと回らないよ」「給料なら上げられるよう掛け合う」と強く引き止め、少し感情的になる。","感謝を伝えつつ意思を貫き、引き継ぎの話に移る。"],
+n1:"苦手分野の集中特訓（ここまでのメモから）15"},
+
+{sk:"内定後の条件交渉・入社前面談",vi:"Sau khi có offer: đàm phán điều kiện, buổi gặp trước khi vào",dom:"job",
+g:["条件交渉の作法と N1：〜を踏まえて・〜とあれば","Đàm phán sau offer: cảm ơn → nêu mong muốn có căn cứ (thị trường, kinh nghiệm) → linh hoạt (phúc lợi, ngày vào). 「〜とあれば」 (nếu là…thì…): 「入社日を早めることが条件とあれば」.",["市場の水準と私の経験を踏まえて、ご検討いただけますと幸いです。","入社日を早めることが条件とあれば、調整いたします。"]],
+s:[["このたびは{内定|ないてい}のご連絡をいただき、誠にありがとうございます。","Cảm ơn quý công ty đã thông báo nhận tôi."],
+["{年収|ねんしゅう}について、一点ご相談させていただいてもよろしいでしょうか。","Về mức lương năm, cho tôi xin trao đổi một điểm được không ạ."],
+["現職の水準と担当予定の業務範囲を踏まえ、もう少しご検討いただくことは可能でしょうか。","Dựa trên mức hiện tại và phạm vi công việc dự kiến, có thể xem xét thêm một chút được không ạ."],
+["基本給が難しいようでしたら、{評価|ひょうか}の時期を早めていただく形でも結構です。","Nếu lương cơ bản khó, hình thức đẩy sớm kỳ đánh giá cũng được ạ."],
+["入社日を早めることが条件とあれば、引き継ぎを調整いたします。","Nếu điều kiện là vào sớm hơn, tôi sẽ điều chỉnh việc bàn giao."],
+["お返事は、今週金曜までにさせていただければと存じます。","Tôi xin phép trả lời trước thứ Sáu tuần này.","もう少し考えたいです、いつか返事します。"]],
+ls:["内定後 年収交渉 メール 電話","Nghe về đàm phán lương sau offer và cách trả lời nhận/từ chối."],
+rp:["転職先の人事担当（丁寧だが予算に制約がある）","内定を受けたBA","内定通知後の電話で、条件のすり合わせを行う。","人事が「年収はこれ以上は難しいです」「他社と迷っているんですか？」と聞き、返事を今日中に求める。","関係を損なわず、条件の改善と返事の期限を交渉する。"],
+n1:"総合模試（ハーフ①）｜語彙 4・文法 4・読解 4・聴解 3（30分）",n1t:30},
+
+{sk:"総合：後任への引き継ぎと顧客紹介",vi:"Tổng hợp: bàn giao cho người kế nhiệm, giới thiệu với khách",dom:"fin",
+g:["引き継ぎの話し方と N1：〜をもって・〜に恥じない","Giới thiệu người kế nhiệm với khách: điểm mạnh của họ, phạm vi bàn giao, thời gian chồng chéo. 「〜をもちまして担当を外れます」, 「ご期待に恥じないよう」.",["今月末をもちまして、担当を外れることになりました。","ご期待に恥じないよう、最後まで責任を持って引き継ぎます。"]],
+s:[["私事で恐縮ですが、今月末をもちまして本件の担当を外れることになりました。","Xin lỗi về việc riêng, đến cuối tháng này tôi sẽ thôi phụ trách dự án."],
+["後任は、金融系の案件経験が豊富な鈴木でございます。","Người kế nhiệm là Suzuki, có nhiều kinh nghiệm dự án tài chính."],
+["2週間は二人{体制|たいせい}で対応し、引き継ぎに{漏|も}れがないようにいたします。","Trong 2 tuần sẽ có hai người cùng phụ trách để bàn giao không sót."],
+["これまでの{経緯|けいい}や、お客様のご要望の背景も含めて、すべて共有しております。","Toàn bộ diễn biến từ trước tới nay và cả bối cảnh mong muốn của quý công ty đã được chia sẻ."],
+["突然のご連絡となり、ご心配をおかけして申し訳ございません。","Xin lỗi vì thông báo đột ngột và làm quý công ty lo lắng.","すみません、辞めます。"],
+["ご期待に恥じないよう、最後の日まで責任を持って務めます。","Tôi sẽ làm tròn trách nhiệm đến ngày cuối cùng để không phụ kỳ vọng."]],
+ls:["担当変更 挨拶 取引先 後任紹介","Nghe cách thông báo đổi người phụ trách với khách hàng."],
+rp:["顧客の部長（信頼していた担当の交代に不満）と後任（Claudeが二役）","退任するBA","顧客を訪問して担当交代を伝え、後任を紹介する。","部長が「このタイミングで？リリース直前なのに」と不満を示し、後任に「あなたは前の経緯を本当に分かってるの？」と試すような質問をする。","顧客の不安を受け止め、後任への信頼を橋渡しする。"],
+n1:"総合模試（ハーフ②）｜語彙 3・文法 4・読解 5・聴解 3（30分）",n1t:30},
+
+// ===== Week 12 =====
+{sk:"総合：炎上案件の立て直し",vi:"Tổng hợp: cứu dự án đang “cháy”",dom:"gov",
+g:["信頼回復の話し方と N1：〜と言わざるを得ない","Khi nhận dự án đang cháy: thẳng thắn về hiện trạng (「〜と言わざるを得ません」), không hứa quá (「過度なお約束はいたしませんが」), cam kết minh bạch (週次で包み隠さず). Đây là ngày tổng hợp kỹ năng: báo cáo + đàm phán + giữ thể diện.",["現在のスケジュールは実現困難と言わざるを得ません。","過度なお約束はいたしませんが、約束したことは必ず守ります。"]],
+s:[["本日から本プロジェクトのBAを担当いたします、グエンです。現状を正確に把握するところから始めさせてください。","Tôi là Nguyễn, từ hôm nay phụ trách BA của dự án. Cho tôi bắt đầu từ việc nắm chính xác hiện trạng."],
+["率直に申し上げて、現在のスケジュールは実現困難と言わざるを得ません。","Nói thẳng, buộc phải nói rằng lịch hiện tại khó thực hiện."],
+["標準化の期限は動かせませんので、範囲と体制の両面で見直しをご提案いたします。","Hạn chuẩn hóa không dời được, nên tôi đề xuất xem lại cả phạm vi lẫn nhân sự."],
+["来週までに残課題をすべて洗い出し、優先度付きの一覧をご提示します。","Trước tuần sau tôi sẽ liệt kê toàn bộ vấn đề tồn đọng, kèm danh sách có độ ưu tiên."],
+["信頼を回復するためにも、週次で進捗を{包|つつ}み{隠|かく}さずご報告いたします。","Để lấy lại niềm tin, hằng tuần tôi sẽ báo cáo tiến độ không che giấu gì."],
+["これまでの{経緯|けいい}を踏まえ、過度なお約束はいたしませんが、約束したことは必ず守ります。","Xét những gì đã xảy ra, tôi sẽ không hứa quá, nhưng điều đã hứa thì nhất định giữ."]],
+ls:["プロジェクト 炎上 立て直し","Nghe kinh nghiệm cứu dự án cháy. Tìm thêm 「自治体システム標準化 遅れ ニュース」."],
+rp:["顧客（市役所の情報政策課長、前任ベンダー担当に強い不信感）","途中から参画した新任BA","システム標準化案件が3か月遅延。前任BAが離任し、初めて課長と面談する。","課長が冒頭から「また担当が変わるんですか。もう信用できません」と言い、途中で「本当に間に合うと言い切れるんですか」「言い切れないなら契約を見直します」と迫る。","不信感を受け止め、現実的な計画と約束で次回の面談につなげる。"],
+n1:"言語知識 mini test｜漢字読み 3・文脈 4・言い換え 3・文法形式 5（15分）",n1t:15},
+
+{sk:"面接⑧：業務知識の深掘り",vi:"Phỏng vấn: đào sâu kiến thức nghiệp vụ",dom:"job",
+g:["抽象 → 具体の往復と N1：〜にかけては","Người phỏng vấn sẽ hỏi “ngành bạn chưa làm thì sao?”. Trả lời bằng: kiến thức cụ thể ngành đã làm → cách học ngành mới (có thời hạn) → điểm chung có thể chuyển giao. 「〜にかけては」 (về mặt…thì (giỏi)), 「〜をとっても」 (chỉ lấy ví dụ…).",["要件定義にかけては、業界を問わず成果を出せる自信がございます。","給付費の算定一つをとっても、加算の要件が細かく分かれています。"]],
+s:[["保育業界の業務システムで難しいのは、制度が自治体ごとに{微妙|びみょう}に異なる点です。","Cái khó của hệ thống nghiệp vụ ngành giữ trẻ là chế độ khác nhau tinh tế theo từng địa phương."],
+["例えば給付費の算定一つをとっても、加算の要件が細かく分かれています。","Ví dụ chỉ riêng việc tính trợ cấp thôi, điều kiện các khoản cộng thêm đã chia rất chi tiết."],
+["そのため、制度の{差異|さい}をマスタで{吸収|きゅうしゅう}できる設計を重視してきました。","Vì vậy tôi luôn coi trọng thiết kế hấp thụ sự khác biệt về chế độ bằng dữ liệu master."],
+["業務知識がない領域でも、最初の2週間で業務フローと用語を徹底的に押さえるようにしています。","Kể cả với lĩnh vực chưa có kiến thức, tôi luôn nắm chắc luồng nghiệp vụ và thuật ngữ trong 2 tuần đầu."],
+["金融は未経験ですが、規制と業務の関係を読み解く点は共通していると考えます。","Tôi chưa có kinh nghiệm tài chính, nhưng việc đọc hiểu quan hệ giữa quy định và nghiệp vụ thì có điểm chung.","金融はわかりません。"],
+["要件定義にかけては、業界を問わず成果を出せる自信がございます。","Về định nghĩa yêu cầu, tôi tự tin tạo ra kết quả bất kể ngành nào."]],
+ls:["BA ビジネスアナリスト 仕事 業務知識","Nghe về công việc BA ở Nhật. Ghi lại cách người nói giới thiệu ngành của họ."],
+rp:["面接官（金融系SIerの部長、業務知識重視）","転職希望のBA（金融は未経験）","二次面接。前職の業務知識と、未経験分野への適応力を問われる。","面接官が「保育の話はわかりました。で、うちは銀行です。与信って説明できます？」と突然専門用語で質問し、「入社3か月で何ができるようになりますか」と迫る。","知らないことは正直に、学習計画と転用可能なスキルで答える。"],
+n1:"読解 mini test｜中文 2題 6問・主張理解 1題 4問・情報検索 1題 2問・統合 1題 3問（30分）",n1t:30},
+
+{sk:"BJT 形式の模擬",vi:"Làm quen dạng đề BJT",dom:"bjt",
+g:["BJT の構成","BJT có 3 phần: 聴解 (場面把握・発言聴解・総合聴解), 聴読解 (状況把握・資料聴読解・総合聴読解), 読解 (語彙・文法・表現読解・総合読解). Điểm 0–800; J1 = 530–599, J1+ = 600+. Đề đánh giá khả năng chọn câu nói phù hợp với 場面 (vai, quan hệ trên–dưới, trong–ngoài), không chỉ nghĩa.",["あいにく本日は先約がございまして、明日の午前でしたら伺えます。","お言葉に甘えて、先に失礼いたします。"]],
+s:[["お待たせいたしました。資料はこちらでよろしいでしょうか。","Xin lỗi đã để chờ. Tài liệu là cái này phải không ạ."],
+["恐れ入りますが、もう一度日程を伺ってもよろしいでしょうか。","Xin lỗi, cho tôi hỏi lại lịch một lần nữa được không ạ."],
+["あいにく本日は{先約|せんやく}がございまして、明日の午前でしたら伺えます。","Rất tiếc hôm nay tôi có hẹn trước, nếu sáng mai thì tôi có thể đến."],
+["{行|ゆ}き{届|とど}かない点があり、失礼いたしました。","Có điểm sơ suất, xin thất lễ."],
+["お言葉に{甘|あま}えて、先に失礼いたします。","Xin phép nghe theo lời anh, tôi về trước ạ."],
+["前向きに検討させていただきます。来週中にお返事いたします。","Chúng tôi sẽ cân nhắc tích cực và trả lời trong tuần sau."]],
+ls:["BJT ビジネス日本語能力テスト 例題","Xem trang/video giới thiệu đề mẫu BJT, nghe phần 場面把握. Tập chọn câu nói phù hợp trước khi nghe đáp án."],
+rp:["BJTの出題者（毎回違う場面の登場人物を演じる：上司、取引先、同僚、受付）","各場面の会社員","BJTの場面把握・発言聴解・状況把握を模した短い場面を連続で出す。","場面の切り替えを予告なしに行い、同じ依頼でも相手（社内/社外、上/下）を変えて言い方の切り替えを試す。","場面と相手に合わせて、最も適切な一言を即座に言う。"],
+rx:"このセッションは BJT 形式です。Part 2 は1つの長い場面ではなく、30秒〜1分の短い場面を約15個連続で出してください（場面説明 → 相手のセリフ → 私の応答）。各場面ごとに、私の応答がBJTの選択肢として最適かどうかを ✏️ で一行評価してください。最後に、BJTスコアの目安（J1/J1+ など）も推定してください。",
+n1:"聴解 mini test（voice mode）｜課題 3・ポイント 3・概要 2・即時応答 7（約25分）",n1t:25},
+
+{sk:"面接⑨：ケース面接",vi:"Phỏng vấn dạng case",dom:"job",
+g:["ケース面接の型：前提 → 仮説 → 進め方 → 確認","Đừng trả lời ngay. Hỏi lại tiền đề (mục tiêu, ràng buộc), đưa giả thuyết, nói cách tiến hành theo bước, cuối cùng hỏi lại 「前提が異なる点があればご指摘いただけますか」. Thể hiện tư duy BA chứ không phải đáp án đúng.",["まず前提を確認させてください。","前提が異なる点があれば、ご指摘いただけますか。"]],
+s:[["まず前提を確認させてください。目的はコスト削減と顧客満足度の向上、どちらが優先でしょうか。","Cho tôi xác nhận tiền đề trước: mục tiêu ưu tiên là giảm chi phí hay tăng mức hài lòng của khách?"],
+["仮説として、問題はシステムよりも業務ルールの側にあると考えます。","Giả thuyết của tôi là vấn đề nằm ở quy tắc nghiệp vụ hơn là ở hệ thống."],
+["進め方としては、ヒアリング、現状フローの可視化、課題の優先順位付けの3段階で考えます。","Cách tiến hành: 3 bước gồm hearing, trực quan hóa luồng hiện tại, xếp ưu tiên vấn đề."],
+["情報が足りない場合は、推測で進めず、期限を決めて確認します。","Nếu thiếu thông tin, tôi không tiến hành theo phỏng đoán mà đặt hạn để xác nhận."],
+["もし予算が半分になるなら、効果の大きい上位二つの課題に{絞|しぼ}ります。","Nếu ngân sách giảm một nửa, tôi sẽ thu hẹp vào 2 vấn đề có hiệu quả lớn nhất."],
+["以上が私の考えです。前提が異なる点があれば、ご指摘いただけますか。","Đó là suy nghĩ của tôi. Nếu tiền đề có điểm khác, mong anh chỉ ra."]],
+ls:["ケース面接 コンサル 進め方","Nghe ví dụ case interview tiếng Nhật. Chú ý cách người trả lời xác nhận tiền đề."],
+rp:["面接官（ITコンサル会社のシニアマネージャー）","転職希望のBA","ケース面接：「ある介護事業者で、職員の記録業務に1日2時間かかっている。BAとしてどう進める？」","面接官が途中で「予算は半分になりました」「現場はシステム導入に反対です」「経営者は3か月で結果を出せと言っています」と条件を次々変える。","前提確認・仮説・進め方を構造的に話し、条件変更に柔軟に対応する。"],
+n1:"総合 mini test｜語彙 4・文法 4・読解 4・聴解即時応答 3（25分）",n1t:25},
+
+{sk:"模擬面接（フル）",vi:"Phỏng vấn thử hoàn chỉnh",dom:"job",
+g:["オンライン面接のマナー（入室〜退室）","Vào phòng sớm 5 phút, kiểm tra âm thanh 「音声は問題なく聞こえておりますでしょうか」. Nhìn camera khi nói, câu trả lời 1 ý chính ~1 phút. Kết: cảm ơn + mong muốn làm việc. Sau buổi: gửi email cảm ơn trong ngày (không bắt buộc nhưng tạo ấn tượng).",["音声は問題なく聞こえておりますでしょうか。","本日はありがとうございました。御社で働きたいという気持ちが、より一層強くなりました。"]],
+s:[["本日はお時間をいただき、ありがとうございます。よろしくお願いいたします。","Cảm ơn quý công ty đã dành thời gian hôm nay. Rất mong được chỉ giáo."],
+["音声は問題なく聞こえておりますでしょうか。","Âm thanh có nghe rõ không ạ?"],
+["職務経歴について、3分ほどでご説明いたします。","Tôi xin trình bày kinh nghiệm làm việc trong khoảng 3 phút."],
+["一言で申し上げますと、「日本のお客様と開発現場をつなぐBA」です。","Nói ngắn gọn, tôi là “BA kết nối khách Nhật với đội phát triển”."],
+["御社でなければならない理由は、上流から伴走する姿勢と、多様な業界の案件を両立されている点です。","Lý do phải là quý công ty: tinh thần đồng hành từ thượng nguồn và việc làm song song dự án của nhiều ngành."],
+["本日はありがとうございました。御社で働きたいという気持ちが、より{一層|いっそう}強くなりました。","Cảm ơn quý công ty hôm nay. Mong muốn được làm việc tại đây của tôi càng mạnh hơn."]],
+ls:["模擬面接 転職 オンライン 全編","Xem một buổi phỏng vấn thử trọn vẹn. Shadowing phần mở đầu và phần trả lời 1 phút."],
+rp:["面接官（IT企業の事業部長、一次〜最終の質問を網羅）","転職希望のBA","オンライン面接（約30分）を最初の挨拶から最後の逆質問まで通しで行う。","途中で回線トラブルの演出（「すみません、今の部分、聞こえませんでした」）や、想定外の質問（「当社の課題は何だと思いますか」）を入れる。","30分を通して、一貫したストーリーと敬語を保つ。"],
+rx:"このセッションは本番形式の模擬面接です。Part 1 は省略し、Part 2 を約25往復（自己紹介 → 経歴 → 転職理由 → 志望動機 → 強み・弱み → STAR → 深掘り・圧迫 → 条件 → 逆質問）にしてください。Part 3 は「面接官の立場から見た私の評価」を面接官として口頭で述べる形に置き換えてください。最後に、合否の見込み（一次通過／最終通過の可能性）も率直に判定してください。",
+n1:"読解 mini test｜長文 1題 4問・統合 1題 3問・主張理解 1題 4問・情報検索 1題 4問（35分）",n1t:35},
+
+{sk:"総合：新プロジェクト初日",vi:"Tổng hợp: ngày đầu ở dự án mới",dom:"api",
+g:["キックオフでの自己紹介と N1：〜をもって・〜を皮切りに","Ngày đầu: 「本日より本プロジェクトに参画いたしました」, nói vai trò, mục tiêu tuần đầu, và đặt câu hỏi đúng chỗ. Đây là bài tổng hợp trước buổi đánh giá cuối: tự giới thiệu, hearing, xác nhận tiền đề, đề xuất.",["本日をもちまして、本プロジェクトに正式に参画いたします。","現行データの調査を皮切りに、移行計画を固めてまいります。"]],
+s:[["本日より本プロジェクトに{参画|さんかく}いたしました、BAのグエンと申します。","Tôi là Nguyễn, BA, tham gia dự án từ hôm nay."],
+["まずは現行システムのデータ構造と、移行対象の範囲を{把握|はあく}したいと考えております。","Trước hết tôi muốn nắm cấu trúc dữ liệu của hệ thống hiện hành và phạm vi chuyển đổi."],
+["移行元のデータに、重複や不整合がどの程度あるか、把握されていますでしょうか。","Anh/chị có nắm dữ liệu nguồn có bao nhiêu trùng lặp hay không nhất quán không ạ."],
+["突合の基準は、件数と金額の合計でよろしいでしょうか。","Tiêu chí đối chiếu là số bản ghi và tổng số tiền, được không ạ."],
+["本番切替の前に、最低2回のリハーサルを実施することを提案いたします。","Tôi đề xuất thực hiện ít nhất 2 lần diễn tập trước khi chuyển đổi production."],
+["不慣れな点もあるかと存じますが、一日も早く{戦力|せんりょく}になれるよう努めます。","Có thể còn nhiều điểm chưa quen, nhưng tôi sẽ cố gắng sớm trở thành người góp sức."]],
+ls:["データ移行 失敗 リハーサル","Nghe về chuyển đổi dữ liệu và các thất bại thường gặp. Tìm thêm 「キックオフ 自己紹介 例」."],
+rp:["新しい職場の PM（日本人、40代、歓迎はするが様子見）と顧客の担当者（Claudeが場面に応じて演じ分ける）","転職先に入社したばかりのBA","入社初日、データ移行プロジェクトのキックオフに途中参加。","PMが「さっそくですが、移行のリスクを3つ挙げてください」と振り、顧客担当者は「前のBAさんとは違うやり方なんですか？」と警戒する。","初日らしい謙虚さと、BAとしての存在感を両立させる。"],
+n1:"総合模試（ハーフ）｜語彙 4・文法 4・読解 4・聴解 3（30分）",n1t:30}
+];
+
+</script>
+<script>
+(function(){
+LP.bar();
+const KEY=LP.key("jp56_v1");
+const TASKS=["Mẫu câu","Ngữ pháp / kính ngữ","Nghe + shadowing","Role-play","Đề N1","Sổ tay"];
+let S;
+function load(){
+  let s=null;
+  try{s=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+  S=Object.assign({start:(function(){const t=new Date();t.setDate(t.getDate()+(t.getDay()===0?-6:1-t.getDay()));return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0")})(),bjt:"J1",jlpt:"tháng 7/2027",rate:"1",theme:"",days:{}},s||{});
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function dd(n){if(!S.days[n])S.days[n]={t:[0,0,0,0,0,0],rp:"",n1:"",note:"",book:""};return S.days[n]}
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const furi=s=>esc(s).replace(/\{([^|}]+)\|([^}]*)\}/g,(m,a,b)=>b?`<ruby>${a}<rt>${b}</rt></ruby>`:a);
+const plain=s=>String(s).replace(/\{([^|}]+)\|([^}]*)\}/g,"$1");
+const PLAY='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
+
+// ---- dates
+function parseD(s){const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)}
+function dateOf(n){const d=parseD(S.start);d.setDate(d.getDate()+n-1);return d}
+const WD=["CN","T2","T3","T4","T5","T6","T7"];
+const fmt=d=>`${d.getMonth()+1}/${d.getDate()}`;
+const fmtL=d=>`${WD[d.getDay()]}, ${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
+function todayN(){const t=new Date();t.setHours(0,0,0,0);return Math.round((t-parseD(S.start))/864e5)+1}
+
+// ---- curriculum access
+const isSun=n=>n%7===0;
+const wk=n=>Math.ceil(n/7);
+function info(n){if(isSun(n))return null;const w=wk(n),p=(n-1)%7;return STUDY[(w-1)*6+p]}
+function studyDays(w){const a=[];for(let i=1;i<=6;i++)a.push((w-1)*7+i);return a}
+function n1Count(n){return isSun(n)?20:15}
+function doneCount(n){const d=S.days[n];return d?d.t.filter(Boolean).length:0}
+
+// ---- prompts
+function rpBlock(n,it,extra){
+  const dm=DOM[it.dom];
+  return `あなたは日本のIT企業で働くネイティブの日本人として、私の日本語ビジネス会話の練習相手になってください。
+私：${LP.aboutJp()}。目標はBJT ${S.bjt}、JLPT N1（${S.jlpt}）、日本語での転職面接です。初級者向けの配慮や易しい言い換えは不要です。
+
+■ Day ${n}/84（${fmtL(dateOf(n))}）
+■ テーマ：${it.sk}
+■ ドメイン：${dm.n}
+■ 場面：${it.rp[2]}
+■ あなたの役（Part 2）：${it.rp[0]}
+■ 私の役：${it.rp[1]}
+■ 途中で必ず入れる展開：${it.rp[3]}
+■ 今日の到達目標：${it.rp[4]}
+${extra?"\n"+extra+"\n":""}
+【進め方（約20分）】
+Part 1 ウォームアップ：このテーマとドメインについて、あなたから質問して2〜3往復やりとりしてください。
+Part 2 ロールプレイ本番（約15往復）：まず私の役と状況を1〜2行で示し、あなたから場面を始めてください。最後まで役を崩さないでください。実際の日本の職場と同じスピード・自然さ・言葉遣いで話し、遠慮なく深掘り・反論・プレッシャーをかけてください。私のセリフは書かないでください。解説のために場面を止めないでください。私の発言に誤り・不自然な表現・敬語やビジネスマナーの問題があったときだけ、あなたの返答の最後に「✏️」で始まる短い一行で指摘してください。
+Part 3 役割交代（5〜6往復）：役を入れ替え、私が「${it.rp[0]}」、あなたが「${it.rp[1]}」を演じます。お手本になる自然な言い方で話してください。
+${it.rx?"\n※特記事項："+it.rx+"\n":""}
+【終了後の評価】日本の職場の基準で厳しく、各10点満点で採点してください。
+・正確さ／敬語・ビジネスマナー／自然さ／流暢さ／やりとり／課題達成、そして総合点（10点満点）
+・誤りの表：私の発言 → 正しい・より自然な言い方 → 理由（理由はベトナム語で）。同じ種類の誤りはまとめてください。
+・良かった点を3つ、覚えるべき新しい表現を5つ（難しい語にはふりがな）、明日の重点を1つ。
+
+では、Part 1 から始めてください。`;
+}
+function weekNotes(w){
+  const out=[];
+  for(let n=(w-1)*7+1;n<=w*7;n++){const d=S.days[n];if(!d)continue;const t=[d.book,d.note].filter(x=>x&&x.trim()).join(" / ");if(t)out.push(`Day ${n}: ${t.trim()}`)}
+  return out.join("\n");
+}
+function lowestDay(w){
+  let best=null,score=99;
+  studyDays(w).forEach(n=>{const v=parseFloat((S.days[n]||{}).rp);if(!isNaN(v)&&v<score){score=v;best=n}});
+  return best||studyDays(w)[3];
+}
+function rpPrompt(n){
+  if(n===84){
+    return `あなたは日本のIT企業の人事・現場マネージャーを兼ねる評価者として、私の日本語ビジネス会話力を総合的に判定してください。
+私：${LP.aboutJp()}。12週間の学習を終えたところです。目標はBJT ${S.bjt}、JLPT N1（${S.jlpt}）、日本語での転職面接。
+
+【進め方（約30分）】
+1. 短い自己紹介と職務経歴（私）→ あなたが深掘り質問を3つ。
+2. 業務場面を4つ、予告なしで連続して出してください：仕様の矛盾指摘（顧客）、障害の第一報（顧客・怒っている）、スコープ交渉（事業部長）、上司への相談。各場面3〜4往復、役を崩さないでください。
+3. 面接の圧迫質問を2つ。
+途中で解説はせず、問題があった発言のみ「✏️」で一行指摘してください。
+
+【最終評価】
+・正確さ／敬語・ビジネスマナー／自然さ／流暢さ／やりとり／課題達成（各10点）＋総合点
+・BJTスコア帯の推定（J2/J1/J1+）と根拠、日本語での転職面接に通用するレベルかの率直な判定
+・誤りの表（私の発言 → 自然な言い方 → 理由をベトナム語で）、繰り返す癖の上位3つ
+・12週間後の私の強み3つ、次のフェーズ（次の3か月）で最優先すべき課題3つと具体的な練習方法
+
+${weekNotes(12)?"参考：今週の私のメモ\n"+weekNotes(12)+"\n\n":""}では、1から始めてください。`;
+  }
+  if(isSun(n)){
+    const w=wk(n),ln=lowestDay(w),it=info(ln),notes=weekNotes(w);
+    const extra=`※今日は第${w}週の復習日です。今週いちばん点数が低かった Day ${ln}（${it.sk}）の場面をもう一度行います。設定は同じですが、相手の反応や想定外の展開は前回と変えてください。${notes?"\n今週の私のメモ（よく間違えた点）：\n"+notes+"\nこれらの誤りが再び出たら、特に厳しく ✏️ で指摘してください。":""}`;
+    return rpBlock(n,it,extra);
+  }
+  return rpBlock(n,info(n),"");
+}
+function n1Kind(s){return /聴解/.test(s)?"listen":/読解|総合模試/.test(s)?"read":"lang"}
+function n1Prompt(n){
+  const N=n1Count(n);
+  let what,topic,extra="";
+  if(isSun(n)){
+    const w=wk(n),types=studyDays(w).map(d=>info(d).n1.split("｜")[0]).filter((v,i,a)=>a.indexOf(v)===i).join("、");
+    what=n===84?`Tổng kết 12 tuần: mô phỏng N1 thu nhỏ gồm 文字・語彙 5, 文法 5, 読解 6 (1 bài trung văn + 1 bài 統合理解), 聴解 4 (qua voice mode, làm sau cùng). Thời gian gợi ý 40 phút.`
+      :`Ôn tập tuần ${w}: 20 câu tập trung vào các dạng tôi hay sai trong tuần. Các dạng tuần này: ${types}.`;
+    const notes=weekNotes(w);
+    if(notes)extra+=`\nGhi chú lỗi của tôi trong tuần (ưu tiên ra câu đúng vào các điểm này):\n${notes}\n`;
+    topic="kinh doanh, IT, xã hội Nhật";
+  }else{
+    const it=info(n);what=it.n1;topic=`${DOM[it.dom].n} (${DOM[it.dom].v}), kinh doanh và IT`;
+    const k=n1Kind(it.n1);
+    if(k==="read")extra+="\nVới 読解: đưa bài đọc trước, câu hỏi ngay sau mỗi bài; độ dài và độ trừu tượng đúng chuẩn N1 (bài luận, bình luận xã hội, văn bản kinh doanh), không đơn giản hóa.\n";
+    if(k==="listen")extra+="\nVới 聴解: tôi sẽ làm qua voice mode. Bạn đọc phần giới thiệu tình huống, câu hỏi, rồi hội thoại/bài nói với tốc độ tự nhiên như đề thật; với 即時応答 thì đọc 3 lựa chọn bằng lời. Mỗi bài chỉ nghe một lần, tôi trả lời bằng số. Không hiện script cho đến khi chấm xong.\n";
+    if(it.n1t)extra+=`\nĐây là mini test có bấm giờ: ${it.n1t} phút. Đưa toàn bộ đề cùng lúc; tôi tự bấm giờ và gửi đáp án kèm thời gian đã dùng. Khi chấm, nhận xét cả cách phân bổ thời gian.\n`;
+  }
+  return `Bạn là giáo viên luyện thi JLPT N1 người Nhật. Hãy soạn đề luyện N1 cho tôi – Day ${n}/84 (${fmtL(dateOf(n))}).
+
+Dạng hôm nay: ${what}
+Số câu: ${N}.
+Ngữ liệu nên xoay quanh: ${topic}.
+${extra}
+Yêu cầu:
+- Tự soạn theo đúng hình thức và độ khó đề JLPT N1 thật, không chép đề thật. Bắt đầu ngay ở mức N1, có phương án nhiễu hợp lý và các bẫy thường gặp (từ gần nghĩa, cách đọc dễ nhầm, cấu trúc gần giống).
+- Nếu có thẻ quiz thì dùng thẻ quiz (trừ phần nghe qua voice mode). Nếu không, đánh số câu để tôi trả lời dạng 1-3, 2-1…
+- Sau khi tôi làm xong: chấm x/${N}, giải thích từng câu sai bằng tiếng Việt và chỉ ra bẫy, rồi liệt kê 5–8 từ/ngữ pháp N1 của ngày (cách đọc, nghĩa tiếng Việt, một câu ví dụ).`;
+}
+
+// ---- speech
+let voices=[];
+function loadVoices(){try{voices=speechSynthesis.getVoices().filter(v=>/^ja/i.test(v.lang))}catch(e){}}
+if("speechSynthesis" in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices}
+function speak(list){
+  if(!("speechSynthesis" in window)){toast("Trình duyệt này không hỗ trợ đọc to.");return}
+  speechSynthesis.cancel();
+  (Array.isArray(list)?list:[list]).forEach(t=>{
+    const u=new SpeechSynthesisUtterance(plain(t).replace(/[【】「」『』]/g," "));
+    u.lang="ja-JP";u.rate=parseFloat(S.rate)||1;
+    const v=voices.find(v=>/Kyoko|Otoya|Google/.test(v.name))||voices[0];if(v)u.voice=v;
+    speechSynthesis.speak(u);
+  });
+  if(!voices.length)toast("Chưa thấy giọng tiếng Nhật trên máy; có thể cần cài giọng ja-JP.");
+}
+
+// ---- clipboard & toast
+let tt;
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200)}
+async function copy(text,msg){
+  try{await navigator.clipboard.writeText(text);toast(msg)}
+  catch(e){
+    const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
+    let ok=false;try{ok=document.execCommand("copy")}catch(_){}
+    ta.remove();toast(ok?msg:"Không copy được. Mở phần xem trước bên dưới và copy thủ công.");
+  }
+}
+
+// ---- grid
+function renderGrid(){
+  const cal=$("cal"),tn=todayN();let h="";
+  for(let w=1;w<=12;w++){
+    h+=`<div class="wk"><b>Tuần ${w}</b><span class="jp">${WEEKS[w-1][0]}</span></div>`;
+    for(let p=1;p<=7;p++){
+      const n=(w-1)*7+p,it=info(n),dc=doneCount(n);
+      const cls=["day"];if(isSun(n))cls.push("sun");if(n===tn)cls.push("today");if(n===cur)cls.push("sel");if(dc===6)cls.push("done");
+      const sk=it?it.sk:"復習";const dm=it?DOM[it.dom].n:(n===84?"Đánh giá cuối":"Ôn tập tuần");
+      h+=`<button class="${cls.join(" ")}" data-n="${n}" aria-label="Ngày ${n}, ${fmt(dateOf(n))}, ${esc(sk)}${dc===6?", đã xong":dc?`, xong ${dc}/6`:""}"><span class="n">${n}<span class="d">${fmt(dateOf(n))}</span></span><span class="sk">${esc(sk)}</span><span class="dm">${esc(dm)}</span><span class="pg" style="width:${dc/6*100}%"></span></button>`;
+    }
+  }
+  cal.innerHTML=h;
+}
+$("cal").onclick=e=>{const b=e.target.closest(".day");if(b)go(+b.dataset.n,true)};
+
+// ---- stats
+function renderStats(){
+  let days=0,rpS=0,rpN=0,c=0,t=0;
+  for(let n=1;n<=84;n++){
+    if(doneCount(n)===6)days++;
+    const d=S.days[n];if(!d)continue;
+    const r=parseFloat(d.rp);if(!isNaN(r)){rpS+=r;rpN++}
+    const k=parseInt(d.n1,10);if(!isNaN(k)){c+=Math.min(k,n1Count(n));t+=n1Count(n)}
+  }
+  $("sDays").innerHTML=`${days} <span>/ 84 ngày</span>`;
+  $("sBar").style.width=(days/84*100)+"%";
+  $("sRp").innerHTML=rpN?`${(rpS/rpN).toFixed(1)} <span>/ 10 · ${rpN} buổi</span>`:"–";
+  $("sN1").innerHTML=t?`${Math.round(c/t*100)}% <span>· ${c}/${t} câu</span>`:"–";
+  const tn=todayN();
+  $("dayLbl").textContent=tn<1?`Ngày đã xong · còn ${1-tn} ngày nữa là bắt đầu`:tn>84?"Ngày đã xong · lộ trình đã kết thúc":`Ngày đã xong · hôm nay là Ngày ${tn}`;
+}
+
+// ---- detail
+let cur=1,timerInt=null,timerLeft=0;
+function sentHTML(s,i){
+  const bad=s[2]?`<div class="bad"><em>Người nước ngoài hay nói:</em> <s class="jp">${furi(s[2])}</s></div>`:"";
+  return `<div class="sent"><button class="play" data-say="${esc(plain(s[0]))}" aria-label="Đọc to câu ${i+1}">${PLAY}</button><div class="ja">${furi(s[0])}</div><div class="tr">${esc(s[1])}</div>${bad}</div>`;
+}
+function termsHTML(dom,n){
+  const D=DOM[dom];let occ=0;
+  for(let k=1;k<n;k++){const it=info(k);if(it&&it.dom===dom)occ++}
+  const start=(occ*6)%D.t.length,rows=[];
+  for(let i=0;i<6;i++)rows.push(D.t[(start+i)%D.t.length].split("|"));
+  return `<div class="scroll"><table class="terms"><caption>Thuật ngữ nghiệp vụ: ${D.n} – ${esc(D.v)}</caption>${rows.map(r=>`<tr><td><button class="play" style="width:28px;height:28px;display:inline-grid;vertical-align:middle;margin-right:8px" data-say="${esc(r[0].replace(/（.*?）/g,""))}" aria-label="Đọc ${esc(r[0])}">${PLAY}</button>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join("")}</table></div>`;
+}
+function head(no,title,sub,n){
+  const on=dd(n).t[no-1];
+  return `<div class="th"><span class="no">${no}</span><h3>${title}${sub?`<small>${sub}</small>`:""}</h3><label class="chk"><input type="checkbox" data-t="${no-1}" ${on?"checked":""}> Xong</label></div>`;
+}
+function linkBtns(q){
+  const e=encodeURIComponent(q);
+  return `<div class="rowbtns"><a class="btn small" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=${e}">Tìm trên YouTube</a><a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/search?q=${e}">Tìm trên Google</a><a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/search?q=${encodeURIComponent(q+" site:nhk.or.jp")}">Tìm trên NHK</a></div><p class="note">Từ khoá: <span class="jp">${esc(q)}</span></p>`;
+}
+const SHADOW=`<ol class="steps"><li>Nghe 1 lần không nhìn chữ, đoán ý chính.</li><li>Nghe lại, bật phụ đề tiếng Nhật nếu có; dừng ở cụm khó.</li><li>Shadowing trễ nửa nhịp 3 lượt, lượt cuối bắt chước cả ngữ điệu và chỗ ngắt.</li><li>Ghi 2 cụm nghe được mà mình chưa từng tự nói vào sổ tay.</li></ol>`;
+
+function renderDetail(){
+  const n=cur,d=dd(n),it=info(n),w=wk(n),date=dateOf(n),tn=todayN();
+  const N=n1Count(n);
+  let h=`<div class="dh"><div><div class="meta">Ngày ${n}/84 · Tuần ${w}: ${esc(WEEKS[w-1][1])} · ${fmtL(date)}${n===tn?'<span class="pill">Hôm nay</span>':""}</div>`;
+  if(it){
+    h+=`<h2>${esc(it.sk)}</h2><div class="vi">${esc(it.vi)}</div><span class="dom">${DOM[it.dom].n} · ${esc(DOM[it.dom].v)}</span>`;
+  }else{
+    h+=`<h2>${n===84?"総合評価":"第"+w+"週の復習"}</h2><div class="vi">${n===84?"Đánh giá trình độ sau 12 tuần":"Ngày ôn tập tuần "+w+": "+esc(WEEKS[w-1][0])}</div>`;
+  }
+  h+=`</div><div class="nav"><button class="btn small" data-go="${n-1}" ${n<=1?"disabled":""} aria-label="Ngày trước">‹ Ngày ${Math.max(1,n-1)}</button><button class="btn small" data-go="${n+1}" ${n>=84?"disabled":""} aria-label="Ngày sau">Ngày ${Math.min(84,n+1)} ›</button></div></div>`;
+
+  // 1 sentences
+  if(it){
+    h+=`<section class="task" data-sec="0">${head(1,"Mẫu câu","6 câu · bấm ▶ để nghe rồi nhại theo",n)}
+    <div class="rowbtns"><button class="btn small" data-sayall="1">Đọc cả 6 câu</button><span class="note">Tốc độ: ${S.rate==="0.85"?"chậm":S.rate==="1.15"?"nhanh":"bình thường"} (đổi trong Cài đặt)</span></div>
+    ${it.s.map(sentHTML).join("")}${termsHTML(it.dom,n)}
+    ${it.dom==="job"||/STAR|苦労/.test(it.sk)?'<p class="note">Số liệu và tên công ty trong mẫu câu chỉ là ví dụ; hãy thay bằng kinh nghiệm thật của bạn.</p>':""}</section>`;
+  }else{
+    h+=`<section class="task wkrev" data-sec="0">${head(1,"Ôn mẫu câu của tuần","36 câu · nghe và nhại lại, đánh dấu câu còn vấp",n)}`;
+    studyDays(w).forEach(k=>{const x=info(k);h+=`<div class="wd">Ngày ${k} · <span class="jp">${esc(x.sk)}</span> <button class="btn small" data-sayday="${k}">Đọc 6 câu</button></div>${x.s.map(sentHTML).join("")}`});
+    h+=`</section>`;
+  }
+
+  // 2 grammar
+  if(it){
+    h+=`<section class="task gram" data-sec="1">${head(2,"Ngữ pháp N1 · kính ngữ · business manner","",n)}<h4>${furi(it.g[0])}</h4><p>${furi(it.g[1])}</p>${it.g[2].map(x=>`<div class="ex"><button class="play" data-say="${esc(plain(x))}" aria-label="Đọc ví dụ">${PLAY}</button><span class="ja">${furi(x)}</span></div>`).join("")}<p class="note">Tự đặt 2 câu với điểm này theo bối cảnh dự án của bạn, đọc to rồi ghi vào sổ tay.</p></section>`;
+  }else{
+    h+=`<section class="task gram" data-sec="1">${head(2,"Ôn ngữ pháp của tuần","",n)}${studyDays(w).map(k=>{const x=info(k);return `<p><b class="jp">${furi(x.g[0])}</b><br><span class="ja jp">${furi(x.g[2][0])}</span></p>`}).join("")}<p class="note">Che phần ví dụ, tự nói một câu cho mỗi điểm; điểm nào bí thì đưa vào sổ tay hôm nay.</p></section>`;
+  }
+
+  // 3 listening
+  if(it){
+    h+=`<section class="task" data-sec="2">${head(3,"Nghe + shadowing","15 phút",n)}<p class="hint">${esc(it.ls[1])}</p>${linkBtns(it.ls[0])}${SHADOW}</section>`;
+  }else{
+    h+=`<section class="task" data-sec="2">${head(3,"Shadowing lại","15 phút",n)}<p class="hint">Chọn lại 1–2 video hay nhất trong tuần và shadowing không nhìn chữ. Hoặc nghe một bản tin NHK mới về kinh tế – IT.</p>${linkBtns(n===84?"ビジネス日本語 面接 上級":"NHK ニュース 経済 IT")}${SHADOW}</section>`;
+  }
+
+  // 4 role-play
+  const rpText=rpPrompt(n);
+  let scene;
+  if(n===84)scene=`<div class="scene">Buổi đánh giá tổng hợp ~30 phút: tự giới thiệu, 4 tình huống công việc liên tiếp, 2 câu hỏi phỏng vấn áp lực, rồi chấm điểm, ước lượng mức BJT và kế hoạch giai đoạn 2.</div>`;
+  else{
+    const src=it||info(lowestDay(w));
+    scene=`${it?"":`<p class="note">Làm lại tình huống điểm thấp nhất tuần: Ngày ${lowestDay(w)} (${esc(src.sk)}). Ghi chú và sổ tay của tuần sẽ tự được đưa vào lời mở đầu.</p>`}<div class="scene"><dl><dt>Claude đóng vai</dt><dd>${esc(src.rp[0])}</dd><dt>Bạn đóng vai</dt><dd>${esc(src.rp[1])}</dd><dt>Tình huống</dt><dd>${esc(src.rp[2])}</dd><dt>Biến cố</dt><dd>${esc(src.rp[3])}</dd><dt>Mục tiêu</dt><dd>${esc(src.rp[4])}</dd></dl></div>`;
+  }
+  h+=`<section class="task" data-sec="3">${head(4,"Role-play kaiwa với Claude",n===84?"30 phút":"20 phút",n)}${scene}
+  <div class="rowbtns"><button class="btn primary small" data-copy="rp">Copy lời mở đầu</button><a class="btn small" href="https://claude.ai/new" target="_blank" rel="noopener">Mở chat mới</a></div>
+  <details class="prompt"><summary>Xem lời mở đầu</summary><pre>${esc(rpText)}</pre></details>
+  <div class="field"><label for="rpIn">Điểm tổng role-play</label><input id="rpIn" type="number" min="0" max="10" step="0.1" inputmode="decimal" value="${esc(d.rp)}"> <span>/ 10</span></div></section>`;
+
+  // 5 N1
+  const n1Text=n1Prompt(n),tmin=it?it.n1t:(n===84?40:0);
+  h+=`<section class="task" data-sec="4">${head(5,"Luyện đề JLPT N1",N+" câu",n)}<p class="jp" style="margin:0 0 8px">${esc(it?it.n1:(n===84?"総合模試（20問・40分）":"週の復習：よく間違えた形式（20問）"))}</p>
+  <div class="rowbtns"><button class="btn primary small" data-copy="n1">Copy đề N1 hôm nay</button>${tmin?`<span class="timer" id="tm">${String(tmin).padStart(2,"0")}:00</span><button class="btn small" id="tmGo" data-min="${tmin}">Bắt đầu bấm giờ</button><button class="btn small" id="tmReset">Đặt lại</button>`:""}</div>
+  <details class="prompt"><summary>Xem nội dung sẽ copy</summary><pre>${esc(n1Text)}</pre></details>
+  <div class="field"><label for="n1In">Số câu đúng</label><input id="n1In" type="number" min="0" max="${N}" step="1" inputmode="numeric" value="${esc(d.n1)}"> <span>/ ${N}</span></div></section>`;
+
+  // 6 notebook
+  h+=`<section class="task" data-sec="5">${head(6,isSun(n)?"Sổ tay: 5 lỗi hay mắc nhất tuần":"Sổ tay: 3 câu mới hoặc lỗi hay mắc","",n)}
+  <textarea id="bookIn" placeholder="Ví dụ: おっしゃられる → おっしゃる (kính ngữ kép)">${esc(d.book)}</textarea>
+  <label class="note" for="noteIn" style="display:block;margin:14px 0 4px">Ghi chú của ngày</label>
+  <textarea id="noteIn" placeholder="Cảm nhận, điểm cần hỏi lại, link video hay…" style="min-height:70px">${esc(d.note)}</textarea></section>`;
+
+  $("detail").innerHTML=h;
+  stopTimer();
+}
+
+// ---- detail events
+$("detail").addEventListener("click",e=>{
+  const t=e.target.closest("button");if(!t)return;
+  if(t.dataset.say)speak(t.dataset.say);
+  else if(t.dataset.sayall)speak(info(cur).s.map(s=>s[0]));
+  else if(t.dataset.sayday)speak(info(+t.dataset.sayday).s.map(s=>s[0]));
+  else if(t.dataset.go)go(+t.dataset.go,true);
+  else if(t.dataset.copy==="rp")copy(rpPrompt(cur),"Đã copy lời mở đầu. Dán vào một chat mới.");
+  else if(t.dataset.copy==="n1")copy(n1Prompt(cur),"Đã copy đề N1. Dán vào một chat mới.");
+  else if(t.id==="tmGo")toggleTimer(+t.dataset.min);
+  else if(t.id==="tmReset"){stopTimer();const m=$("tmGo");if(m){timerLeft=0;$("tm").textContent=String(m.dataset.min).padStart(2,"0")+":00";$("tm").classList.remove("end")}}
+});
+$("detail").addEventListener("change",e=>{
+  const el=e.target,d=dd(cur);
+  if(el.dataset.t!==undefined){d.t[+el.dataset.t]=el.checked?1:0;save();el.closest(".task").classList.toggle("ok",el.checked);renderGrid();renderStats();if(doneCount(cur)===6)toast("Xong Ngày "+cur+". 済！")}
+  else if(el.id==="rpIn"){let v=parseFloat(el.value);d.rp=isNaN(v)?"":String(Math.max(0,Math.min(10,v)));el.value=d.rp;save();renderStats()}
+  else if(el.id==="n1In"){let v=parseInt(el.value,10);d.n1=isNaN(v)?"":String(Math.max(0,Math.min(n1Count(cur),v)));el.value=d.n1;save();renderStats()}
+});
+$("detail").addEventListener("input",e=>{
+  const el=e.target,d=dd(cur);
+  if(el.id==="bookIn"){d.book=el.value;save()}
+  if(el.id==="noteIn"){d.note=el.value;save()}
+});
+function markOk(){document.querySelectorAll(".task").forEach(s=>{const c=s.querySelector("input[type=checkbox]");if(c)s.classList.toggle("ok",c.checked)})}
+
+// ---- timer
+function stopTimer(){clearInterval(timerInt);timerInt=null;const b=$("tmGo");if(b)b.textContent=timerLeft>0?"Tiếp tục":"Bắt đầu bấm giờ"}
+function toggleTimer(min){
+  if(timerInt){stopTimer();return}
+  if(timerLeft<=0)timerLeft=min*60;
+  $("tmGo").textContent="Tạm dừng";$("tm").classList.remove("end");
+  timerInt=setInterval(()=>{
+    timerLeft--;const el=$("tm");if(!el){clearInterval(timerInt);return}
+    el.textContent=`${String(Math.floor(timerLeft/60)).padStart(2,"0")}:${String(timerLeft%60).padStart(2,"0")}`;
+    if(timerLeft<=0){clearInterval(timerInt);timerInt=null;el.classList.add("end");$("tmGo").textContent="Bắt đầu bấm giờ";toast("Hết giờ! Dừng bút và gửi đáp án.");try{navigator.vibrate&&navigator.vibrate(300)}catch(_){}}
+  },1000);
+}
+
+// ---- navigation
+function go(n,scroll){
+  n=Math.max(1,Math.min(84,n));
+  if(location.hash!=="#d"+n){history.replaceState(null,"","#d"+n)}
+  cur=n;timerLeft=0;renderGrid();renderDetail();markOk();
+  if(scroll)$("detail").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+}
+function fromHash(){const m=/^#d(\d{1,2})$/.exec(location.hash);return m?+m[1]:null}
+window.addEventListener("hashchange",()=>{const h=fromHash();if(h&&h!==cur)go(h,true)});
+$("todayBtn").onclick=()=>{const t=todayN();if(t<1)toast("Chưa đến ngày bắt đầu, mở Ngày 1.");go(Math.max(1,Math.min(84,t)),true)};
+
+// ---- theme
+function applyTheme(){CL.applyTheme()}
+$("themeBtn").onclick=()=>CL.toggleTheme();
+
+// ---- settings
+const dlg=$("dlg");
+$("setBtn").onclick=()=>{$("fStart").value=S.start;$("fBjt").value=S.bjt;$("fJlpt").value=S.jlpt;$("fRate").value=S.rate;dlg.showModal?dlg.showModal():dlg.setAttribute("open","")};
+$("cancelBtn").onclick=()=>dlg.close();
+$("saveBtn").onclick=()=>{
+  if($("fStart").value)S.start=$("fStart").value;
+  S.bjt=$("fBjt").value.trim()||"J1";S.jlpt=$("fJlpt").value.trim()||"tháng 7/2027";S.rate=$("fRate").value;
+  save();dlg.close();renderStats();go(cur,false);toast("Đã lưu cài đặt.");
+};
+$("resetBtn").onclick=()=>{if(confirm("Xoá toàn bộ tiến độ, điểm và ghi chú? Không thể hoàn tác.")){S.days={};save();dlg.close();renderStats();go(cur,false);toast("Đã xoá tiến độ.")}};
+
+// ---- init
+load();applyTheme();renderStats();
+const h0=fromHash(),t0=todayN();
+go(h0||Math.max(1,Math.min(84,t0)),false);
+})();
+
+</script>
+</body>
+</html>

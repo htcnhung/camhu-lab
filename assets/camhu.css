@@ -1,0 +1,133 @@
+/* Camhu Lab — kiểu dáng dùng chung: bảng màu xanh lam pastel, thanh điều hướng, hộp thoại tài khoản.
+   File này được nạp SAU phần <style> của từng trang nên các biến màu bên dưới ghi đè bảng màu cũ. */
+
+/* ---------- biến màu của Camhu Lab ---------- */
+:root{
+  --cl-bg:#EEF5FC; --cl-card:#FFFFFF; --cl-soft:#F4F9FE; --cl-sunk:#E4EEF8; --cl-ink:#22384F; --cl-muted:#62788F; --cl-line:#D3E3F3;
+  --cl-pri:#9CCBF2; --cl-pri2:#BBDCF7; --cl-pri-d:#24659E; --cl-pri-l:#E3F0FC; --cl-pri-sh:#74B0E2; --cl-pri-ink:#0F3B63;
+  --cl-mint-l:#DFF6EF; --cl-mint:#A9E4D7; --cl-mint-d:#1B7268; --cl-peach-l:#FFF0E8; --cl-peach:#FFD3BF; --cl-peach-d:#B05A38;
+  --cl-yellow-l:#FFF7D9; --cl-yellow:#F3DC86; --cl-yellow-d:#86690C; --cl-ok:#1F8F6A; --cl-ng:#CF4F69; --cl-ng-l:#FDE8ED;
+  --cl-bar:rgba(255,255,255,.88); --cl-overlay:rgba(30,50,75,.32); --cl-shadow:0 22px 60px rgba(30,60,100,.20);
+}
+:root[data-theme="dark"]{
+  --cl-bg:#111A24; --cl-card:#19242F; --cl-soft:#1D2935; --cl-sunk:#162029; --cl-ink:#E3EDF7; --cl-muted:#9BB0C4; --cl-line:#2B3D4F;
+  --cl-pri:#5FA6DE; --cl-pri2:#74B6E8; --cl-pri-d:#9DCDF5; --cl-pri-l:#1B3247; --cl-pri-sh:#2F78B4; --cl-pri-ink:#04203A;
+  --cl-mint-l:#1B3936; --cl-mint:#3D9C8F; --cl-mint-d:#8FE3D5; --cl-peach-l:#3A2A24; --cl-peach:#8A5A44; --cl-peach-d:#F4B195;
+  --cl-yellow-l:#36301A; --cl-yellow:#7A6A2A; --cl-yellow-d:#EBD27A; --cl-ok:#63D3A8; --cl-ng:#F28CA2; --cl-ng-l:#40222B;
+  --cl-bar:rgba(17,26,36,.88); --cl-overlay:rgba(0,0,0,.55); --cl-shadow:0 22px 60px rgba(0,0,0,.55);
+}
+
+/* ---------- ghi đè bảng màu của trang English (en.html) và 日本語 (jp.html) ---------- */
+:root{
+  --bg:#EEF5FC; --surface:#FFFFFF; --ink:#22384F; --muted:#62788F; --line:#D3E3F3;
+  --teal:#2F78B8; --teal-soft:#E0EEFB; --gold:#F2B94B; --gold-soft:#FFF3D6; --today:#22384F;
+  --paper:#EEF5FC; --sunk:#E4EEF8; --ai:#2F78B8; --ai-soft:#E0EEFB; --shu:#D05D79; --shu-soft:#FDE7ED;
+  --matcha:#2E8F7F; --matcha-soft:#DFF6EF; --focus:#2F78B8;
+  --en:#2F78B8; --en-soft:#E0EEFB; --jp:#D05D79; --jp-soft:#FDE7ED;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#111A24; --surface:#19242F; --ink:#E3EDF7; --muted:#9BB0C4; --line:#2B3D4F;
+  --teal:#7DBBEE; --teal-soft:#1B3247; --gold:#F0C05A; --gold-soft:#36301A; --today:#E3EDF7;
+  --paper:#111A24; --sunk:#162029; --ai:#7DBBEE; --ai-soft:#1B3247; --shu:#F28CA2; --shu-soft:#40222B;
+  --matcha:#7FD8C8; --matcha-soft:#1B3936; --focus:#7DBBEE;
+  --en:#7DBBEE; --en-soft:#1B3247; --jp:#F28CA2; --jp-soft:#40222B;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111A24; --surface:#19242F; --ink:#E3EDF7; --muted:#9BB0C4; --line:#2B3D4F;
+  --teal:#7DBBEE; --teal-soft:#1B3247; --gold:#F0C05A; --gold-soft:#36301A; --today:#E3EDF7;
+  --paper:#111A24; --sunk:#162029; --ai:#7DBBEE; --ai-soft:#1B3247; --shu:#F28CA2; --shu-soft:#40222B;
+  --matcha:#7FD8C8; --matcha-soft:#1B3936; --focus:#7DBBEE;
+  --en:#7DBBEE; --en-soft:#1B3247; --jp:#F28CA2; --jp-soft:#40222B;
+}}
+/* nền pastel + bo tròn mềm hơn cho các trang khóa học */
+body.cl-page{background:radial-gradient(1000px 520px at 6% -8%,var(--cl-pri-l) 0,transparent 60%),radial-gradient(800px 480px at 100% 0,var(--cl-yellow-l) 0,transparent 55%),var(--cl-bg);background-attachment:fixed}
+body.cl-page .btn,body.cl-page .hb button{border-radius:999px}
+body.cl-page .cal,body.cl-page .panel,body.cl-page .detail,body.cl-page .stat,body.cl-page .guide{border-radius:20px}
+body.cl-page #themeBtn{display:none}
+/* điện thoại hẹp: lịch 7 cột không được đẩy trang rộng hơn màn hình */
+@media (max-width:900px){body.cl-page .layout{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:430px){body.cl-page .layout .day{min-height:0}}
+
+/* ---------- thanh điều hướng ---------- */
+.cl-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 20px;background:var(--cl-bar);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:2px solid var(--cl-line);font:500 14px/1.4 "Be Vietnam Pro","Lexend","Segoe UI",system-ui,sans-serif;color:var(--cl-ink)}
+.cl-bar a{color:inherit;text-decoration:none}
+.cl-brand{display:flex;align-items:center;gap:10px;flex:none}
+.cl-brand b{font-size:17px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+.cl-logo{width:44px;height:42px;border-radius:16px;background:var(--cl-pri-l);border:2px solid var(--cl-pri);display:grid;place-items:center;overflow:hidden}
+.cl-logo svg{width:38px;height:36px;margin-top:2px}
+.cl-nav{display:flex;gap:4px;margin-left:8px;overflow-x:auto;scrollbar-width:none}
+.cl-nav::-webkit-scrollbar{display:none}
+.cl-nav a{padding:7px 14px;border-radius:999px;font-weight:600;color:var(--cl-muted);white-space:nowrap;transition:.15s}
+.cl-nav a:hover{background:var(--cl-sunk);color:var(--cl-ink)}
+.cl-nav a.on{background:var(--cl-pri-l);color:var(--cl-pri-d);box-shadow:inset 0 0 0 2px var(--cl-pri)}
+.cl-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex:none}
+#clUser{display:flex;align-items:center;gap:8px}
+.cl-userbtn,.cl-who{display:inline-flex;align-items:center;gap:8px;height:40px;border:2px solid var(--cl-line);background:var(--cl-card);color:var(--cl-ink);border-radius:999px;padding:0 14px;font:inherit;font-weight:600;cursor:pointer;max-width:190px;transition:.15s}
+.cl-userbtn:hover,.cl-who:hover{border-color:var(--cl-pri);background:var(--cl-pri-l)}
+.cl-userbtn.in{padding:0 12px 0 4px}
+.cl-userbtn svg,.cl-who svg{width:17px;height:17px;flex:none}
+.cl-who{border-style:dashed;color:var(--cl-muted)}
+.cl-lb{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-ava{flex:none;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--cl-pri2),var(--cl-pri));color:var(--cl-pri-ink);display:grid;place-items:center;font-weight:800;font-size:14px}
+.cl-dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--cl-muted)}
+.cl-dot.ok{background:var(--cl-ok)}
+.cl-dot.sync{background:var(--cl-yellow-d);animation:cl-pulse 1s ease-in-out infinite}
+.cl-dot.offline{background:var(--cl-ng)}
+.cl-icon{width:40px;height:40px;flex:none;border-radius:999px;border:2px solid var(--cl-line);background:var(--cl-card);color:var(--cl-ink);display:grid;place-items:center;cursor:pointer;transition:.15s}
+.cl-icon:hover{border-color:var(--cl-pri);background:var(--cl-pri-l)}
+.cl-icon svg{width:18px;height:18px}
+
+/* ---------- nút, hộp thoại, popover, thông báo ---------- */
+.cl-btn{border:2px solid var(--cl-line);background:var(--cl-card);color:var(--cl-ink);border-radius:999px;padding:8px 16px;font:600 14px/1.3 "Be Vietnam Pro","Lexend","Segoe UI",system-ui,sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 2px 0 var(--cl-line);transition:.15s}
+.cl-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 0 var(--cl-line)}
+.cl-btn:active:not(:disabled){transform:translateY(2px);box-shadow:none}
+.cl-btn:disabled{opacity:.5;cursor:not-allowed}
+.cl-btn.pri{background:linear-gradient(135deg,var(--cl-pri2),var(--cl-pri));border-color:var(--cl-pri);color:var(--cl-pri-ink);box-shadow:0 3px 0 var(--cl-pri-sh)}
+.cl-btn.pri:hover:not(:disabled){box-shadow:0 5px 0 var(--cl-pri-sh)}
+.cl-btn.mint{background:var(--cl-mint-l);border-color:var(--cl-mint);color:var(--cl-mint-d);box-shadow:0 2px 0 var(--cl-mint)}
+.cl-btn.peach{background:var(--cl-peach-l);border-color:var(--cl-peach);color:var(--cl-peach-d);box-shadow:0 2px 0 var(--cl-peach)}
+.cl-btn.ghost{background:transparent;box-shadow:none}
+.cl-btn.big{padding:13px 30px;font-size:16px}
+.cl-modal{position:fixed;inset:0;z-index:90;background:var(--cl-overlay);display:grid;place-items:center;padding:16px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.cl-card{background:var(--cl-card);color:var(--cl-ink);border:2px solid var(--cl-line);border-radius:28px;max-width:440px;width:100%;padding:24px;box-shadow:var(--cl-shadow);max-height:92vh;overflow:auto;animation:cl-pop .22s ease-out;font:400 15px/1.5 "Be Vietnam Pro","Lexend","Segoe UI",system-ui,sans-serif}
+.cl-auth-hero{text-align:center;margin-bottom:10px}
+.cl-auth-hero svg{width:96px;height:auto;filter:drop-shadow(0 8px 12px rgba(47,109,184,.22))}
+.cl-auth-hero h3{margin:2px 0;font-size:21px;font-weight:700}
+.cl-auth-hero p{margin:0;color:var(--cl-muted);font-size:14px}
+.cl-seg{display:flex;gap:4px;background:var(--cl-sunk);border-radius:14px;padding:4px;margin:12px 0}
+.cl-seg button{flex:1;border:0;background:transparent;color:var(--cl-muted);border-radius:10px;padding:8px;font:inherit;font-weight:700;cursor:pointer}
+.cl-seg button.on{background:var(--cl-card);color:var(--cl-pri-d);box-shadow:0 1px 4px rgba(30,60,100,.12)}
+.cl-form{display:grid;gap:10px}
+.cl-form label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--cl-muted);margin:0}
+.cl-form input{width:100%;border:2px solid var(--cl-line);background:var(--cl-soft);color:var(--cl-ink);border-radius:14px;padding:10px 14px;font:inherit;font-size:15px;outline:none;transition:.15s}
+.cl-form input:focus{border-color:var(--cl-pri);box-shadow:0 0 0 4px var(--cl-pri-l)}
+.cl-err{margin:0;background:var(--cl-ng-l);color:var(--cl-ng);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.cl-note{margin:12px 0 0;color:var(--cl-muted);font-size:12.5px;text-align:center}
+.cl-notice{background:var(--cl-yellow-l);border:2px solid var(--cl-yellow);color:var(--cl-yellow-d);border-radius:14px;padding:10px 14px;font-size:13.5px;margin:12px 0}
+.cl-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
+.cl-pop{position:fixed;top:64px;right:16px;z-index:80;width:min(320px,calc(100vw - 32px));background:var(--cl-card);color:var(--cl-ink);border:2px solid var(--cl-line);border-radius:22px;box-shadow:var(--cl-shadow);padding:16px;animation:cl-pop .18s ease-out;font:400 14px/1.5 "Be Vietnam Pro","Lexend","Segoe UI",system-ui,sans-serif}
+.cl-pop-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.cl-pop-head .cl-ava{width:44px;height:44px;font-size:19px}
+.cl-pop-head b{display:block;line-height:1.2}
+.cl-pop-head small{color:var(--cl-muted)}
+.cl-status{background:var(--cl-sunk);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.cl-pop-actions{display:grid;gap:8px}
+.cl-toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateX(-50%) translateY(10px);background:var(--cl-ink);color:var(--cl-bg);padding:9px 16px;border-radius:999px;font:600 13.5px/1.4 "Be Vietnam Pro","Lexend","Segoe UI",system-ui,sans-serif;opacity:0;transition:.2s;pointer-events:none;z-index:95;max-width:calc(100vw - 32px);text-align:center}
+.cl-toast.on{opacity:1;transform:translateX(-50%)}
+@keyframes cl-pop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes cl-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (max-width:760px){
+  .cl-bar{flex-wrap:wrap;padding:8px 14px;gap:8px}
+  .cl-brand b{font-size:15.5px}
+  .cl-logo{width:38px;height:36px;border-radius:14px}
+  .cl-logo svg{width:32px;height:30px}
+  .cl-nav{order:3;width:100%;margin:0}
+  .cl-nav a{padding:6px 12px;font-size:13.5px}
+  .cl-userbtn .cl-lb,.cl-who .cl-lb{max-width:84px}
+  .cl-userbtn{padding:0 10px}
+}
+@media (max-width:480px){.cl-who .cl-lb{display:none}.cl-who{padding:0 10px}.cl-right{gap:6px}}
+@media (max-width:380px){.cl-who{display:none}}
+@media (prefers-reduced-motion:reduce){.cl-card,.cl-pop{animation:none}.cl-btn,.cl-toast{transition:none}}
